@@ -1,6 +1,6 @@
 # ACTM-Project
 
-Software per la compisizione musicale
+Software per la composizione musicale
 
 Specifiche:
 * Scelta per genere, ogni genere ha 3 brani di default(modificabili dall'utente)
