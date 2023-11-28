@@ -1,7 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
-	<meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8"/>
-	<link rel="stylesheet" href="CSS/style.css">
-	<title>Login page</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="style.css">
+	<script src="javascript/main.js" charset="utf-8" defer></script>
+	<script src="javascript/utils.js" charset="utf-8" defer></script>
+	<title>Page</title>
 </head>
+<body>
+	<header>
+		<h1>It's not Garage Band</h1>
+		<nav>
+		  <a href="#" id = "manage_projects" class = "header_button">Projects</a>
+		  <!--<a href="#" id = "add_instruments">Add instrument</a>-->
+		  <div class="dropdown">
+			<button onclick="toggleDropdown()" class = "header_button">Add instrument</button>
+			<div class="dropdown-content" id="dropdownContent">
+			  <a href="#" id = "piano_button" class = "header_button">Piano</a>
+			  <a href="#" id = "drum_button" class = "header_button">Drum</a>
+			  <a href="#" id = "guitar_button" class = "header_button"'>Guitar</a>
+			  <a href="#" id = "bass_button" class = "header_button">Bass</a>
+			</div>
+		  </div>
+		  <a href="#" id="play" class = "header_button">Play</a>
+		  <a href="#" id = "rec" class = "header_button">Rec</a>
+		  <a href="#" id = "metronome" class = "header_button">Metronome</a>
+		  <a href="#" id="loop" class ="header_button">Loop</a>
+		</nav>
+	  </header>
+
+	  <div id = "instruments_div">
+	  </div>
+		
+</body>
+</html>
