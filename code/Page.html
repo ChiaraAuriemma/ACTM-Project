@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="style.css">
+	<script src="javascript/main.js" charset="utf-8" defer></script>
+	<script src="javascript/utils.js" charset="utf-8" defer></script>
+	<title>Page</title>
+</head>
+<body>
+	<header>
+		<h1>It's not Garage Band</h1>
+		<nav>
+		  <div class="dropdown">
+			<button onclick="toggleDropdown(event)" id="dropProject_button" class = "header_button">Projects</button>
+			<div class="dropdown-content" id="dropProject">
+			  <a href="#" id = "load_button">Load Project</a>
+			  <a href="#" id = "save_button">Save</a>
+			</div>
+		  </div>
+		  <div class="dropdown">
+			<button onclick="toggleDropdown(event)" id="dropAdd_button" class = "header_button">Add instrument</button>
+			<div class="dropdown-content" id="dropAdd">
+			  <a href="#" id = "piano" onclick="choose_instrument(event)">Piano</a>
+			  <a href="#" id = "drum" onclick="choose_instrument(event)">Drum</a>
+			  <a href="#" id = "guitar" onclick="choose_instrument(event)">Guitar</a>
+			  <a href="#" id = "bass"  onclick="choose_instrument(event)">Bass</a>
+			</div>
+		  </div>
+		  <div class="dropdown">
+			<button onclick="toggleDropdown(event)" id="dropPlay_button" class = "header_button">Play</button>
+			<div class="dropdown-content" id="dropPlay">
+			  <a href="#" id = "MIDI_button">MIDI</a>
+			  <a href="#" id = "APP_button">APP</a>
+			</div>
+		  </div>
+		  <a href="#" id = "rec" class = "header_button">Rec</a>
+		  <a href="#" id = "metronome" class = "header_button">Metronome</a>
+		  <a href="#" id="loop" class ="header_button">Loop</a>
+		</nav>
+	  </header>
+
+	  <div id = "instruments_div">
+	  </div>
+		
+</body>
+</html>
