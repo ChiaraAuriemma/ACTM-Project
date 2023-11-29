@@ -30,6 +30,13 @@ body {
   h1 {
     color: aqua;
   }
+
+  img{
+    width: 200px; /* Imposta la larghezza desiderata */
+    height: 200px; /* Imposta l'altezza desiderata */
+    object-fit: cover; /* Adatta l'immagine alla dimensione specificata senza deformarla */
+    margin-left: 30px; /* Imposta lo spazio desiderato a sinistra dell'immagine */
+  }
   
   .dropdown {
     position: relative;
@@ -43,6 +50,8 @@ body {
     background-color: #f9f9f9;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    left: 50%; /* Sposta il dropdown a metà della larghezza del suo contenitore */
+    transform: translateX(-50%); /* Centra il dropdown rispetto al suo centro */
   }
   
   
@@ -56,6 +65,7 @@ body {
   .dropdown-content a:hover {
     background-color: #ddd;
   }
+  
   
   .show {
     display: block;
