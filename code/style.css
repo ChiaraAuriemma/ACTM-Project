@@ -70,3 +70,24 @@ body {
   .show {
     display: block;
   }
+
+  .instrument_container{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: #b9bfb2;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    height: 50%;
+    overflow: auto;
+  }
+
+  .close {
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }

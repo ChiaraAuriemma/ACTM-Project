@@ -42,4 +42,3 @@ function drawKey(key, disp=0, j){
 }
 
 
-document.getElementById("piano_container").innerHTML = drawKeyBoard();
