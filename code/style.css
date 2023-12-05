@@ -106,3 +106,7 @@ body {
     background-color: #4a545a;
     border-color: black;
 }
+
+.clickRemove{
+  background-color: burlywood;
+}

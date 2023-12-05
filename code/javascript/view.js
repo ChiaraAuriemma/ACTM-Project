@@ -3,6 +3,7 @@ view = {
       let instrument_container = document.createElement("div");
       instrument_container.setAttribute("class","instrument");
       instrument_container.setAttribute("id",string + "_" + num);
+      instrument_container.setAttribute("onclick", "controller.delete_instrument(event)");
       let div = document.getElementById("instruments_div");
       div.appendChild(instrument_container);
   

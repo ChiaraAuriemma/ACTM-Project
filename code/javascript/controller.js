@@ -28,6 +28,21 @@ controller = {
     event.preventDefault();
     var time = document.getElementById("metronome").value;
     metronome.start_stop(time);
-  }
+  },
+
+  activate_removal: function(event){
+    target = event.target;
+    target.classList.toggle("clickRemove");
+  },
+
+  delete_instrument: function(event){
+    event.preventDefault();
+    var bt = document.getElementById("remove_button");
+    if(bt.classList.contains("clickRemove")){
+      target = event.target.closest('.instrument');
+      target.remove();
+    }
+      
+  },
 }
 

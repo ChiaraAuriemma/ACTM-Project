@@ -32,8 +32,9 @@
 			  <a href="#" id = "bass"  onclick="controller.choose_instrument(event)">Bass</a>
 			</div>
 		  </div>
-		  <a href="#" id = "rec" class = "header_button">Play</a>
-		  <a href="#" id = "rec" class = "header_button">Rec</a>
+		  <a href="#" class = "header_button" id = "remove_button" onclick="controller.activate_removal(event)">Remove Instruments</a>
+		  <a href="#" id = "play_button" class = "header_button">Play</a>
+		  <a href="#" id = "rec_button" class = "header_button">Rec</a>
 		  <form>
 			<input id = "metronome" type="number" name="numero" min="20" max="250" step="1", value="140">
 			<input type="submit" class = "header_button" value="Start/Stop Metronome" onclick="controller.play_metronome(event)">
