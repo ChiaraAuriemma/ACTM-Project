@@ -49,6 +49,7 @@ class Instrument{
         container.innerHTML = "Work in progress";
     }
   }
+
   
   model = {
     

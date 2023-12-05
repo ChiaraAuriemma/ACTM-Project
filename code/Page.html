@@ -9,6 +9,7 @@
 	<script src="javascript/controller.js" charset="utf-8" defer></script>
 	<script src="javascript/view.js" charset="utf-8" defer></script>
 	<script src="javascript/utils.js" charset="utf-8" defer></script>
+	<script src="javascript/metronome.js" charset="utf-8" defer></script>
 	<title>Page</title>
 </head>
 <body>
@@ -34,9 +35,9 @@
 		  <a href="#" id = "rec" class = "header_button">Play</a>
 		  <a href="#" id = "rec" class = "header_button">Rec</a>
 		  <form>
-			<input id = "metronome" type="number" id="numero" name="numero" min="0" step="1">
-			<input type="submit" class = "header_button" value="Start/Stop Metronome">
-		</form>
+			<input id = "metronome" type="number" name="numero" min="20" max="250" step="1", value="140">
+			<input type="submit" class = "header_button" value="Start/Stop Metronome" onclick="controller.play_metronome(event)">
+		  </form>
 		  <a href="#" id="loop" class ="header_button">Loop</a>
 		</nav>
 	  </header>

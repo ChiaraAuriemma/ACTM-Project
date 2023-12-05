@@ -22,6 +22,12 @@ controller = {
   start_play: function(event){
     var father = event.target.parentNode.parentNode;
     view.visualizeInstrument(father);
-    }
+  },
+
+  play_metronome: function(event){
+    event.preventDefault();
+    var time = document.getElementById("metronome").value;
+    metronome.start_stop(time);
+  }
 }
 
