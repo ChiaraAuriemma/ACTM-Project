@@ -1,7 +1,34 @@
 class Instrument{
     constructor(code){
       this.code = code;
-      this.tracks = [];
+      this.num_tracks = 8;
+      this.tracks = [],
+      this.refDiv;
+      this.refInCont;
+    }
+
+    getCode(){
+      return this.code;
+    }
+
+    setCode(code){
+      this.code = code;
+    }
+
+    setRefDiv(div){
+      this.refDiv = div;
+    }
+
+    getRefDiv(){
+      return this.refDiv;
+    }
+
+    setRefInCont(div){
+      this.refInCont = div;
+    }
+
+    getRefInCont(){
+      return this.refInCont;
     }
   
   }
@@ -15,6 +42,10 @@ class Instrument{
     draw(container){
         container.innerHTML = drawKeyBoard();
     }
+
+    getType(){
+      return this.type;
+    }
   }
   
   class Drum extends Instrument{
@@ -25,6 +56,10 @@ class Instrument{
 
     draw(container){
         container.innerHTML = "Work in progress";
+    }
+
+    getType(){
+      return this.type;
     }
   }
   
@@ -37,6 +72,10 @@ class Instrument{
     draw(container){
         container.innerHTML = "Work in progress";
     }
+
+    getType(){
+      return this.type;
+    }
   }
   
   class Bass extends Instrument{
@@ -48,13 +87,16 @@ class Instrument{
     draw(container){
         container.innerHTML = "Work in progress";
     }
+
+    getType(){
+      return this.type;
+    }
   }
 
   
   model = {
     
     instruments: [], 
-    count_codes: 0,
   
     getInstruments: function(){
       return this.instruments;
@@ -63,10 +105,6 @@ class Instrument{
     getCountCodes: function(){
       return this.count_codes;
     },
-
-    updateCountCodes: function(num){
-      this.count_codes = num;
-    },
   
     addInstrument: function(instrument){
       this.instruments.push(instrument);
@@ -74,6 +112,12 @@ class Instrument{
 
     deleteInstrument: function(num){
       this.instruments.splice(num,1);
+      for(let i =num; i< this.instruments.length; i++){
+        if(this.instruments[i].getCode() != i){
+            this.instruments[i].setCode(i);
+        }
+      }
+    
     },
   
     saveRecord: function(){

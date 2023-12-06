@@ -3,7 +3,7 @@ controller = {
 		button = event.target;
     string = button.getAttribute("id");
 		
-    var num = model.getCountCodes();
+    var num = model.getInstruments().length;
 
     if(string == "piano"){
       var instrument = new Piano(num);
@@ -17,14 +17,17 @@ controller = {
 
   
     model.addInstrument(instrument);
-    view.addInstrument(string, num);
-    num++;
-    model.updateCountCodes(num);
+    ref = view.addInstrument(string, num);
+    instrument.setRefDiv(ref);
 	},
 
   start_play: function(event){
     var father = event.target.parentNode.parentNode;
-    view.visualizeInstrument(father);
+    index = father.getAttribute("id").split('_')[1];
+    ref = view.visualizeInstrument(father);
+    ins = model.getInstruments();
+    ins[index].setRefInCont(ref);
+
   },
 
   play_metronome: function(event){
@@ -42,8 +45,8 @@ controller = {
     var bt = document.getElementById("remove_button");
     if(bt.classList.contains("clickRemove")){
       target = event.target.closest('.instrument');
-      view.deleteInstrument(target);
       model.deleteInstrument(target.getAttribute("id").split('_')[1]);
+      view.deleteInstrument(target);
     }
       
   },
