@@ -3,7 +3,8 @@ controller = {
 		button = event.target;
     string = button.getAttribute("id");
 		
-    var num = model.getInstruments().length;
+    var num = model.getCountCodes();
+
     if(string == "piano"){
       var instrument = new Piano(num);
     }else if(string == "drum"){
@@ -17,6 +18,8 @@ controller = {
   
     model.addInstrument(instrument);
     view.addInstrument(string, num);
+    num++;
+    model.updateCountCodes(num);
 	},
 
   start_play: function(event){
@@ -30,17 +33,17 @@ controller = {
     metronome.start_stop(time);
   },
 
-  activate_removal: function(event){
+  activate_removal: function(event){ 
     target = event.target;
     target.classList.toggle("clickRemove");
   },
 
   delete_instrument: function(event){
-    event.preventDefault();
     var bt = document.getElementById("remove_button");
     if(bt.classList.contains("clickRemove")){
       target = event.target.closest('.instrument');
-      target.remove();
+      view.deleteInstrument(target);
+      model.deleteInstrument(target.getAttribute("id").split('_')[1]);
     }
       
   },

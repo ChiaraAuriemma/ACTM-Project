@@ -38,5 +38,9 @@ view = {
         container.appendChild(close_button);
       }
      
+    },
+
+    deleteInstrument: function(target){
+      target.remove();
     }
   }

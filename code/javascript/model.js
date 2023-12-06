@@ -53,14 +53,27 @@ class Instrument{
   
   model = {
     
-    instrumets: [],
+    instruments: [], 
+    count_codes: 0,
   
     getInstruments: function(){
-      return this.instrumets;
+      return this.instruments;
+    },
+
+    getCountCodes: function(){
+      return this.count_codes;
+    },
+
+    updateCountCodes: function(num){
+      this.count_codes = num;
     },
   
     addInstrument: function(instrument){
-      this.instrumets.push(instrument);
+      this.instruments.push(instrument);
+    },
+
+    deleteInstrument: function(num){
+      this.instruments.splice(num,1);
     },
   
     saveRecord: function(){
