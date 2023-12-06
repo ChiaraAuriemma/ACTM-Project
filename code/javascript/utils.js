@@ -23,3 +23,11 @@ function closePopup(event) {
       }
     }
   };
+
+  function createSampleList(keyList){
+    samplesList = {};
+    for(let key in keyList) {
+        samplesList[keyList[key]] = './audio/' + keyList[key] + '.wav';
+    }
+    return samplesList;
+};
