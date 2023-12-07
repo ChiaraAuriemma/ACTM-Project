@@ -24,6 +24,8 @@ function closePopup(event) {
     }
   };
 
+
+// funzioni per la creazione e il caricamento dei samples
   function createSampleList(keyList){
     samplesList = {};
     for(let key in keyList) {
@@ -31,3 +33,27 @@ function closePopup(event) {
     }
     return samplesList;
 };
+
+
+function loadSound(samplesList, instrumentId=""){
+  //i parametri della funzione saranno:
+  //samplesList: il "dzionario" con i riferimenti tra chiave e samples dello strumento in questione
+  //instrumentId = l'id del div in cui si trova lo strumento
+  const instrument = document.getElementById(instrumentId);
+  const sounds = {};
+
+  for(const sample in samplesList){
+      const sound = new Howl({
+          src: samplesList[sample]
+      });
+      sounds[sample] = sound;
+  }
+
+  instrument.addEventListener('click', (e) => {
+      const sample = e.target.dataset.note;
+      
+      if (sample) {
+      sounds[sample].play();
+      }
+  }); 
+} 
