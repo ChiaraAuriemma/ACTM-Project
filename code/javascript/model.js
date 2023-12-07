@@ -55,7 +55,7 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = "Work in progress";
+        container.innerHTML = drawDrum();
     }
 
     getType(){
