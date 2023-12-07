@@ -8,11 +8,12 @@ view = {
       div.appendChild(instrument_container);
 
       let record_container = document.createElement("div");
-      record_container.setAttribute("id","record_container");
+      record_container.setAttribute("class","record_container");
       instrument_container.appendChild(record_container);
-      for(i=0; i<8; i++){
+      for(i=0; i<model.getNumTracks(); i++){
         let record = document.createElement("div");
-       /* record.setAttribute("id","track"+ "_" + track_num); */
+        record.setAttribute("class","record_square");
+        record.setAttribute("onclick", "controller.start_recording(event)");
         record_container.appendChild(record);
       }
 

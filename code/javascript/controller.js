@@ -36,19 +36,26 @@ controller = {
     metronome.start_stop(time);
   },
 
-  activate_removal: function(event){ 
+  activate_button: function(event){ 
     target = event.target;
-    target.classList.toggle("clickRemove");
+    target.classList.toggle("active_button");
   },
 
   delete_instrument: function(event){
     var bt = document.getElementById("remove_button");
-    if(bt.classList.contains("clickRemove")){
+    if(bt.classList.contains("active_button")){
       target = event.target.closest('.instrument');
       model.deleteInstrument(target.getAttribute("id").split('_')[1]);
       view.deleteInstrument(target);
     }
       
   },
+
+  start_recording: function(event){
+    var bt = document.getElementById("rec_button");
+    if(bt.classList.contains("active_button")){
+      /* Ci sto lavorando */
+    }
+  }
 }
 

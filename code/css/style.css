@@ -36,6 +36,7 @@ body {
     height: 200px; /* Imposta l'altezza desiderata */
     object-fit: cover; /* Adatta l'immagine alla dimensione specificata senza deformarla */
     margin-left: 30px; /* Imposta lo spazio desiderato a sinistra dell'immagine */
+    margin-right: 10px;
   }
   
   .dropdown {
@@ -100,6 +101,9 @@ body {
     border: 2px solid black;
     border-radius: 8px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center
 }
 
 .instrument:hover {
@@ -107,6 +111,22 @@ body {
     border-color: black;
 }
 
-.clickRemove{
+.active_button{
   background-color: burlywood;
+}
+
+.record_square{
+  width: 150px; /* Imposta la larghezza desiderata per ogni quadratino */
+  height: 150px; /* Imposta l'altezza desiderata per ogni quadratino */
+  background-color: #dce9f1; /* Imposta il colore di sfondo */
+}
+
+.record_container{
+  display: flex; /* Utilizza il layout flessibile */
+  gap: 10px; /* Aggiunge uno spazio di 10px tra i quadratini */ 
+}
+
+.record_square:hover {
+  background-color: #3c6178;
+  border-color: black;
 }

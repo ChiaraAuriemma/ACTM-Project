@@ -96,14 +96,15 @@ class Instrument{
   
   model = {
     
-    instruments: [], 
+    instruments: [],
+    num_tracks: 8,
   
     getInstruments: function(){
       return this.instruments;
     },
 
-    getCountCodes: function(){
-      return this.count_codes;
+    getNumTracks: function(){
+      return this.num_tracks;
     },
   
     addInstrument: function(instrument){
