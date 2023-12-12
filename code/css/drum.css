@@ -14,3 +14,7 @@
     background: radial-gradient(#e18174, #d15736);
     border-radius: 10px;
 }
+
+.pad img {
+    pointer-events: none;
+}
