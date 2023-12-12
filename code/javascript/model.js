@@ -2,9 +2,13 @@ class Instrument{
     constructor(code){
       this.code = code;
       this.num_tracks = 8;
-      this.tracks = [],
       this.refDiv;
       this.refInCont;
+      this.records = [];
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Record_square(this, i);
+        this.records.push(tmp);
+      }
     }
 
     getCode(){
@@ -29,6 +33,10 @@ class Instrument{
 
     getRefInCont(){
       return this.refInCont;
+    }
+
+    getRecords(){
+      return this.records;
     }
   
   }
@@ -93,6 +101,63 @@ class Instrument{
     }
   }
 
+  class Record_square{
+    constructor(father, code){
+      this.father = father;
+      this.code = code;
+      this.can_record = false;
+      this.is_recording = false;
+      this.recorder = null;
+      this.chunks = [];
+      this.audio_data;
+      SetupAudio(code, father);
+    }
+
+    getCode(){
+      return this.code;
+    }
+
+    getCanRecord(){
+      return this.can_record;
+    }
+
+    setCanRecord(can_record){
+      this.can_record = can_record;
+    }
+
+    getIsRecording(){
+      return this.is_recording;
+    }
+
+    setIsRecording(is_recording){
+      this.is_recording = is_recording;
+    }
+
+    getRecorder(){
+      return this.recorder;
+    }
+
+    setRecorder(recorder){
+      this.recorder = recorder;
+    }
+
+    getChunks(){
+      return this.chunks;
+    }
+
+    setChunks(chunks){
+      this.chunks = chunks;
+    }
+
+    getAudioData(){
+      return this.audio_data;
+    }
+
+    setAudioData(audio_data){
+      this.audio_data = audio_data;
+    }
+  }
+
   
   model = {
     
@@ -119,9 +184,5 @@ class Instrument{
         }
       }
     
-    },
-  
-    saveRecord: function(){
-  
     }
   }

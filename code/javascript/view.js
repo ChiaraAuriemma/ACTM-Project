@@ -12,8 +12,9 @@ view = {
       instrument_container.appendChild(record_container);
       for(i=0; i<model.getNumTracks(); i++){
         let record = document.createElement("div");
+        record.setAttribute("id", "record_" + i);
         record.setAttribute("class","record_square");
-        record.setAttribute("onclick", "controller.start_recording(event)");
+        record.setAttribute("onclick", "controller.startPlay_recording(event)");
         record_container.appendChild(record);
       }
 
@@ -70,5 +71,10 @@ view = {
         }
         
       }
+    },
+
+    activate_button: function(event){ 
+      target = event.target;
+      target.classList.toggle("active_button");
     }
   }

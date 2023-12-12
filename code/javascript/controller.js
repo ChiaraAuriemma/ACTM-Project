@@ -37,8 +37,7 @@ controller = {
   },
 
   activate_button: function(event){ 
-    target = event.target;
-    target.classList.toggle("active_button");
+    view.activate_button(event);
   },
 
   delete_instrument: function(event){
@@ -47,15 +46,54 @@ controller = {
       target = event.target.closest('.instrument');
       model.deleteInstrument(target.getAttribute("id").split('_')[1]);
       view.deleteInstrument(target);
-    }
-      
+    }    
   },
 
-  start_recording: function(event){
-    var bt = document.getElementById("rec_button");
-    if(bt.classList.contains("active_button")){
-      /* Ci sto lavorando */
+  find_instrument_from_view: function(event){ /* dalla view trova l'oggetto*/
+    ins_view = event.target.closest('.instrument');
+    code = parseInt(ins_view.getAttribute("id").split('_')[1]);
+
+    array = model.getInstruments();
+
+    return array[code];
+  },
+
+  find_record_from_view: function(event, instrument){ /* dalla view trova l'oggetto*/
+    code = event.target.getAttribute("id").split('_')[1];
+    records = instrument.getRecords();
+
+    return records[code];
+  },
+
+  startPlay_recording: function(event){
+    var bt1 = document.getElementById("rec_button");
+    var bt2 = document.getElementById("play_button");
+
+    ins = this.find_instrument_from_view(event);
+    record = this.find_record_from_view(event, ins);
+    
+    if(bt1.classList.contains("active_button")){
+      this.manage_recording(record);
+    }else if(bt2.classList.contains("active_button")){
+      this.play_recording(record);
     }
+
+  },
+
+  manage_recording: function(record){
+    ToggleMic(record);
+  },
+
+  play_recording: function(record){
+    let audioBlob = record.getAudioData();
+
+    if (audioBlob) {
+      let audioElement = new Audio(window.URL.createObjectURL(audioBlob));
+      audioElement.play();
+    } else {
+      console.error('Audio data not avaible');
+    }
+    
   }
 }
 

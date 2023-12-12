@@ -12,6 +12,7 @@
 	<script src="javascript/view.js" charset="utf-8" defer></script>
 	<script src="javascript/utils.js" charset="utf-8" defer></script>
 	<script src="javascript/metronome.js" charset="utf-8" defer></script>
+	<script src="javascript/MediaRecorder.js" charset="utf-8" defer></script>
 	<title>Page</title>
 </head>
 <body>
@@ -35,7 +36,7 @@
 			</div>
 		  </div>
 		  <a href="#" class = "header_button" id = "remove_button" onclick="controller.activate_button(event)">Remove Instruments</a>
-		  <a href="#" id = "play_button" class = "header_button">Play</a>
+		  <a href="#" id = "play_button" class = "header_button" onclick = "controller.activate_button(event)">Play</a>
 		  <a href="#" id = "rec_button" id = "rec_button" class = "header_button" onclick = "controller.activate_button(event)">Rec</a>
 		  <form>
 			<input id = "metronome" type="number" name="numero" min="20" max="250" step="1", value="140">
