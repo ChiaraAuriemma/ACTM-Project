@@ -78,7 +78,8 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = "Work in progress";
+        container.innerHTML = drawGuitar();
+        setup(container);
     }
 
     getType(){
