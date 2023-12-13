@@ -130,3 +130,26 @@ body {
   background-color: #3c6178;
   border-color: black;
 }
+
+#countdown{
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  background-color: #3498db; 
+  color: #fff; 
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+  width: 30%;
+  height: 20%;
+  overflow: auto;
+}
+
+#countdown span {
+  font-size: 2em; 
+  font-weight: bold;
+  display: block;
+  text-align: center;
+  line-height: 4em;
+}
+

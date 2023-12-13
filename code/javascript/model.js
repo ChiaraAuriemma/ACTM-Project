@@ -108,7 +108,7 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = "Work in progress";
+        /*si potrebbe anche eliminare */
     }
 
     getType(){

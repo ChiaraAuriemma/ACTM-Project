@@ -79,5 +79,33 @@ view = {
     activate_button: function(event){ 
       target = event.target;
       target.classList.toggle("active_button");
+    },
+
+    create_countdown: function () {
+      var el = document.getElementById("countdown");
+  
+      if (!el) {
+        el = document.createElement("div");
+        el.setAttribute("id", "countdown");
+        span = document.createElement("span");
+
+        var div = document.getElementById("instruments_div");
+        div.appendChild(el);
+        el.appendChild(span);
+      }
+
+      el.style.display = "block";
+    
+      return el;  
+    },
+    
+    update_countdown: function (el, seconds) {
+      if (el) {
+        el.children[0].innerText = seconds;
+      }
+    },
+
+    hideCountdown: function(el){
+      el.style.display = "none";
     }
   }

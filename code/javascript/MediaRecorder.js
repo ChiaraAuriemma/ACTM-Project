@@ -35,10 +35,25 @@ function ToggleMic(record){
   record.setIsRecording(!record.getIsRecording());
 
   if(record.getIsRecording()){
-    record.getRecorder().start();
-    console.log("Start Recording");
+    el = view.create_countdown();
+    CountDown(el,5);
+    setTimeout(function () {
+      record.getRecorder().start();
+      console.log("Start Recording");
+    }, 5000);
   }else{
     record.getRecorder().stop();
     console.log("Stop Recording");
+  }
+}
+
+function CountDown(el,seconds){
+  if (seconds > 0) {
+    setTimeout(function () {
+      view.update_countdown(el,seconds);
+      CountDown(el,seconds - 1); 
+    }, 1000);
+  }else{
+    view.hideCountdown(el);
   }
 }
