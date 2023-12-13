@@ -1,0 +1,13 @@
+.whiteKey{
+    fill:white;
+    stroke:black;
+    stroke-width:3px;
+    opacity:1
+  }
+
+  .blackKey{
+    fill:black;
+    stroke:black;
+    stroke-width:3px;
+    opacity:1;
+  }

@@ -48,7 +48,8 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = drawKeyBoard();
+        let container_id = container.getAttribute("id");
+        container.innerHTML = drawKeyBoard(container_id);
     }
 
     getType(){
