@@ -30,6 +30,9 @@ view = {
     },
   
     visualizeInstrument: function(father){
+
+      if(father.getAttribute("id").split('_')[0] == "voice")
+        return;
     
       if (document.getElementById(father.getAttribute("id") + "_container")){
         container = document.getElementById(father.getAttribute("id") + "_container").style.display = 'block';

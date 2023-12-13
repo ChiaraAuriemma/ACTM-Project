@@ -11,8 +11,10 @@ controller = {
       var instrument = new Drum(num);
     }else if(string == "guitar"){
       var instrument = new Guitar(num);
-    }else{
+    }else if(string == "bass"){
       var instrument = new Bass(num);
+    }else{
+      var instrument = new Voice(num);
     }
 
   
@@ -84,7 +86,7 @@ controller = {
     ToggleMic(record);
   },
 
-  play_recording: function(record){
+  play_recording: function(record){  /*quando registro di nuovo su un elemento continuo la ragistrazione, ma non sovrascrivo*/
     let audioBlob = record.getAudioData();
 
     if (audioBlob) {

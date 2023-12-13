@@ -101,6 +101,21 @@ class Instrument{
     }
   }
 
+  class Voice extends Instrument{
+    constructor(code){
+      super(code);
+      this.type = "voice";
+    }
+
+    draw(container){
+        container.innerHTML = "Work in progress";
+    }
+
+    getType(){
+      return this.type;
+    }
+  }
+
   class Record_square{
     constructor(father, code){
       this.father = father;
