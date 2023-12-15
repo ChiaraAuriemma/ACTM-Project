@@ -46,6 +46,6 @@ function drawKey(key, disp=0, j){
 
 function enableSoundPiano(container_id){
     pianoKeys=whiteKey.concat(blackKey);
-    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples");
+    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano");
     loadSound(pianoSamples, container_id );
 }

@@ -1,12 +1,18 @@
-function createSamplesList(keyList, directoryName){
+function createSamplesList(keyList, directoryName, name){
     samplesList = {};
     for (let key in keyList){
-        
+      if(name != 'drum'){
         for(let i=1; i<=nscale; i++){
           if(keyList[key]!==''){
             samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ keyList[key] + i +'.mp3';
           }
-        }
+        } 
+      }else{
+        samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ keyList[key] +'.mp3';
+      }
+        
+      
+        
     }
     return samplesList;
 };
