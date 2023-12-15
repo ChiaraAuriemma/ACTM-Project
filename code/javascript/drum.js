@@ -8,7 +8,14 @@ function drawDrum() {
 
     drum += "</div>";
 
+    enableSoundDrum(container_id);
+
     console.log(drum); 
 
     return drum;
+}
+
+function enableSoundDrum(container_id){
+    let drumSamples = createSamplesList(image, "drumSamples");
+    loadSound(drumSamples, container_id );
 }

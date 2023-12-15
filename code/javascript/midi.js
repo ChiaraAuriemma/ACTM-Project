@@ -35,6 +35,7 @@ function hendleInput(input) {
             // note on
             if (velocity > 0) {
                 noteOn(note, velocity);
+                console.log(note);
             } else {
                 noteOff();
             }
