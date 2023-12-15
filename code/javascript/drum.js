@@ -8,7 +8,7 @@ function drawDrum() {
 
     drum += "</div>";
 
-    enableSoundDrum(container_id);
+    enableSoundDrum("drum_1_conteiner");
 
     console.log(drum); 
 
