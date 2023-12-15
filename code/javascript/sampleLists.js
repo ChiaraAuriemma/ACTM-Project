@@ -8,10 +8,8 @@ function createSamplesList(keyList, directoryName, name){
           }
         } 
       }else{
-        samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ keyList[key] +'.mp3';
-      }
-        
-      
+        samplesList[keyList[key]]='sounds/'+directoryName+'/'+ keyList[key] +'.mp3';
+      }  
         
     }
     return samplesList;
@@ -36,7 +34,8 @@ function loadSound(samplesList, instrumentId=""){
   instrument.addEventListener('mousedown', (e) => {
       const sample = e.target.dataset.note;
       if (sample) {
-        sounds[sample].play();       
+        sounds[sample].play();
+        console.log("drum")      
       }
   }); 
 

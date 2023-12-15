@@ -3,14 +3,14 @@ const image = ["open-hihat", "closed-hihat", "crash1", "crash2", "kick1", "kick2
 function drawDrum() {
     let drum = "<div class=\"drumkit\">";
     for(let i = 0; i <= 7; i++) {
-        drum += "<div data-name="+ image[i] + " class=\"pad\"><img src=\"images/" + image[i] + ".png\" alt=\"" + image[i] + "\"></div>"
+        drum += "<div data-note="+ image[i] + " class=\"pad\"><img src=\"images/" + image[i] + ".png\" alt=\"" + image[i] + "\"></div>"
     }
 
     drum += "</div>";
 
     
 
-    console.log(drum); 
+    //console.log(drum); 
 
     enableSoundDrum("drum_0_container");
 
@@ -19,5 +19,6 @@ function drawDrum() {
 
 function enableSoundDrum(container_id){
     let drumSamples = createSamplesList(image, "drumSamples", "drum");
+    console.log(drumSamples);
     loadSound(drumSamples, container_id );
 }
