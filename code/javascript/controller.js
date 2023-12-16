@@ -50,7 +50,13 @@ controller = {
       model.setDeleteRecordState(!model.getDeleteRecordState());
     }
 
-    view.activate_button(event);
+    if(!model.checkButtons()){ /* per il momento è possibile attivare un bottone alla volta, rec e play sarebbe carino attivarli insieme*/
+      alert('You can activate one button at a time');
+      model.resetStateButton();
+      view.reset_active_button();
+    }else{
+      view.activate_button(event);
+    }
 
   },
 
@@ -99,10 +105,24 @@ controller = {
 
   play_recording: function(record){ 
     let audioBlob = record.getAudioData();
+    let audioElement = record.getAudioElement();
 
     if (audioBlob) {
-      let audioElement = new Audio(window.URL.createObjectURL(audioBlob));
-      audioElement.play();
+      if (audioElement) {
+        if (record.getIsPlaying()) {
+          audioElement.pause(); 
+        }else{
+          audioElement.play();
+        }
+        record.setIsPlaying(!record.getIsPlaying());
+      }else{
+        record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob)));
+        record.getAudioElement().addEventListener('ended', () => {
+          record.setIsPlaying(false);
+        });
+        record.getAudioElement().play();
+        record.setIsPlaying(true);
+      }
     } else {
       console.error('Audio data not avaible');
     }

@@ -127,6 +127,8 @@ class Instrument{
       this.recorder = null;
       this.chunks = [];
       this.audio_data;
+      this.audio_element;
+      this.isPlaying = false;
       SetupAudio(code, father);
     }
 
@@ -172,6 +174,22 @@ class Instrument{
 
     setAudioData(audio_data){
       this.audio_data = audio_data;
+    }
+
+    getAudioElement(){
+      return this.audio_element;
+    }
+
+    setAudioElement(audio_element){
+      this.audio_element = audio_element;
+    }
+
+    getIsPlaying(){
+      return this.isPlaying;
+    }
+
+    setIsPlaying(isPlaying){
+      this.isPlaying = isPlaying;
     }
   }
 
@@ -230,8 +248,35 @@ class Instrument{
       this.delete_record_state= delete_record_state;
     },
 
-    resetState: function(){
+    checkButtons: function(){
+      let count = 0;
 
+      if(this.getRecState()){
+        count++;
+      }
+
+      if(this.getPlayState()){
+        count++;
+      }
+
+      if(this.getRemoveState()){
+        count++;
+      }
+
+      if(this.getDeleteRecordState()){
+        count++;
+      }
+
+      if(count >= 2)
+        return false;
+      else return true;
+    },
+
+    resetStateButton: function(){
+      this.setRecState(false);
+      this.setPlayState(false);
+      this.setRemoveState(false);
+      this.setDeleteRecordState(false);
     },
 
     addInstrument: function(instrument){
@@ -240,7 +285,7 @@ class Instrument{
 
     deleteInstrument: function(num){
       this.instruments.splice(num,1);
-      for(let i =num; i< this.instruments.length; i++){
+      for(let i=num; i< this.instruments.length; i++){
         if(this.instruments[i].getCode() != i){
             this.instruments[i].setCode(i);
         }

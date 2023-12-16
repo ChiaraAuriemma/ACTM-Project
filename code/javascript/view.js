@@ -81,6 +81,13 @@ view = {
       target.classList.toggle("active_button");
     },
 
+    reset_active_button: function(){
+      document.getElementById("rec_button").classList.remove("active_button");
+      document.getElementById("play_button").classList.remove("active_button");
+      document.getElementById("remove_button").classList.remove("active_button");
+      document.getElementById("deleteRecord_button").classList.remove("active_button");
+    },
+
     create_countdown: function () {
       var el = document.getElementById("countdown");
   
