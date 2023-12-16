@@ -1,0 +1,48 @@
+.record_square{
+    width: 150px; /* Imposta la larghezza desiderata per ogni quadratino */
+    height: 150px; /* Imposta l'altezza desiderata per ogni quadratino */
+    background-color: #dce9f1; /* Imposta il colore di sfondo */
+  }
+  
+  .record_container{
+    display: flex; /* Utilizza il layout flessibile */
+    gap: 10px; /* Aggiunge uno spazio di 10px tra i quadratini */ 
+  }
+  
+  .record_square:hover {
+    background-color: #3c6178;
+    border-color: black;
+  }
+  
+  #countdown{
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    background-color: #3498db; 
+    color: #fff; 
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    width: 30%;
+    height: 20%;
+    overflow: auto;
+  }
+  
+  #countdown span {
+    font-size: 2em; 
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    line-height: 4em;
+  }
+  
+  .recording{
+    background-color: rgb(182, 36, 36);
+  }
+  
+  .recording:hover {
+    background-color: #6b1426;
+    border-color: black;
+  }
+  
+  

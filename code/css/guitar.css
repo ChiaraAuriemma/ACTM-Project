@@ -11,16 +11,6 @@
     --noteDotOpacity: 0;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    background: #353535;
-    font-family: sans-serif;
-}
-
 .settings {
     display: flex;
     color: #fff;

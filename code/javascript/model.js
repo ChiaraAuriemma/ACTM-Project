@@ -180,6 +180,11 @@ class Instrument{
     
     instruments: [],
     num_tracks: 8,
+    countdown: 5,
+    rec_state:false,
+    play_state:false,
+    remove_state:false,
+    delete_record_state:false,
   
     getInstruments: function(){
       return this.instruments;
@@ -188,7 +193,47 @@ class Instrument{
     getNumTracks: function(){
       return this.num_tracks;
     },
-  
+
+    getCountDown: function(){
+      return this.countdown;
+    },
+
+    getRecState: function(){
+      return this.rec_state;
+    },
+
+    setRecState: function(rec_state){
+      this.rec_state= rec_state;
+    },
+
+    getPlayState: function(){
+      return this.play_state;
+    },
+
+    setPlayState: function(play_state){
+      this.play_state= play_state;
+    },
+
+    getRemoveState: function(){
+      return this.remove_state;
+    },
+
+    setRemoveState: function(remove_state){
+      this.remove_state= remove_state;
+    },
+
+    getDeleteRecordState: function(){
+      return this.delete_record_state;
+    },
+
+    setDeleteRecordState: function(delete_record_state){
+      this.delete_record_state= delete_record_state;
+    },
+
+    resetState: function(){
+
+    },
+
     addInstrument: function(instrument){
       this.instruments.push(instrument);
     },

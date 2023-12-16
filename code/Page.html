@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="./css/drum.css">
 	<link rel="stylesheet" href="./css/piano.css">
 	<link rel="stylesheet" href="./css/guitar.css">
+	<link rel="stylesheet" href="./css/recording.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js" ></script>
 	<script src="javascript/sampleLists.js" charset="utf-8" defer></script>
@@ -44,7 +45,8 @@
 		  </div>
 		  <a href="#" class = "header_button" id = "remove_button" onclick="controller.activate_button(event)">Remove Instruments</a>
 		  <a href="#" id = "play_button" class = "header_button" onclick = "controller.activate_button(event)">Play</a>
-		  <a href="#" id = "rec_button" id = "rec_button" class = "header_button" onclick = "controller.activate_button(event)">Rec</a>
+		  <a href="#" id = "rec_button" class = "header_button" onclick = "controller.activate_button(event)">Rec</a>
+		  <a href="#" id = "deleteRecord_button" class = "header_button" onclick = "controller.activate_button(event)">Delete Record</a>
 		  <form>
 			<input id = "metronome" type="number" name="numero" min="20" max="250" step="1", value="140">
 			<input type="submit" class = "header_button" value="Start/Stop Metronome" onclick="controller.play_metronome(event)">

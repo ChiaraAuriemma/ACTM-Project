@@ -38,13 +38,24 @@ controller = {
     metronome.start_stop(time);
   },
 
-  activate_button: function(event){ 
+  activate_button: function(event){
+    target = event.target.getAttribute("id").split("_")[0];
+    if(target == "rec"){
+      model.setRecState(!model.getRecState());
+    }else if(target == 'play'){
+      model.setPlayState(!model.getPlayState());
+    }else if(target == 'remove'){
+      model.setRemoveState(!model.getRemoveState());
+    }else if(target == 'deleteRecord'){
+      model.setDeleteRecordState(!model.getDeleteRecordState());
+    }
+
     view.activate_button(event);
+
   },
 
   delete_instrument: function(event){
-    var bt = document.getElementById("remove_button");
-    if(bt.classList.contains("active_button")){
+    if(model.getRemoveState()){
       target = event.target.closest('.instrument');
       model.deleteInstrument(target.getAttribute("id").split('_')[1]);
       view.deleteInstrument(target);
@@ -68,25 +79,25 @@ controller = {
   },
 
   startPlay_recording: function(event){
-    var bt1 = document.getElementById("rec_button");
-    var bt2 = document.getElementById("play_button");
-
     ins = this.find_instrument_from_view(event);
     record = this.find_record_from_view(event, ins);
     
-    if(bt1.classList.contains("active_button")){
-      this.manage_recording(record);
-    }else if(bt2.classList.contains("active_button")){
+    if(model.getRecState()){
+      this.manage_recording(event,record);
+    }else if(model.getPlayState()){
       this.play_recording(record);
+    }else if(model.getDeleteRecordState()){
+      this.delete_recording(event,record);
     }
 
   },
 
-  manage_recording: function(record){
+  manage_recording: function(event,record){
     ToggleMic(record);
+    view.now_recording(event);
   },
 
-  play_recording: function(record){  /*quando registro di nuovo su un elemento continuo la ragistrazione, ma non sovrascrivo*/
+  play_recording: function(record){ 
     let audioBlob = record.getAudioData();
 
     if (audioBlob) {
@@ -96,6 +107,11 @@ controller = {
       console.error('Audio data not avaible');
     }
     
+  },
+
+  delete_recording: function(event,record){
+    record.setAudioData(null);
+    view.resetRecording(event);
   }
 }
 

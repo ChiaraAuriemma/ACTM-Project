@@ -107,5 +107,19 @@ view = {
 
     hideCountdown: function(el){
       el.style.display = "none";
+    },
+
+    resetCountdown: function(el, seconds){
+      el.children[0].innerText = seconds;
+    },
+
+    now_recording: function(event){
+      target = event.target;
+      target.classList.add("recording");
+    },
+
+    resetRecording: function(event){
+      target = event.target;
+      target.classList.remove("recording");
     }
   }
