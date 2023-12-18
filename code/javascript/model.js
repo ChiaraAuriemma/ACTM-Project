@@ -64,7 +64,8 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = drawDrum();
+      let container_id = container.getAttribute("id");
+      container.innerHTML = drawDrum(container_id);
     }
 
     getType(){
