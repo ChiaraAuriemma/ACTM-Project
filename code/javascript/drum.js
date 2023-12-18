@@ -18,7 +18,7 @@ function drawDrum(container_id) {
 }
 
 function enableSoundDrum(container_id){
-    let drumSamples = createSamplesList(image, "drumSamples", "drum");
+    let drumSamples = createSamplesList(image, "drumSamples", "drum", 0);
     console.log(drumSamples);
     loadSound(drumSamples, container_id );
 }
