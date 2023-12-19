@@ -1,5 +1,14 @@
-function drawGuitar() {
+function drawGuitar(container_id) {
+    enableSoundGuitar(container_id);
     return "\<div class=\"settings\"\> \<label for=\"instrument-selector\"\>Selected instrument\</label\> \<select name=\"instrument-selector\" id=\"instrument-selector\"\>\</select\> \<div class=\"accidental-selector\"\> \<input type=\"radio\" class=\"acc-select\" id=\"flats\" name=\"accidentals\" value=\"flats\" checked\> \<label for=\"flats\"\>♭\</label\> \<input type=\"radio\" class=\"acc-select\" id=\"sharps\" name=\"accidentals\" value=\"sharps\"\> \<label for=\"sharps\"\>♯\</label\> \</div\> \<label for=\"number-of-frets\"\>Number if frets: \</label\> \<input type=\"number\" id=\"number-of-frets\" min=\"5\" max=\"30\" value=\"20\"\> \<label for=\"show-all-notes\"\>Show all notes: \</label\> \<input type=\"checkbox\" id=\"show-all-notes\"\> \<label for=\"show-multiple-notes\"\>Show multiple notes: \</label\> \<input type=\"checkbox\" id=\"show-multiple-notes\"\> \</div\> \<div class=\"fretboard\"\> \</div\> \<div class=\"note-name-section\"\> \</div\> ";
+}
+
+
+function enableSoundGuitar(container_id, firstScale){
+    pianoKeys=whiteKey.concat(blackKey);
+    let pianoSamples = createSamplesList(pianoKeys, "guitarSamples", "guitar");
+    console.log(pianoSamples);
+    loadSound(pianoSamples, container_id );
 }
 
 function setup() {
@@ -199,4 +208,10 @@ function setup() {
     }
     
     app.init();
+
+
+
+    // play the guitar
+
+
 }
