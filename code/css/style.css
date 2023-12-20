@@ -119,6 +119,7 @@ body {
   position: relative;
   top: -85px;
   left: 25px;
+  height: 50px;
 }
 
 .slider {
@@ -128,12 +129,12 @@ body {
 
 .m_button {
   position: relative;
-  top: -80px;
+  top: -90px;
   left: 40px;
 }
 
 .s_button {
   position: relative;
-  top: -80px;
+  top: -90px;
   left: 60px;
 }
