@@ -1,5 +1,6 @@
 function drawGuitar(container_id) {
     enableSoundGuitar(container_id);
+
     let id_guitar = document.getElementById(container_id);
     let guitar_settings_div = document.createElement("div");
     guitar_settings_div.setAttribute("class", "settings");
@@ -72,10 +73,11 @@ function drawGuitar(container_id) {
 
 
 function enableSoundGuitar(container_id, firstScale){
-    pianoKeys=whiteKey.concat(blackKey);
-    let pianoSamples = createSamplesList(pianoKeys, "guitarSamples", "guitar");
-    console.log(pianoSamples);
-    loadSound(pianoSamples, container_id );
+    const notesFlat = ["C0", "Db0", "D0", "Eb0", "E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3"];
+    //pianoKeys=whiteKey.concat(blackKey);
+    let guitarSamples = createSamplesList(notesFlat, "guitarSamples", "guitar");
+    console.log(guitarSamples);
+    loadSound(guitarSamples, container_id );
 }
 
 function setup() {
@@ -89,10 +91,10 @@ function setup() {
     const noteNameSection = container.querySelector('.note-name-section');
     const singleFretMarkPosition = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleFretMarkPosition = [12, 24];
-    const notesFlat = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+    const notesFlat = ["C0", "Db0", "D0", "Eb0", "E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3"];
     const notesSharp = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const instrumentTuningPresets = {
-        'Guitar': [4, 11, 7, 2, 9, 4],
+        'Guitar': [28, 23, 19, 14, 9, 4],
         'Bass (4 strings)': [7, 2, 9, 4],
         'Bass (5 strings)': [7, 2, 9, 4, 11],
         'Ukulele': [9, 4, 0, 7]
@@ -146,7 +148,7 @@ function setup() {
             allNotes = document.querySelectorAll('.note-fret');
         },
         generateNoteNames(noteIndex, accidentals) { //accidentals è una variabile globale la lascio?
-            noteIndex = noteIndex % 12;
+            //noteIndex = noteIndex % 12;
             let noteName;
             if(accidentals === 'flats') {
                 noteName = notesFlat[noteIndex];
@@ -165,7 +167,8 @@ function setup() {
             noteNameSection.innerHTML = '';
             let noteNames;
             if (accidentals === 'flats') {
-                noteNames = notesFlat;
+                //noteNames = notesFlat.slice(0, 1);
+                noteNames= notesFlat;
             } else {
                 noteNames = notesSharp;
             }
@@ -185,7 +188,7 @@ function setup() {
     }
 
     const handlers = {
-        showNoteDot(event) {
+        showNoteDot(event){
             // Check if show all notes is selected
             if (showAllNotes) { 
                 return;
@@ -275,10 +278,5 @@ function setup() {
     }
     
     app.init();
-
-
-
-    // play the guitar
-
 
 }
