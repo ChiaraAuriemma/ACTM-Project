@@ -5,13 +5,8 @@ function drawDrum(container_id) {
     for(let i = 0; i <= 7; i++) {
         drum += "<div data-note="+ image[i] + " class=\"pad\"><img src=\"images/" + image[i] + ".png\" alt=\"" + image[i] + "\"></div>"
     }
-
     drum += "</div>";
-
-    
-
     //console.log(drum); 
-
     enableSoundDrum(container_id);
 
     return drum;
