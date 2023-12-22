@@ -13,7 +13,7 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
       }  
         
     }
-    console.log(samplesList)
+  
     return samplesList;
 };
 
@@ -33,8 +33,10 @@ function loadSound(samplesList, instrumentId=""){
       sounds[sample] = sound;
   }
 
+
   instrument.addEventListener('mousedown', (e) => {
       const sample = e.target.dataset.note;
+      console.log(sample)
       if (sample) {
         sounds[sample].play();
         console.log("drum")      
@@ -47,7 +49,29 @@ function loadSound(samplesList, instrumentId=""){
       sounds[sample].fade(1, 0, 2000);
     }
   }); 
-} 
+}
+
+
+flat_to_sharp_dict = {
+  C : "C",
+  Db : "Cs",
+  D : "D",
+  Eb : "Ds",
+  E : "E",
+  F : "F",
+  Gb : "Fs",
+  G : "G",
+  Ab : "Gs",
+  A : "A",
+  Bb : "As",
+  B : "B"
+};
+
+
+
+
+
+
 
 
 
