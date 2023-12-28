@@ -114,3 +114,27 @@ body {
 .active_button{
   background-color: burlywood;
 }
+
+.instrument_settings {
+  position: relative;
+  top: -85px;
+  left: 25px;
+  height: 50px;
+}
+
+.slider {
+  width: 200px; /* Imposta la larghezza desiderata */
+  height: 200px; /* Imposta l'altezza desiderata */
+}
+
+.m_button {
+  position: relative;
+  top: -90px;
+  left: 40px;
+}
+
+.s_button {
+  position: relative;
+  top: -90px;
+  left: 60px;
+}

@@ -1,8 +1,9 @@
-function createSamplesList(keyList, directoryName, name){
+function createSamplesList(keyList, directoryName, name, firstScale=0){
     samplesList = {};
+
     for (let key in keyList){
-      if(name != 'drum'){
-        for(let i=1; i<=nscale; i++){
+      if(name == 'piano'){
+        for(let i=firstScale; i<(nscale+firstScale); i++){
           if(keyList[key]!==''){
             samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ keyList[key] + i +'.mp3';
           }
@@ -12,6 +13,7 @@ function createSamplesList(keyList, directoryName, name){
       }  
         
     }
+  
     return samplesList;
 };
 
@@ -31,8 +33,10 @@ function loadSound(samplesList, instrumentId=""){
       sounds[sample] = sound;
   }
 
+
   instrument.addEventListener('mousedown', (e) => {
       const sample = e.target.dataset.note;
+      console.log(sample)
       if (sample) {
         sounds[sample].play();
 
@@ -65,7 +69,29 @@ function loadSound(samplesList, instrumentId=""){
 
     }
   }); 
-} 
+}
+
+
+flat_to_sharp_dict = {
+  C : "C",
+  Db : "Cs",
+  D : "D",
+  Eb : "Ds",
+  E : "E",
+  F : "F",
+  Gb : "Fs",
+  G : "G",
+  Ab : "Gs",
+  A : "A",
+  Bb : "As",
+  B : "B"
+};
+
+
+
+
+
+
 
 
 

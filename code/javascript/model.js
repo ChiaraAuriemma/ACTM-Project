@@ -88,7 +88,8 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = drawGuitar();
+        let container_id = container.getAttribute("id");
+        container.innerHTML = drawGuitar(container_id);
         setup(container);
     }
 

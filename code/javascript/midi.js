@@ -1,3 +1,19 @@
+const pitch_to_note = {};
+
+const note_name = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+let pitch_start = 24;
+
+for (let i = 1; i < 8; i++) {
+    for (let j = 0; j < note_name.length; j++) {
+        pitch_to_note[pitch_start] = note_name[j] + i;
+        pitch_start++;
+    }
+}
+
+pitch_to_note[pitch_start] = 'C8';
+
+console.log(pitch_to_note);
+
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 const ctx = new AudioContext();
 document.body.onclick = () => {
@@ -63,6 +79,7 @@ function noteOn(note, velocity) {
     oscillators[note.toString()] = osc;
     console.log(oscillators);
     osc.start();
+    console.log(pitch_to_note[note]);
 }
 
 function noteOff(note) {
