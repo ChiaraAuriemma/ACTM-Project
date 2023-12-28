@@ -119,11 +119,13 @@ controller = {
         if (record.getIsPlaying()) {
           audioElement.pause(); 
         }else{
+          audioElement.volume = record.getFather().getVolume();
           audioElement.play();
         }
         record.setIsPlaying(!record.getIsPlaying());
       }else{
         record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob))); 
+        record.getAudioElement().volume = record.getFather().getVolume();
         record.getAudioElement().addEventListener('ended', () => {
           record.setIsPlaying(false);
         });
