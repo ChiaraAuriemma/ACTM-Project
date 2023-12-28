@@ -138,13 +138,14 @@ controller = {
   play_inst_recording: function(record){
 
     /* chiedere ad Anna di suddividere meglio le funzioni in modo da non necessitare di questa parte di codice*/
-    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano");
+    /*Chiedere anche chiarimenti sulle modifiche del mapping delle note */
+    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano", 3);
 
     const sounds = {};
 
     for(const sample in pianoSamples){
         const sound = new Howl({
-            src: samplesList[sample]
+            src: pianoSamples[sample]
         });
      sounds[sample] = sound;
     }
