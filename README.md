@@ -27,7 +27,7 @@ To make the instruments play we decided to use **samples**, which were loaded in
 --->> Posso parlare dell'oggetto MediaRecorder
 
 ### Project-related challenges
-The biggest difficulty of the project was its heterogeneity. A DAW allows you to carry out various operations and we have not taken the effort to report the most important ones.
+The biggest difficulty of the project was its heterogeneity. A DAW allows you to carry out various operations and we chose the ones that seemed most significant to us.
 We wondered how to record the instruments. At the fie we opted for 2 different approaches, one for the voice and another for the rest. The instruments save what has been played in terms of notes and timestamps and then takes care of searching for the associated sounds again. The voice, however, thanks to a MediaRecorder object, records and saves the incoming data.
 
 --> Difficoltà legate ai vari strumenti
