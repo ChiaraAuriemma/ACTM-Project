@@ -35,7 +35,19 @@ function loadSound(samplesList, instrumentId=""){
       const sample = e.target.dataset.note;
       if (sample) {
         sounds[sample].play();
-        console.log("drum")      
+
+        if(model.getRecState() == true){
+          model.getOnTime().push({
+            sample: sample,
+            timestamp: Date.now()
+          });
+
+          if(model.getStartTime() == null){
+            model.setStartTime(Date.now());
+          }
+              
+        }
+      
       }
   }); 
 
@@ -43,6 +55,14 @@ function loadSound(samplesList, instrumentId=""){
     const sample = e.target.dataset.note;
     if (sample) {
       sounds[sample].fade(1, 0, 2000);
+
+      if(model.getRecState() == true){
+        model.getOffTime().push({
+          sample: sample,
+          timestamp: Date.now()
+        });
+      }
+
     }
   }); 
 } 

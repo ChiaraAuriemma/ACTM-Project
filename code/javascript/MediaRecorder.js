@@ -61,3 +61,8 @@ function CountDown(el,seconds){
     view.resetCountdown(el, model.getCountDown());
   }
 }
+
+
+
+
+

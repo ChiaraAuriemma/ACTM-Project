@@ -5,10 +5,6 @@ class Instrument{
       this.refDiv;
       this.refInCont;
       this.records = [];
-      for(let i=0 ; i < this.num_tracks; i++){
-        let tmp = new Record_square(this, i);
-        this.records.push(tmp);
-      }
     }
 
     getCode(){
@@ -45,6 +41,10 @@ class Instrument{
     constructor(code){
       super(code);
       this.type = "piano";
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Instrument_Recorder(this, i);
+        this.records.push(tmp);
+      }
     }
 
     draw(container){
@@ -61,6 +61,10 @@ class Instrument{
     constructor(code){
       super(code);
       this.type = "drum";
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Instrument_Recorder(this, i);
+        this.records.push(tmp);
+      }
     }
 
     draw(container){
@@ -77,6 +81,10 @@ class Instrument{
     constructor(code){
       super(code);
       this.type = "guitar";
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Instrument_Recorder(this, i);
+        this.records.push(tmp);
+      }
     }
 
     draw(container){
@@ -93,6 +101,10 @@ class Instrument{
     constructor(code){
       super(code);
       this.type = "bass";
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Instrument_Recorder(this, i);
+        this.records.push(tmp);
+      }
     }
 
     draw(container){
@@ -108,6 +120,10 @@ class Instrument{
     constructor(code){
       super(code);
       this.type = "voice";
+      for(let i=0 ; i < this.num_tracks; i++){
+        let tmp = new Voice_Recorder(this, i);
+        this.records.push(tmp);
+      }
     }
 
     draw(container){
@@ -123,14 +139,11 @@ class Instrument{
     constructor(father, code){
       this.father = father;
       this.code = code;
-      this.can_record = false;
       this.is_recording = false;
-      this.recorder = null;
       this.chunks = [];
-      this.audio_data;
-      this.audio_element;
+      this.can_record;
       this.isPlaying = false;
-      SetupAudio(code, father);
+      
     }
 
     getCode(){
@@ -153,20 +166,48 @@ class Instrument{
       this.is_recording = is_recording;
     }
 
-    getRecorder(){
-      return this.recorder;
-    }
-
-    setRecorder(recorder){
-      this.recorder = recorder;
-    }
-
     getChunks(){
       return this.chunks;
     }
 
     setChunks(chunks){
       this.chunks = chunks;
+    }
+
+    getIsPlaying(){
+      return this.isPlaying;
+    }
+
+    setIsPlaying(isPlaying){
+      this.isPlaying = isPlaying;
+    }
+
+    getFather(){
+      return this.father;
+    }
+
+    setFather(father){
+      this.father = father;
+    }
+  }
+
+  class Voice_Recorder extends Record_square{
+    constructor(father,code){
+      super(father,code);
+      this.type = "voice";
+      this.recorder = null;
+      this.audio_data;
+      this.audio_element;
+      this.can_record = false;
+      SetupAudio(code, father);
+    }
+
+    getRecorder(){
+      return this.recorder;
+    }
+
+    setRecorder(recorder){
+      this.recorder = recorder;
     }
 
     getAudioData(){
@@ -185,12 +226,50 @@ class Instrument{
       this.audio_element = audio_element;
     }
 
-    getIsPlaying(){
-      return this.isPlaying;
+    resetRecord(){
+      this.audio_data = null;
+    }
+  }
+
+  class Instrument_Recorder extends Record_square{
+    constructor(father,code){
+      super(father,code);
+      this.type = "instrument";
+      this.onArray = [];
+      this.offArray = [];
+      this.startTime = null;
+      this.can_record = true;
     }
 
-    setIsPlaying(isPlaying){
-      this.isPlaying = isPlaying;
+    getStartTime(){
+      return this.startTime;
+    }
+
+    setStartTime(startTime){
+      this.startTime = startTime;
+    }
+
+    getOnArray(){
+      return this.onArray;
+    }
+
+    setOnArray(onArray){
+      this.onArray = onArray;
+    }
+
+    getOffArray(){
+      return this.offArray;
+    }
+
+    setOffArray(offArray){
+      this.offArray = offArray;
+    }
+
+    resetRecord(){
+      this.onArray = [];
+      this.offArray = [];
+      this.startTime = null;
+      this.can_record = true;
     }
   }
 
@@ -204,6 +283,11 @@ class Instrument{
     play_state:false,
     remove_state:false,
     delete_record_state:false,
+    current_inst_rec: null,
+    Inst_Chunks: [],
+    On_time: [],
+    Off_time: [],
+    start_time: null,
   
     getInstruments: function(){
       return this.instruments;
@@ -246,7 +330,47 @@ class Instrument{
     },
 
     setDeleteRecordState: function(delete_record_state){
-      this.delete_record_state= delete_record_state;
+      this.delete_record_state = delete_record_state;
+    },
+
+    getCurrent_inst_rec: function(){
+      return this.current_inst_rec;
+    },
+
+    setCurrent_inst_rec: function(current_inst_rec){
+      this.current_inst_rec = current_inst_rec;
+    },
+
+    getInstChunks: function(){
+      return this.Inst_Chunks;
+    },
+
+    setInstChunks: function(Inst_Chunks){
+      this.Inst_Chunks = Inst_Chunks;
+    },
+
+    getOnTime: function(){
+      return this.On_time;
+    },
+
+    setOnTime: function(On_time){
+      this.On_time = On_time;
+    },
+
+    getOffTime: function(){
+      return this.Off_time;
+    },
+
+    setOffTime: function(Off_time){
+      this.Off_time = Off_time;
+    },
+
+    getStartTime: function(){
+      return this.start_time;
+    },
+
+    setStartTime: function(start_time){
+      this.start_time = start_time;
     },
 
     checkButtons: function(){
@@ -292,5 +416,22 @@ class Instrument{
         }
       }
     
+    },
+
+    saveInstRec: function(record){
+      /*record.setChunks(model.getInstChunks());*/
+      record.setOnArray(model.getOnTime());
+      record.setOffArray(model.getOffTime());
+      record.setStartTime(model.getStartTime());
+      record.setCanRecord(false);
+
+      this.resetRecInst();
+    },
+
+    resetRecInst: function(){
+      /*this.setInstChunks([]);*/
+      this.setOnTime([]);
+      this.setOffTime([]);
+      this.setStartTime(null);
     }
   }

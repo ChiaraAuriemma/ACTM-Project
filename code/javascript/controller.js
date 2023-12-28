@@ -89,21 +89,27 @@ controller = {
     record = this.find_record_from_view(event, ins);
     
     if(model.getRecState()){
-      this.manage_recording(event,record);
-    }else if(model.getPlayState()){
-      this.play_recording(record);
+      this.manage_recording(event,record,ins.getType());
+    }else if(model.getPlayState() && ins.getType() == 'voice'){
+      this.play_voice_recording(record);
     }else if(model.getDeleteRecordState()){
       this.delete_recording(event,record);
+    }else if(model.getPlayState() && ins.getType() != 'voice'){
+      this.play_inst_recording(record);
     }
 
   },
 
-  manage_recording: function(event,record){
-    ToggleMic(record);
+  manage_recording: function(event,record,type){
+    if(ins.getType() == 'voice')
+      ToggleMic(record);
+    else{
+      model.saveInstRec(record);
+    }
     view.now_recording(event);
   },
 
-  play_recording: function(record){ 
+  play_voice_recording: function(record){ 
     let audioBlob = record.getAudioData();
     let audioElement = record.getAudioElement();
 
@@ -116,7 +122,7 @@ controller = {
         }
         record.setIsPlaying(!record.getIsPlaying());
       }else{
-        record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob)));
+        record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob))); 
         record.getAudioElement().addEventListener('ended', () => {
           record.setIsPlaying(false);
         });
@@ -129,9 +135,51 @@ controller = {
     
   },
 
-  delete_recording: function(event,record){
-    record.setAudioData(null);
+  play_inst_recording: function(record){
+
+    /* chiedere ad Anna di suddividere meglio le funzioni in modo da non necessitare di questa parte di codice*/
+    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano");
+
+    const sounds = {};
+
+    for(const sample in pianoSamples){
+        const sound = new Howl({
+            src: samplesList[sample]
+        });
+     sounds[sample] = sound;
+    }
+
+    if (record.getOnArray().length === 0 || record.getOffArray().length === 0) {
+      console.warn('No Data');
+      return;
+    }
+
+
+    record.getOnArray().forEach((noteOn) => {
+        const sound = sounds[noteOn.sample];
+
+        const delay = noteOn.timestamp - record.getStartTime();
+
+        setTimeout(() => {
+            sound.play();
+        }, delay);
+    });
+
+    record.getOffArray().forEach((noteOff) => {
+        const sound = sounds[noteOff.sample];
+
+        const delay = noteOff.timestamp - record.getStartTime();
+
+        setTimeout(() => {
+            sound.fade(1, 0, 2000);
+        }, delay);
+    });
+  },
+
+  delete_recording: function(event,record){ 
+    record.resetRecord();
     view.resetRecording(event);
-  }
+  },
+
 }
 
