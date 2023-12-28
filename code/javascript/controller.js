@@ -100,13 +100,14 @@ controller = {
 
   },
 
-  manage_recording: function(event,record,type){
-    if(ins.getType() == 'voice')
+  manage_recording: function(event,record){
+    if(ins.getType() == 'voice'){
       ToggleMic(record);
-    else{
-      model.saveInstRec(record);
+      view.now_recording(event);
     }
-    view.now_recording(event);
+    else if(model.getStartTime() != null){
+      model.saveInstRec(event,record);
+    }
   },
 
   play_voice_recording: function(record){ 
@@ -145,7 +146,8 @@ controller = {
 
     for(const sample in pianoSamples){
         const sound = new Howl({
-            src: pianoSamples[sample]
+            src: pianoSamples[sample],
+            volume: record.getFather().getVolume()
         });
      sounds[sample] = sound;
     }
@@ -162,6 +164,7 @@ controller = {
         const delay = noteOn.timestamp - record.getStartTime();
 
         setTimeout(() => {
+            sound.volume(record.getFather().getVolume());
             sound.play();
         }, delay);
     });
@@ -172,7 +175,7 @@ controller = {
         const delay = noteOff.timestamp - record.getStartTime();
 
         setTimeout(() => {
-            sound.fade(1, 0, 2000);
+            sound.fade(record.getFather().getVolume(), 0, 2000);
         }, delay);
     });
   },
@@ -181,6 +184,14 @@ controller = {
     record.resetRecord();
     view.resetRecording(event);
   },
+
+  change_volume: function(event){
+    volume = event.target.value;
+    console.log(volume);
+    ins = this.find_instrument_from_view(event);
+
+    ins.setVolume(volume/100);
+  }
 
 }
 

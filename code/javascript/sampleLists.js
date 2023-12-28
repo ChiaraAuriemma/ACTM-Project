@@ -28,7 +28,8 @@ function loadSound(samplesList, instrumentId=""){
 
   for(const sample in samplesList){
       const sound = new Howl({
-          src: samplesList[sample]
+          src: samplesList[sample],
+          preload: true  /*Serve ??? */
       });
       sounds[sample] = sound;
   }
@@ -36,8 +37,11 @@ function loadSound(samplesList, instrumentId=""){
 
   instrument.addEventListener('mousedown', (e) => {
       const sample = e.target.dataset.note;
+      let instrument = controller.find_instrument_from_view(e);
+
       console.log(sample)
       if (sample) {
+        sounds[sample].volume(instrument.getVolume());
         sounds[sample].play();
 
         if(model.getRecState() == true){
@@ -46,8 +50,10 @@ function loadSound(samplesList, instrumentId=""){
             timestamp: Date.now()
           });
 
-          if(model.getStartTime() == null){
+          if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
             model.setStartTime(Date.now());
+            type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
+            model.setCurrent_inst_rec(type);
           }
               
         }
@@ -57,8 +63,9 @@ function loadSound(samplesList, instrumentId=""){
 
   instrument.addEventListener('mouseup', (e) => {
     const sample = e.target.dataset.note;
+    let instrument = controller.find_instrument_from_view(e);
     if (sample) {
-      sounds[sample].fade(1, 0, 2000);
+      sounds[sample].fade(instrument.getVolume(), 0, 2000);
 
       if(model.getRecState() == true){
         model.getOffTime().push({

@@ -5,6 +5,7 @@ class Instrument{
       this.refDiv;
       this.refInCont;
       this.records = [];
+      this.volume = 1;
     }
 
     getCode(){
@@ -33,6 +34,14 @@ class Instrument{
 
     getRecords(){
       return this.records;
+    }
+
+    setVolume(volume){
+      this.volume = volume;
+    }
+
+    getVolume(){
+      return this.volume;
     }
   
   }
@@ -419,20 +428,24 @@ class Instrument{
     
     },
 
-    saveInstRec: function(record){
-      /*record.setChunks(model.getInstChunks());*/
-      record.setOnArray(model.getOnTime());
-      record.setOffArray(model.getOffTime());
-      record.setStartTime(model.getStartTime());
-      record.setCanRecord(false);
+    saveInstRec: function(event,record){
+      if(record.getFather().getType() == model.getCurrent_inst_rec() && model.getStartTime() != null ){
+        record.setOnArray(model.getOnTime());
+        record.setOffArray(model.getOffTime());
+        record.setStartTime(model.getStartTime());
+        record.setCanRecord(false);
 
-      this.resetRecInst();
+        view.now_recording(event);
+        this.resetRecInst();
+      }else{
+        alert('Choose the correct instrument');
+      }
     },
 
     resetRecInst: function(){
-      /*this.setInstChunks([]);*/
       this.setOnTime([]);
       this.setOffTime([]);
       this.setStartTime(null);
+      this.setCurrent_inst_rec(null);
     }
   }

@@ -29,18 +29,24 @@ view = {
       let instrument_volume = document.createElement("input");
       let instrument_mute = document.createElement("button");
       let instrument_solo = document.createElement("button");
+
       instrument_settings.setAttribute("class","instrument_settings");
+
       instrument_volume.setAttribute("type","range");
       instrument_volume.setAttribute("min", "0");
       instrument_volume.setAttribute("max", "100");
-      instrument_volume.setAttribute("value", "80");
+      instrument_volume.setAttribute("value", "100");
       instrument_volume.setAttribute("class", "slider");
+      instrument_volume.setAttribute("oninput", "controller.change_volume(event)");
+
       instrument_mute.setAttribute("type","button");
       instrument_mute.setAttribute("class","m_button");
       instrument_mute.innerHTML = "Mute";
+
       instrument_solo.setAttribute("type","button");
       instrument_solo.setAttribute("class","s_button");
       instrument_solo.innerHTML = "Solo";
+
       image_div.appendChild(instrument_settings);
       instrument_settings.appendChild(instrument_volume);
       instrument_settings.appendChild(instrument_mute);
