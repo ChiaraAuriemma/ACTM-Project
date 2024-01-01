@@ -4,14 +4,17 @@ function drawGuitar(container_id) {
     //return "\<div class=\"settings\"\> \<label for=\"instrument-selector\"\>Selected instrument\</label\> \<select name=\"instrument-selector\" id=\"instrument-selector\"\>\</select\> \<div class=\"accidental-selector\"\> \<input type=\"radio\" class=\"acc-select\" id=\"flats\" name=\"accidentals\" value=\"flats\" checked\> \<label for=\"flats\"\>♭\</label\> \<input type=\"radio\" class=\"acc-select\" id=\"sharps\" name=\"accidentals\" value=\"sharps\"\> \<label for=\"sharps\"\>♯\</label\> \</div\> \<label for=\"number-of-frets\"\>Number if frets: \</label\> \<input type=\"number\" id=\"number-of-frets\" min=\"5\" max=\"30\" value=\"20\"\> \<label for=\"show-all-notes\"\>Show all notes: \</label\> \<input type=\"checkbox\" id=\"show-all-notes\"\> \<label for=\"show-multiple-notes\"\>Show multiple notes: \</label\> \<input type=\"checkbox\" id=\"show-multiple-notes\"\> \</div\> \<div class=\"fretboard\"\> \</div\> \<div class=\"note-name-section\"\> \</div\> ";
 }
 
+const notesFlat = ["C0", "Db0", "D0", "Eb0", "E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3"];
+const notesSharp = ["C0", "Cs0", "D0", "Ds0", "E0", "F0", "Fs0", "G0", "Gs0", "A0", "As0", "B0", "C1", "Cs1", "D1", "Ds1", "E1", "F1", "Fs1", "G1", "Gs1", "A1", "As1", "B1","C2", "Cs2", "D2", "Ds2", "E2", "F2", "Fs2", "G2", "Gs2", "A2", "As2", "B2", "C3", "Cs3"];
 
 function enableSoundGuitar(container_id, firstScale){
-    const notesFlat = ["C0", "Db0", "D0", "Eb0", "E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3"];
     //pianoKeys=whiteKey.concat(blackKey);
-    let guitarSamples = createSamplesList(notesFlat, "guitarSamples", "guitar");
+    notes = ["E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3", "Fs0", "Gs0", "As0", "Cs1", "Ds1", "Fs1", "Gs1","As1", "Cs2", "Ds2", "Fs2", "Gs2", "As2", "Cs3"];
+    let guitarSamples = createSamplesList(notes, "guitarSamples", "guitar");
     console.log(guitarSamples);
     loadSound(guitarSamples, container_id );
 }
+
 
 function setup() {
     const root = document.documentElement;
@@ -25,8 +28,6 @@ function setup() {
     const noteNameSection = container.querySelector('.note-name-section');
     const singleFretMarkPosition = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleFretMarkPosition = [12, 24];
-    const notesFlat = ["C0", "Db0", "D0", "Eb0", "E0", "F0", "Gb0", "G0", "Ab0", "A0", "Bb0", "B0", "C1", "Db1", "D1", "Eb1", "E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", 'C2', 'Db2', "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3"];
-    const notesSharp = ["C0", "C#0", "D0", "D#0", "E0", "F0", "F#0", "G0", "G#0", "A0", "A#0", "B0", "C1", "C#1", "D1", "D#1", "E1", "F1", "F#1", "G1", "G#1", "A1", "A#1", "B1","C2", "C#2", "D2", "D#2", "E2", "F2", "F#2", "G2", "G#2", "A2", "A#2", "B2", "C3", "C#3"];
     const instrumentTuningPresets = {
         'Guitar': [28, 23, 19, 14, 9, 4],
         'Bass (4 strings)': [7, 2, 9, 4],
@@ -189,7 +190,7 @@ function setup() {
                 return;
             }
         },
-        setupEventListeners() {
+        setupEventListeners(){
             fretboard.addEventListener('mouseover', this.showNoteDot);
             fretboard.addEventListener('mouseout', this.hideNoteDot);
             instrumentSelector.addEventListener('change', this.setSelectedInstrument)

@@ -2,14 +2,17 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
     samplesList = {};
 
     for (let key in keyList){
+      //console.log(keyList[key]);
+      key_name = sharp_to_flat_function(keyList[key]);
+      //console.log(key_name);
       if(name == 'piano'){
         for(let i=firstScale; i<(nscale+firstScale); i++){
           if(keyList[key]!==''){
-            samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ keyList[key] + i +'.mp3';
+            samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ key_name + i +'.mp3';
           }
         } 
       }else{
-        samplesList[keyList[key]]='sounds/'+directoryName+'/'+ keyList[key] +'.mp3';
+        samplesList[keyList[key]]='sounds/'+directoryName+'/'+ key_name +'.mp3';
       }  
         
     }
@@ -25,8 +28,10 @@ function loadSound(samplesList, instrumentId=""){
   //instrumentId = l'id del div in cui si trova lo strumento
   const instrument = document.getElementById(instrumentId);
   const sounds = {};
+  
 
   for(const sample in samplesList){
+    
       const sound = new Howl({
           src: samplesList[sample],
           preload: true  /*Serve ??? */
@@ -79,20 +84,37 @@ function loadSound(samplesList, instrumentId=""){
 }
 
 
-flat_to_sharp_dict = {
-  C : "C",
-  Db : "Cs",
-  D : "D",
-  Eb : "Ds",
-  E : "E",
-  F : "F",
-  Gb : "Fs",
-  G : "G",
-  Ab : "Gs",
-  A : "A",
-  Bb : "As",
-  B : "B"
-};
+// funzione per chitarra che converte tutte le note in # in b
+
+function sharp_to_flat_function(note){
+  sharp_to_flat={
+    C : "C",
+    Cs : "Db",
+    D : "D",
+    Ds : "Eb",
+    E : "E",
+    F: "F",
+    Fs : "Gb",
+    G : "G",
+    Gs : "Ab",
+    A : "A", 
+    As : "Bb",
+    B : "B"
+  };
+
+  new_note="";
+  if (note[1]=='s'){
+    new_note=sharp_to_flat[note.slice(0,2)];
+    new_note = new_note + note.slice(-1);
+  }else{
+    new_note=note;
+  }
+  return new_note
+}
+
+sharp_to_flat_function("Ds4");
+
+
 
 
 
