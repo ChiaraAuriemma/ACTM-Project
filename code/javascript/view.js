@@ -151,7 +151,7 @@ view = {
       el.children[0].innerText = seconds;
     },
 
-    now_recording: function(event){
+    now_recording: function(event){ /* accorpare con printTime ?? */
       target = event.target;
       target.classList.add("recording");
     },
@@ -159,10 +159,13 @@ view = {
     resetRecording: function(event){
       target = event.target;
       target.classList.remove("recording");
+
+      event.target.children[0].style.display = "none";
     },
 
     printTime: function(event, record){
       tempoDiv = event.target.children[0];
       tempoDiv.innerText = record.getBeatsPerBar() + 'beats' + '_' + record.getBPM() + 'bpm';
+      tempoDiv.style.display = "block";
     }
   }
