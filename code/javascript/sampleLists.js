@@ -50,15 +50,26 @@ function loadSound(samplesList, instrumentId=""){
         sounds[sample].play();
 
         if(model.getRecState() == true && model.getOutFlag() == false){
-          model.getOnTime().push({
-            sample: sample,
-            timestamp: Date.now()
-          });
 
           if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
             model.setStartTime(Date.now());
             type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
             model.setCurrent_inst_rec(type);
+          }
+
+          const recordingDuration = Date.now() - model.getStartTime();
+          const bpm = metronome.getBPM();
+          const beatsPerBar = model.getBeatsPerBar(); 
+          const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
+
+          if (recordingDuration > maxRecordingDuration) {
+              alert('Maximum time reached, now save the record!');
+              model.setOutFlag(true);
+          }else{
+            model.getOnTime().push({
+              sample: sample,
+              timestamp: Date.now()
+            });
           }
               
         }
@@ -77,16 +88,6 @@ function loadSound(samplesList, instrumentId=""){
           sample: sample,
           timestamp: Date.now()
         });
-
-        const recordingDuration = Date.now() - model.getStartTime();
-        const bpm = metronome.getBPM();
-        const beatsPerBar = model.getBeatsPerBar(); 
-        const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
-
-        if (recordingDuration > maxRecordingDuration) {
-            alert('Maximum time reached, now save the record!');
-            model.setOutFlag(true);
-        }
       }
 
     }
