@@ -49,6 +49,10 @@ metronome = {
             this.click2.play();
         }
         this.count++;
+    },
+
+    getBPM : function(){
+        return this.bpm;
     }
 
 }

@@ -153,6 +153,8 @@ class Instrument{
       this.chunks = [];
       this.can_record;
       this.isPlaying = false;
+      this.beatsPerBar;
+      this.bpm;
       
     }
 
@@ -198,6 +200,22 @@ class Instrument{
 
     setFather(father){
       this.father = father;
+    }
+
+    getBPM(){
+      return this.bpm;
+    }
+
+    setBPM(bpm){
+      this.bpm = bpm;
+    }
+
+    getBeatsPerBar(){
+      return this.beatsPerBar;
+    }
+
+    setBeatsPerBar(beatsPerBar){
+      this.beatsPerBar = beatsPerBar;
     }
   }
 
@@ -298,6 +316,8 @@ class Instrument{
     On_time: [],
     Off_time: [],
     start_time: null,
+    beatsPerBar: 4,
+    outFlag: false,
   
     getInstruments: function(){
       return this.instruments;
@@ -383,6 +403,18 @@ class Instrument{
       this.start_time = start_time;
     },
 
+    getBeatsPerBar: function(){
+      return this.beatsPerBar;
+    },
+
+    getOutFlag: function(){
+      return this.outFlag;
+    },
+
+    setOutFlag: function(outFlag){
+      this.outFlag = outFlag;
+    },
+
     checkButtons: function(){
       let count = 0;
 
@@ -434,8 +466,12 @@ class Instrument{
         record.setOffArray(model.getOffTime());
         record.setStartTime(model.getStartTime());
         record.setCanRecord(false);
+        record.setBPM(metronome.getBPM());
+        record.setBeatsPerBar(model.getBeatsPerBar());
 
+        model.setOutFlag(false);
         view.now_recording(event);
+        view.printTime(event, record);
         this.resetRecInst();
       }else{
         alert('Choose the correct instrument');

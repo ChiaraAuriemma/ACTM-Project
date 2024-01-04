@@ -16,6 +16,10 @@ view = {
         record.setAttribute("class","record_square");
         record.setAttribute("onclick", "controller.startPlay_recording(event)");
         record_container.appendChild(record);
+
+        let tempoDiv = document.createElement("div");
+        tempoDiv.setAttribute("class","tempo_div");
+        record.appendChild(tempoDiv);
       }
       
       let image_div= document.createElement("div");
@@ -155,5 +159,10 @@ view = {
     resetRecording: function(event){
       target = event.target;
       target.classList.remove("recording");
+    },
+
+    printTime: function(event, record){
+      tempoDiv = event.target.children[0];
+      tempoDiv.innerText = record.getBeatsPerBar() + 'beats' + '_' + record.getBPM() + 'bpm';
     }
   }

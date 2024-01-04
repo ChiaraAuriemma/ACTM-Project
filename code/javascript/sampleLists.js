@@ -49,7 +49,7 @@ function loadSound(samplesList, instrumentId=""){
         sounds[sample].volume(instrument.getVolume());
         sounds[sample].play();
 
-        if(model.getRecState() == true){
+        if(model.getRecState() == true && model.getOutFlag() == false){
           model.getOnTime().push({
             sample: sample,
             timestamp: Date.now()
@@ -72,11 +72,21 @@ function loadSound(samplesList, instrumentId=""){
     if (sample) {
       sounds[sample].fade(instrument.getVolume(), 0, 2000);
 
-      if(model.getRecState() == true){
+      if(model.getRecState() == true && model.getOutFlag() == false){
         model.getOffTime().push({
           sample: sample,
           timestamp: Date.now()
         });
+
+        const recordingDuration = Date.now() - model.getStartTime();
+        const bpm = metronome.getBPM();
+        const beatsPerBar = model.getBeatsPerBar(); 
+        const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
+
+        if (recordingDuration > maxRecordingDuration) {
+            alert('Maximum time reached, now save the record!');
+            model.setOutFlag(true);
+        }
       }
 
     }

@@ -139,36 +139,46 @@ controller = {
   },
 
   play_inst_recording: function(record){
+    
+    let instSamples;
 
-    /* chiedere ad Anna di suddividere meglio le funzioni in modo da non necessitare di questa parte di codice*/
-    /*Chiedere anche chiarimenti sulle modifiche del mapping delle note */
-    let pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano", 3);
-
+    /* chiedere ad Anna di suddividere meglio le funzioni in modo da non necessitare di questa parte di codice per evitare gli if*/
+    if(record.getFather().getType() == 'piano'){
+      instSamples = createSamplesList(pianoKeys, "pianoSamples", "piano", 3);
+    }else if(record.getFather().getType() == 'drum'){
+      instSamples = createSamplesList(image, "drumSamples", "drum", 0);
+    }else if(record.getFather().getType() == 'guitar'){
+      instSamples = createSamplesList(notes, "guitarSamples", "guitar");
+    }else{
+      /* spazio per il basso */
+    }
+      
     const sounds = {};
 
-    for(const sample in pianoSamples){
+    for(const sample in instSamples){
         const sound = new Howl({
-            src: pianoSamples[sample],
+            src: instSamples[sample],
             volume: record.getFather().getVolume()
         });
      sounds[sample] = sound;
     }
 
     if (record.getOnArray().length === 0 || record.getOffArray().length === 0) {
-      console.warn('No Data');
+      console.log('No Data');
       return;
     }
 
 
+    
     record.getOnArray().forEach((noteOn) => {
-        const sound = sounds[noteOn.sample];
+      const sound = sounds[noteOn.sample];
 
-        const delay = noteOn.timestamp - record.getStartTime();
+      const delay = noteOn.timestamp - record.getStartTime();
 
-        setTimeout(() => {
-            sound.volume(record.getFather().getVolume());
-            sound.play();
-        }, delay);
+      setTimeout(() => {
+          sound.volume(record.getFather().getVolume());
+          sound.play();
+      }, delay);
     });
 
     record.getOffArray().forEach((noteOff) => {
@@ -180,6 +190,7 @@ controller = {
             sound.fade(record.getFather().getVolume(), 0, 2000);
         }, delay);
     });
+    
   },
 
   delete_recording: function(event,record){ 
