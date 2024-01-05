@@ -14,31 +14,29 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
       }else{
         samplesList[keyList[key]]='sounds/'+directoryName+'/'+ key_name +'.mp3';
       }  
-        
     }
-  
-    return samplesList;
-};
-
-
-//caricamento dei suoni di un determinato strumento: ogni tasto avrà il riferimento al suono corretto
-function loadSound(samplesList, instrumentId=""){
-  //i parametri della funzione saranno:
-  //samplesList: il "dzionario" con i riferimenti tra chiave e samples dello strumento in questione
-  //instrumentId = l'id del div in cui si trova lo strumento
-  const instrument = document.getElementById(instrumentId);
-  const sounds = {};
-  
-
-  for(const sample in samplesList){
+    
+    const sounds = {};
+    for(const sample in samplesList){
     
       const sound = new Howl({
           src: samplesList[sample],
           preload: true  /*Serve ??? */
       });
       sounds[sample] = sound;
-  }
+    }
+  
+    return sounds;
+};
 
+
+//caricamento dei suoni di un determinato strumento: ogni tasto avrà il riferimento al suono corretto
+function loadSound(sounds, instrumentId=""){
+  //i parametri della funzione saranno:
+  //samplesList: il "dzionario" con i riferimenti tra chiave e samples dello strumento in questione
+  //instrumentId = l'id del div in cui si trova lo strumento
+  const instrument = document.getElementById(instrumentId);
+  
 
   instrument.addEventListener('mousedown', (e) => {
       const sample = e.target.dataset.note;
