@@ -99,7 +99,7 @@ class Instrument{
     draw(container){
         let container_id = container.getAttribute("id");
         container.innerHTML = drawGuitar(container_id);
-        setup(container);
+        setup(container.getAttribute("id").split("_")[0]);
     }
 
     getType(){
@@ -118,7 +118,10 @@ class Instrument{
     }
 
     draw(container){
-        container.innerHTML = "Work in progress";
+        let container_id = container.getAttribute("id");
+        container.innerHTML = drawGuitar(container_id);
+        console.log(container);
+        setup(container.getAttribute("id").split("_")[0]);
     }
 
     getType(){
