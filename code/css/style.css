@@ -115,6 +115,11 @@ body {
   background-color: burlywood;
 }
 
+.active_button:hover {
+  background-color: #dbad07;
+  border-color: black;
+}
+
 .instrument_settings {
   position: relative;
   top: -85px;
@@ -138,3 +143,4 @@ body {
   top: -90px;
   left: 60px;
 }
+

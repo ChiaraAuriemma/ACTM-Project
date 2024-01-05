@@ -48,6 +48,8 @@ controller = {
       model.setRemoveState(!model.getRemoveState());
     }else if(target == 'deleteRecord'){
       model.setDeleteRecordState(!model.getDeleteRecordState());
+    }else if(target == 'loop'){
+      model.setLoopState(!model.getLoopState());
     }
 
     if(!model.checkButtons()){ /* per il momento è possibile attivare un bottone alla volta, rec e play sarebbe carino attivarli insieme*/
@@ -96,6 +98,8 @@ controller = {
       this.delete_recording(event,record);
     }else if(model.getPlayState() && ins.getType() != 'voice'){
       this.play_inst_recording(record);
+    }else if(model.getLoopState()){
+      this.manageLoop(record);
     }
 
   },
@@ -204,6 +208,26 @@ controller = {
     ins = this.find_instrument_from_view(event);
 
     ins.setVolume(volume/100);
+  },
+
+  manageLoop: function(record){
+
+    if(!record.getIsPlaying()){
+      duration = (60 / record.getBPM()) * record.getBeatsPerBar() * 1000;
+        
+      record.setIsPlaying(true);
+
+      controller.play_inst_recording(record);
+
+      int = setInterval(controller.play_inst_recording, duration, record);
+      record.setIntLoop(int);
+      
+    }else{
+      clearInterval(record.getIntLoop());
+      record.setIsPlaying(false);
+      record.setIntLoop(null);
+    }
+    
   }
 
 }

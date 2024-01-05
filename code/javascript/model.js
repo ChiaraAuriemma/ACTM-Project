@@ -153,8 +153,9 @@ class Instrument{
       this.chunks = [];
       this.can_record;
       this.isPlaying = false;
-      this.beatsPerBar;
-      this.bpm;
+      this.beatsPerBar; /* mettere solo in instrument ?? */
+      this.bpm; /* ?*/
+      this.intLoop; /* ?? */
       
     }
 
@@ -217,6 +218,15 @@ class Instrument{
     setBeatsPerBar(beatsPerBar){
       this.beatsPerBar = beatsPerBar;
     }
+
+    getIntLoop(){
+      return this.intLoop;
+    }
+
+    setIntLoop(intLoop){
+      this.intLoop = intLoop;
+    }
+
   }
 
   class Voice_Recorder extends Record_square{
@@ -311,6 +321,7 @@ class Instrument{
     play_state:false,
     remove_state:false,
     delete_record_state:false,
+    loop_state:false,
     current_inst_rec: null,
     Inst_Chunks: [],
     On_time: [],
@@ -361,6 +372,14 @@ class Instrument{
 
     setDeleteRecordState: function(delete_record_state){
       this.delete_record_state = delete_record_state;
+    },
+
+    getLoopState: function(){
+      return this.loop_state;
+    },
+
+    setLoopState: function(loop_state){
+      this.loop_state = loop_state;
     },
 
     getCurrent_inst_rec: function(){
@@ -434,6 +453,10 @@ class Instrument{
         count++;
       }
 
+      if(this.getLoopState()){
+        count++;
+      }
+
       if(count >= 2)
         return false;
       else return true;
@@ -444,6 +467,7 @@ class Instrument{
       this.setPlayState(false);
       this.setRemoveState(false);
       this.setDeleteRecordState(false);
+      this.setLoopState(false);
     },
 
     addInstrument: function(instrument){

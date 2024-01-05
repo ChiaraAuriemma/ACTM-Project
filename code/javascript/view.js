@@ -117,6 +117,7 @@ view = {
       document.getElementById("play_button").classList.remove("active_button");
       document.getElementById("remove_button").classList.remove("active_button");
       document.getElementById("deleteRecord_button").classList.remove("active_button");
+      document.getElementById("loop_button").classList.remove("active_button");
     },
 
     create_countdown: function () {
