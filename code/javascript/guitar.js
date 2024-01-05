@@ -100,13 +100,14 @@ function setup() {
         },
         setupNoteNamesection() {
             noteNameSection.innerHTML = '';
-            let noteNames;
+            let noteNames=["Em", "Am", "Dm", "G", "C", "F", "Bb"];
+            /*
             if (accidentals === 'flats') {
                 //noteNames = notesFlat.slice(0, 1);
                 noteNames= notesFlat;
             } else {
                 noteNames = notesSharp;
-            }
+            }*/
             noteNames.forEach((noteName) => {
                 let noteNameElement = tools.createElement('span', noteName);
                 noteNameSection.appendChild(noteNameElement);
