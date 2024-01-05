@@ -156,16 +156,7 @@ controller = {
     }else{
       /* spazio per il basso */
     }
-      
-    const sounds = {};
 
-    for(const sample in instSamples){
-        const sound = new Howl({
-            src: instSamples[sample],
-            volume: record.getFather().getVolume()
-        });
-     sounds[sample] = sound;
-    }
 
     if (record.getOnArray().length === 0 || record.getOffArray().length === 0) {
       console.log('No Data');
@@ -175,7 +166,7 @@ controller = {
 
     
     record.getOnArray().forEach((noteOn) => {
-      const sound = sounds[noteOn.sample];
+      const sound = instSamples[noteOn.sample];
 
       const delay = noteOn.timestamp - record.getStartTime();
 
@@ -186,7 +177,7 @@ controller = {
     });
 
     record.getOffArray().forEach((noteOff) => {
-        const sound = sounds[noteOff.sample];
+        const sound = instSamples[noteOff.sample];
 
         const delay = noteOff.timestamp - record.getStartTime();
 
