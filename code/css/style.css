@@ -73,16 +73,18 @@ body {
   }
 
   .instrument_container{
-    position: absolute;
+    position: fixed;
     top: 20%;
-    left: 10%;
+    left: 13%;
     background-color: #282828;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     width: 70%;
-    height: 50%;
+    height: 350px;
     overflow: auto;
+    cursor: grab;
+    z-index: 1;
   }
 
   .close {
@@ -103,7 +105,8 @@ body {
     transition: background-color 0.3s ease, border-color 0.3s ease;
     display: flex;
     flex-direction: row-reverse;
-    align-items: center
+    align-items: center;
+    position: relative;
 }
 
 .instrument:hover {
@@ -144,3 +147,20 @@ body {
   left: 60px;
 }
 
+.beats_container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10%;  
+  left: 16%; 
+}
+
+.label_beats {
+  margin-right: 10px;
+  color:  #110eea;
+}
+
+.beats_input {
+  width: 50px;
+  height: 15px;
+}

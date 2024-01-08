@@ -270,7 +270,7 @@ class Instrument{
       this.offArray = [];
       this.startTime = null;
       this.can_record = true;
-      this.beatsPerBar; 
+      this.beats; 
       this.bpm; 
       this.intLoop;
       this.duration;
@@ -315,12 +315,12 @@ class Instrument{
       this.bpm = bpm;
     }
 
-    getBeatsPerBar(){
-      return this.beatsPerBar;
+    getBeats(){
+      return this.beats;
     }
 
-    setBeatsPerBar(beatsPerBar){
-      this.beatsPerBar = beatsPerBar;
+    setBeats(beats){
+      this.beats = beats;
     }
 
     getIntLoop(){
@@ -356,7 +356,6 @@ class Instrument{
     On_time: [],
     Off_time: [],
     start_time: null,
-    beatsPerBar: 4,
     outFlag: false,
   
     getInstruments: function(){
@@ -451,10 +450,6 @@ class Instrument{
       this.start_time = start_time;
     },
 
-    getBeatsPerBar: function(){
-      return this.beatsPerBar;
-    },
-
     getOutFlag: function(){
       return this.outFlag;
     },
@@ -521,9 +516,12 @@ class Instrument{
         record.setStartTime(model.getStartTime());
         record.setCanRecord(false);
         record.setBPM(metronome.getBPM());
-        record.setBeatsPerBar(model.getBeatsPerBar());
         
-        duration = (60 / record.getBPM()) * record.getBeatsPerBar() * 1000;
+        target = event.target.parentNode.parentNode.children[2].children[1]; /*migliorabile?*/
+
+        record.setBeats(target.value * 4);
+        
+        duration = (60 / record.getBPM()) * record.getBeats() * 1000;
         record.setDuration(duration);
 
         model.setOutFlag(false);

@@ -29,6 +29,27 @@ view = {
       instrument_container.appendChild(image_div);
       image_div.appendChild(image);
 
+      if(string != 'voice'){
+        let beats_container = document.createElement("div");
+        beats_container.setAttribute("class","beats_container");
+        instrument_container.appendChild(beats_container);
+
+        let input = document.createElement('input');
+        input.setAttribute('class','beats_input');
+        input.setAttribute("type", "number");
+        input.setAttribute("name", "numero");
+        input.setAttribute("min", "1");
+        input.setAttribute("max", "16");
+        input.setAttribute("step", "1");
+        input.setAttribute("value", "1");
+        let label = document.createElement('label');
+        label.setAttribute('class','label_beats');
+        label.textContent = 'Number of Bars:';
+        beats_container.appendChild(label);
+        beats_container.appendChild(input);
+      }
+
+
       let instrument_settings = document.createElement("div");
       let instrument_volume = document.createElement("input");
       let instrument_mute = document.createElement("button");
@@ -72,6 +93,36 @@ view = {
         container= document.createElement("div");
         container.setAttribute("id", father.getAttribute("id") + "_container");
         container.setAttribute("class", "instrument_container");
+
+        //Potremmo rendere draggabile la finestra
+        /*
+        container.setAttribute("draggable", "true");
+
+              
+        container.addEventListener('dragstart', function(event) {
+          event.dataTransfer.setData('text/plain', container.id);
+        });
+
+        container.addEventListener('dragover', function(event) {
+          event.preventDefault();
+        });
+
+        container.addEventListener('drop', function(event) {
+          event.preventDefault();
+          
+          let data = event.dataTransfer.getData('text/plain');
+          let el = document.getElementById(data);
+        
+          let x = event.pageX - el.getBoundingClientRect().left;
+          let y = event.pageY - el.getBoundingClientRect().top;
+        
+          el.style.position = 'fixed';
+          el.style.left = x + 'px';
+          el.style.top = y + 'px';
+          el.style.zIndex = '1';  
+        });
+        */
+
         father.appendChild(container);
 
         code = father.getAttribute("id").split('_')[1];
@@ -166,7 +217,7 @@ view = {
 
     printTime: function(event, record){
       tempoDiv = event.target.children[0];
-      tempoDiv.innerText = record.getBeatsPerBar() + 'beats' + '_' + record.getBPM() + 'bpm';
+      tempoDiv.innerText = record.getBeats() + 'beats' + '_' + record.getBPM() + 'bpm';
       tempoDiv.style.display = "block";
     }
   }

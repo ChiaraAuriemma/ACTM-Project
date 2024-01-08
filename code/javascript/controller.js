@@ -52,7 +52,7 @@ controller = {
       model.setLoopState(!model.getLoopState());
     }
 
-    if(!model.checkButtons()){ /* per il momento è possibile attivare un bottone alla volta, rec e play sarebbe carino attivarli insieme*/
+    if(!model.checkButtons()){ 
       alert('You can activate one button at a time');
       model.resetStateButton();
       view.reset_active_button();

@@ -15,7 +15,7 @@
   }
   
   #countdown{
-    position: absolute;
+    position: fixed;
     top: 20%;
     left: 30%;
     background-color: #3498db; 
@@ -26,6 +26,7 @@
     width: 30%;
     height: 20%;
     overflow: auto;
+    z-index: 1;
   }
   
   #countdown span {
