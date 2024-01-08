@@ -29,9 +29,9 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
   return sounds;
 };
 
-function noteon(sounds, e, midi=false, midiSample, midiInstrument){
-  const sample;
-  const instrument;
+function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument=null){
+  let sample=null;
+  let instrument=null;
 
   if(midi){
     sample = midiSample;
@@ -77,9 +77,17 @@ function noteon(sounds, e, midi=false, midiSample, midiInstrument){
 
 
 
-function noteoff(sounds, e){
-  const sample = e.target.dataset.note;
-  let instrument = controller.find_instrument_from_view(e);
+function noteoff(sounds=null, e=null, midi=false, midiSample=null, midiInstrument=null){
+  let sample=null;
+  let instrument=null;
+
+  if(midi){
+    sample = midiSample;
+    instrument = midiInstrument;
+  }else{
+    sample = e.target.dataset.note;
+    instrument = controller.find_instrument_from_view(e);
+  }
   console.log("prova piano noteoff");
   if (sample) {
     sounds[sample].fade(instrument.getVolume(), 0, 2000);

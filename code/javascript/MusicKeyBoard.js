@@ -25,10 +25,10 @@ function drawKeyBoard(container_id) {
     let instrument=document.getElementById(container_id);
     instrument.addEventListener("mousedown", (e) => {
         
-        noteon(pianoSamples, e);
+        noteon(sounds=pianoSamples, e=e);
     });
     instrument.addEventListener("mouseup", (e) => {
-        noteoff(pianoSamples, e);
+        noteoff(sounds=pianoSamples, e=e);
     });
 
     return key;

@@ -85,7 +85,9 @@ class Instrument{
       container.innerHTML = drawDrum(container_id);
     }
 
-
+    setUpMidi(){
+     
+    }
 
     getType(){
       return this.type;
@@ -108,6 +110,10 @@ class Instrument{
         setup(container.getAttribute("id").split("_")[0]);
     }
 
+    setUpMidi(){
+     
+    }
+
     getType(){
       return this.type;
     }
@@ -124,10 +130,13 @@ class Instrument{
     }
 
     draw(container){
-        let container_id = container.getAttribute("id");
-        container.innerHTML = drawGuitar(container_id);
-        //console.log(container);
-        setup(container.getAttribute("id").split("_")[0]);
+      let container_id = container.getAttribute("id");
+      container.innerHTML = drawGuitar(container_id);
+      setup(container.getAttribute("id").split("_")[0]);
+    }
+
+    setUpMidi(){
+     
     }
 
     getType(){
@@ -147,6 +156,9 @@ class Instrument{
 
     draw(container){
         /*si potrebbe anche eliminare */
+    }
+    setUpMidi(){
+     
     }
 
     getType(){

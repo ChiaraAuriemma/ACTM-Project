@@ -19,7 +19,7 @@ function enableSoundGuitar(container_id, firstScale){
 }*/
 
 
-function setup() {
+function setup(var_instrument) {
     const root = document.documentElement;
     const fretboard = container.querySelector('.fretboard');
     const instrumentSelector = container.querySelector('#instrument-selector');
@@ -31,12 +31,19 @@ function setup() {
     const noteNameSection = container.querySelector('.note-name-section');
     const singleFretMarkPosition = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleFretMarkPosition = [12, 24];
-    const instrumentTuningPresets = {
-        'Guitar': [28, 23, 19, 14, 9, 4],
-        'Bass (4 strings)': [7, 2, 9, 4],
-        'Bass (5 strings)': [7, 2, 9, 4, 11],
-        'Ukulele': [9, 4, 0, 7]
-    };
+    let instrumentTuningPresets;
+    if(var_instrument == "guitar"){
+        instrumentTuningPresets = {
+            'Guitar 1': [28, 23, 19, 14, 9, 4],
+            'Guitar 2': [28, 23, 19, 14, 9, 4]
+        }
+    }
+    if(var_instrument == "bass"){
+        instrumentTuningPresets = {
+            'Bass (4 strings)': [7, 2, 9, 4],
+            'Bass (5 strings)': [7, 2, 9, 4, 11]
+        }
+    }
 
     let allNotes;
     let showMultipleNotes = false;
@@ -44,7 +51,16 @@ function setup() {
     let numberOfFrets = 9;
     let accidentals = 'flats';
     let selectedInstrument = 'Guitar';
+
+    if(var_instrument == "guitar"){
+        selectedInstrument = 'Guitar 1';
+    }
+    if(var_instrument == "bass"){
+        selectedInstrument = 'Bass (4 strings)';
+    }
+
     let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
+
 
     const app = {
         init() {
@@ -144,14 +160,12 @@ function setup() {
                 }
             }
         },
+
         playnote(event){
-            noteon(guitarSamples, event); // manca da gestire container
-            
+            noteon(sounds=guitarSamples, e=event); // manca da gestire container 
         },
         releasenote(event){
-            
-            noteoff(guitarSamples, event); // manca da gestire container
-            
+            noteoff(sounds=guitarSamples, e=event); // manca da gestire container   
         },
 
         hideNoteDot(event) {
@@ -213,7 +227,6 @@ function setup() {
         setupEventListeners(){
             fretboard.addEventListener('mousedown', this.playnote);
             fretboard.addEventListener('mouseup', this.releasenote);
-            
             fretboard.addEventListener('mouseover', this.showNoteDot);
             fretboard.addEventListener('mouseout', this.hideNoteDot);
             instrumentSelector.addEventListener('change', this.setSelectedInstrument)
