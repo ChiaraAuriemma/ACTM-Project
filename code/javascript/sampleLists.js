@@ -57,7 +57,7 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
 
         const recordingDuration = Date.now() - model.getStartTime();
         const bpm = metronome.getBPM();
-        const beats = instrument.getRefDiv().children[2].children[1].value * 4; 
+        const beats = instrument.getNumBars() * 4; 
         const maxRecordingDuration = (60 / bpm) * beats * 1000; // Converti in millisecondi
 
         if (recordingDuration > maxRecordingDuration) {

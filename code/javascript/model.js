@@ -6,6 +6,7 @@ class Instrument{
       this.refInCont;
       this.records = [];
       this.volume = 1;
+      this.numBars = 1;
     }
 
     getCode(){
@@ -42,6 +43,14 @@ class Instrument{
 
     getVolume(){
       return this.volume;
+    }
+
+    setNumBars(numBars){
+      this.numBars = numBars;
+    }
+
+    getNumBars(){
+      return this.numBars;
     }
   
   }
@@ -517,9 +526,7 @@ class Instrument{
         record.setCanRecord(false);
         record.setBPM(metronome.getBPM());
         
-        target = event.target.parentNode.parentNode.children[2].children[1]; /*migliorabile?*/
-
-        record.setBeats(target.value * 4);
+        record.setBeats(record.getFather().getNumBars() * 4);
         
         duration = (60 / record.getBPM()) * record.getBeats() * 1000;
         record.setDuration(duration);

@@ -42,6 +42,9 @@ view = {
         input.setAttribute("max", "16");
         input.setAttribute("step", "1");
         input.setAttribute("value", "1");
+        input.addEventListener('input', function(event) {
+          controller.checkNumBars(event, num);
+        });        
         let label = document.createElement('label');
         label.setAttribute('class','label_beats');
         label.textContent = 'Number of Bars:';
