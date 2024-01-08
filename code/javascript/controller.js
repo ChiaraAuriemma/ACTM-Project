@@ -203,20 +203,21 @@ controller = {
 
   manageLoop: function(record){
 
-    if(!record.getIsPlaying()){
-      duration = (60 / record.getBPM()) * record.getBeatsPerBar() * 1000;
+    if(!record.getIsPlaying() && record.getFather().getType() != 'voice'){
         
       record.setIsPlaying(true);
 
       controller.play_inst_recording(record);
 
-      int = setInterval(controller.play_inst_recording, duration, record);
+      int = setInterval(controller.play_inst_recording, record.getDuration(), record);
       record.setIntLoop(int);
       
-    }else{
+    }else if(record.getFather().getType() != 'voice'){
       clearInterval(record.getIntLoop());
       record.setIsPlaying(false);
       record.setIntLoop(null);
+    }else if(record.getFather().getType() == 'voice'){
+      alert('You cannot loop a vocal track');
     }
     
   }

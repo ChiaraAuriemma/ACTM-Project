@@ -174,10 +174,6 @@ class Instrument{
       this.chunks = [];
       this.can_record;
       this.isPlaying = false;
-      this.beatsPerBar; /* mettere solo in instrument ?? */
-      this.bpm; /* ?*/
-      this.intLoop; /* ?? */
-      
     }
 
     getCode(){
@@ -222,30 +218,6 @@ class Instrument{
 
     setFather(father){
       this.father = father;
-    }
-
-    getBPM(){
-      return this.bpm;
-    }
-
-    setBPM(bpm){
-      this.bpm = bpm;
-    }
-
-    getBeatsPerBar(){
-      return this.beatsPerBar;
-    }
-
-    setBeatsPerBar(beatsPerBar){
-      this.beatsPerBar = beatsPerBar;
-    }
-
-    getIntLoop(){
-      return this.intLoop;
-    }
-
-    setIntLoop(intLoop){
-      this.intLoop = intLoop;
     }
 
   }
@@ -298,6 +270,10 @@ class Instrument{
       this.offArray = [];
       this.startTime = null;
       this.can_record = true;
+      this.beatsPerBar; 
+      this.bpm; 
+      this.intLoop;
+      this.duration;
     }
 
     getStartTime(){
@@ -329,6 +305,38 @@ class Instrument{
       this.offArray = [];
       this.startTime = null;
       this.can_record = true;
+    }
+
+    getBPM(){
+      return this.bpm;
+    }
+
+    setBPM(bpm){
+      this.bpm = bpm;
+    }
+
+    getBeatsPerBar(){
+      return this.beatsPerBar;
+    }
+
+    setBeatsPerBar(beatsPerBar){
+      this.beatsPerBar = beatsPerBar;
+    }
+
+    getIntLoop(){
+      return this.intLoop;
+    }
+
+    setIntLoop(intLoop){
+      this.intLoop = intLoop;
+    }
+
+    getDuration(){
+      return this.duration;
+    }
+
+    setDuration(duration){
+      this.duration = duration;
     }
   }
 
@@ -514,6 +522,9 @@ class Instrument{
         record.setCanRecord(false);
         record.setBPM(metronome.getBPM());
         record.setBeatsPerBar(model.getBeatsPerBar());
+        
+        duration = (60 / record.getBPM()) * record.getBeatsPerBar() * 1000;
+        record.setDuration(duration);
 
         model.setOutFlag(false);
         view.now_recording(event);
