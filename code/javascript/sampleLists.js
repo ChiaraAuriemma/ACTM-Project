@@ -1,97 +1,90 @@
 function createSamplesList(keyList, directoryName, name, firstScale=0){
-    samplesList = {};
+  samplesList = {};
 
-    for (let key in keyList){
-      //console.log(keyList[key]);
-      key_name = sharp_to_flat_function(keyList[key]);
-      //console.log(key_name);
-      if(name == 'piano'){
-        for(let i=firstScale; i<(nscale+firstScale); i++){
-          if(keyList[key]!==''){
-            samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ key_name + i +'.mp3';
-          }
-        } 
-      }else{
-        samplesList[keyList[key]]='sounds/'+directoryName+'/'+ key_name +'.mp3';
-      }  
-    }
-    
-    const sounds = {};
-    for(const sample in samplesList){
-    
-      const sound = new Howl({
-          src: samplesList[sample],
-          preload: true  /*Serve ??? */
-      });
-      sounds[sample] = sound;
-    }
+  for (let key in keyList){
+    //console.log(keyList[key]);
+    key_name = sharp_to_flat_function(keyList[key]);
+    //console.log(key_name);
+    if(name == 'piano'){
+      for(let i=firstScale; i<(nscale+firstScale); i++){
+        if(keyList[key]!==''){
+          samplesList[keyList[key]+i]='sounds/'+directoryName+'/'+ key_name + i +'.mp3';
+        }
+      } 
+    }else{
+      samplesList[keyList[key]]='sounds/'+directoryName+'/'+ key_name +'.mp3';
+    }  
+  }
   
-    return sounds;
+  const sounds = {};
+  for(const sample in samplesList){
+  
+    const sound = new Howl({
+        src: samplesList[sample],
+        preload: true  /*Serve ??? */
+    });
+    sounds[sample] = sound;
+  }
+
+  return sounds;
 };
 
+function noteon(sounds, e){
 
-//caricamento dei suoni di un determinato strumento: ogni tasto avrà il riferimento al suono corretto
-function loadSound(sounds, instrumentId=""){
-  //i parametri della funzione saranno:
-  //samplesList: il "dzionario" con i riferimenti tra chiave e samples dello strumento in questione
-  //instrumentId = l'id del div in cui si trova lo strumento
-  const instrument = document.getElementById(instrumentId);
   
-
-  instrument.addEventListener('mousedown', (e) => {
-      const sample = e.target.dataset.note;
-      let instrument = controller.find_instrument_from_view(e);
-
-      console.log(sample)
-      if (sample) {
-        sounds[sample].volume(instrument.getVolume());
-        sounds[sample].play();
-
-        if(model.getRecState() == true && model.getOutFlag() == false){
-
-          if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
-            model.setStartTime(Date.now());
-            type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
-            model.setCurrent_inst_rec(type);
-          }
-
-          const recordingDuration = Date.now() - model.getStartTime();
-          const bpm = metronome.getBPM();
-          const beatsPerBar = model.getBeatsPerBar(); 
-          const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
-
-          if (recordingDuration > maxRecordingDuration) {
-              alert('Maximum time reached, now save the record!');
-              model.setOutFlag(true);
-          }else{
-            model.getOnTime().push({
-              sample: sample,
-              timestamp: Date.now()
-            });
-          }
-              
-        }
-      
-      }
-  }); 
-
-  instrument.addEventListener('mouseup', (e) => {
-    const sample = e.target.dataset.note;
-    let instrument = controller.find_instrument_from_view(e);
+  const sample = e.target.dataset.note;
+  let instrument = controller.find_instrument_from_view(e);
+  console.log(sample);
     if (sample) {
-      sounds[sample].fade(instrument.getVolume(), 0, 2000);
+      sounds[sample].volume(instrument.getVolume());
+      sounds[sample].play();
 
       if(model.getRecState() == true && model.getOutFlag() == false){
-        model.getOffTime().push({
-          sample: sample,
-          timestamp: Date.now()
-        });
-      }
 
+        if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
+          model.setStartTime(Date.now());
+          type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
+          model.setCurrent_inst_rec(type);
+        }
+
+        const recordingDuration = Date.now() - model.getStartTime();
+        const bpm = metronome.getBPM();
+        const beatsPerBar = model.getBeatsPerBar(); 
+        const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
+
+        if (recordingDuration > maxRecordingDuration) {
+            alert('Maximum time reached, now save the record!');
+            model.setOutFlag(true);
+        }else{
+          model.getOnTime().push({
+            sample: sample,
+            timestamp: Date.now()
+          });
+        }
+            
+      }
+    
     }
-  }); 
 }
 
+
+
+function noteoff(sounds, e){
+  const sample = e.target.dataset.note;
+  let instrument = controller.find_instrument_from_view(e);
+  console.log("prova piano noteoff");
+  if (sample) {
+    sounds[sample].fade(instrument.getVolume(), 0, 2000);
+
+    if(model.getRecState() == true && model.getOutFlag() == false){
+      model.getOffTime().push({
+        sample: sample,
+        timestamp: Date.now()
+      });
+    }
+
+  }
+}
 
 // funzione per chitarra che converte tutte le note in # in b
 
@@ -111,17 +104,84 @@ function sharp_to_flat_function(note){
     B : "B"
   };
 
-  new_note="";
+new_note="";
   if (note[1]=='s'){
     new_note=sharp_to_flat[note.slice(0,2)];
     new_note = new_note + note.slice(-1);
   }else{
     new_note=note;
   }
-  return new_note
+return new_note
 }
 
-sharp_to_flat_function("Ds4");
+
+
+/*
+
+//caricamento dei suoni di un determinato strumento: ogni tasto avrà il riferimento al suono corretto
+function loadSound(sounds, instrumentId=""){
+//i parametri della funzione saranno:
+//samplesList: il "dzionario" con i riferimenti tra chiave e samples dello strumento in questione
+//instrumentId = l'id del div in cui si trova lo strumento
+const instrument = document.getElementById(instrumentId);
+
+
+instrument.addEventListener('mousedown', (e) => {
+    const sample = e.target.dataset.note;
+    let instrument = controller.find_instrument_from_view(e);
+
+    //console.log(sample)
+    if (sample) {
+      sounds[sample].volume(instrument.getVolume());
+      sounds[sample].play();
+
+      if(model.getRecState() == true && model.getOutFlag() == false){
+
+        if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
+          model.setStartTime(Date.now());
+          type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
+          model.setCurrent_inst_rec(type);
+        }
+
+        const recordingDuration = Date.now() - model.getStartTime();
+        const bpm = metronome.getBPM();
+        const beatsPerBar = model.getBeatsPerBar(); 
+        const maxRecordingDuration = (60 / bpm) * beatsPerBar * 1000; // Converti in millisecondi
+
+        if (recordingDuration > maxRecordingDuration) {
+            alert('Maximum time reached, now save the record!');
+            model.setOutFlag(true);
+        }else{
+          model.getOnTime().push({
+            sample: sample,
+            timestamp: Date.now()
+          });
+        }
+            
+      }
+    
+    }
+}); 
+
+instrument.addEventListener('mouseup', (e) => {
+  const sample = e.target.dataset.note;
+  let instrument = controller.find_instrument_from_view(e);
+  if (sample) {
+    sounds[sample].fade(instrument.getVolume(), 0, 2000);
+
+    if(model.getRecState() == true && model.getOutFlag() == false){
+      model.getOffTime().push({
+        sample: sample,
+        timestamp: Date.now()
+      });
+    }
+
+  }
+}); 
+}
+*/
+
+
 
 
 

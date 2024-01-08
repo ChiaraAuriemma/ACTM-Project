@@ -24,14 +24,11 @@ function drawKeyBoard(container_id) {
 
     let instrument=document.getElementById(container_id);
     instrument.addEventListener("mousedown", (e) => {
-        const sample = e.target.dataset.note;
-        let instrument = controller.find_instrument_from_view(e);
-        noteon(sample, pianoSamples, instrument);
+        
+        noteon(pianoSamples, e);
     });
     instrument.addEventListener("mouseup", (e) => {
-        const sample = e.target.dataset.note;
-        let instrument = controller.find_instrument_from_view(e);
-        noteoff(sample, pianoSamples, instrument);
+        noteoff(pianoSamples, e);
     });
 
     return key;
@@ -67,5 +64,6 @@ function drawKey(key, disp=0, firstScale, container_id){
     }
     return key;
 }
+
 
 
