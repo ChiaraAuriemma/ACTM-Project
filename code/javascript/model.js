@@ -61,6 +61,10 @@ class Instrument{
         container.innerHTML = drawKeyBoard(container_id);
     }
 
+    setUpMidi(){
+      setUpMidiInstrument(this);
+    }
+
     getType(){
       return this.type;
     }
@@ -80,6 +84,8 @@ class Instrument{
       let container_id = container.getAttribute("id");
       container.innerHTML = drawDrum(container_id);
     }
+
+
 
     getType(){
       return this.type;
@@ -120,7 +126,7 @@ class Instrument{
     draw(container){
         let container_id = container.getAttribute("id");
         container.innerHTML = drawGuitar(container_id);
-        console.log(container);
+        //console.log(container);
         setup(container.getAttribute("id").split("_")[0]);
     }
 
@@ -475,6 +481,7 @@ class Instrument{
 
     addInstrument: function(instrument){
       this.instruments.push(instrument);
+      instrument.setUpMidi();
     },
 
     deleteInstrument: function(num){

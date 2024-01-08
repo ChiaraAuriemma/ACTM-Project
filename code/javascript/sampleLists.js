@@ -29,11 +29,18 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
   return sounds;
 };
 
-function noteon(sounds, e){
+function noteon(sounds, e, midi=false, midiSample, midiInstrument){
+  const sample;
+  const instrument;
 
-  
-  const sample = e.target.dataset.note;
-  let instrument = controller.find_instrument_from_view(e);
+  if(midi){
+    sample = midiSample;
+    instrument = midiInstrument;
+  }else{
+    sample = e.target.dataset.note;
+    instrument = controller.find_instrument_from_view(e);
+  }
+
   console.log(sample);
     if (sample) {
       sounds[sample].volume(instrument.getVolume());
@@ -43,7 +50,8 @@ function noteon(sounds, e){
 
         if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
           model.setStartTime(Date.now());
-          type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
+          type = instrument.getType();
+          //type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
           model.setCurrent_inst_rec(type);
         }
 

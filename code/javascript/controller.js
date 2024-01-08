@@ -146,13 +146,13 @@ controller = {
     
     let instSamples;
 
-    /* chiedere ad Anna di suddividere meglio le funzioni in modo da non necessitare di questa parte di codice per evitare gli if*/
+    
     if(record.getFather().getType() == 'piano'){
-      instSamples = createSamplesList(pianoKeys, "pianoSamples", "piano", 3);
+      instSamples = pianoSamples;
     }else if(record.getFather().getType() == 'drum'){
-      instSamples = createSamplesList(image, "drumSamples", "drum", 0);
+      instSamples = drumSamples;
     }else if(record.getFather().getType() == 'guitar'){
-      instSamples = createSamplesList(notes, "guitarSamples", "guitar");
+      instSamples = guitarSamples;
     }else{
       /* spazio per il basso */
     }
