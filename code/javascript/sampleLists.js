@@ -71,7 +71,7 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
           
     }
     
-    }
+  }
 }
 
 
