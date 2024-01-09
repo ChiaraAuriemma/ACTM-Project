@@ -71,7 +71,7 @@ class Instrument{
     }
 
     setUpMidi(){
-      setUpMidiInstrument(this);
+      model.setMidi(this);
     }
 
     getType(){
@@ -95,7 +95,7 @@ class Instrument{
     }
 
     setUpMidi(){
-     
+      model.setMidi(this);
     }
 
     getType(){
@@ -120,7 +120,7 @@ class Instrument{
     }
 
     setUpMidi(){
-     
+      model.setMidi(this);
     }
 
     getType(){
@@ -145,7 +145,7 @@ class Instrument{
     }
 
     setUpMidi(){
-     
+      model.setMidi(this);
     }
 
     getType(){
@@ -366,6 +366,7 @@ class Instrument{
     Off_time: [],
     start_time: null,
     outFlag: false,
+    midi:null,
   
     getInstruments: function(){
       return this.instruments;
@@ -467,6 +468,14 @@ class Instrument{
       this.outFlag = outFlag;
     },
 
+    getMidi: function(){
+      return this.midi;
+    },
+
+    setMidi: function(midi){
+      this.midi = midi;
+    },
+
     checkButtons: function(){
       let count = 0;
 
@@ -504,8 +513,10 @@ class Instrument{
     },
 
     addInstrument: function(instrument){
+      if(this.instruments.length == 0){
+        setUpMidiInstrument();
+      }
       this.instruments.push(instrument);
-      instrument.setUpMidi();
     },
 
     deleteInstrument: function(num){

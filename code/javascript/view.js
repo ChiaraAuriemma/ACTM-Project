@@ -97,35 +97,6 @@ view = {
         container.setAttribute("id", father.getAttribute("id") + "_container");
         container.setAttribute("class", "instrument_container");
 
-        //Potremmo rendere draggabile la finestra
-        /*
-        container.setAttribute("draggable", "true");
-
-              
-        container.addEventListener('dragstart', function(event) {
-          event.dataTransfer.setData('text/plain', container.id);
-        });
-
-        container.addEventListener('dragover', function(event) {
-          event.preventDefault();
-        });
-
-        container.addEventListener('drop', function(event) {
-          event.preventDefault();
-          
-          let data = event.dataTransfer.getData('text/plain');
-          let el = document.getElementById(data);
-        
-          let x = event.pageX - el.getBoundingClientRect().left;
-          let y = event.pageY - el.getBoundingClientRect().top;
-        
-          el.style.position = 'fixed';
-          el.style.left = x + 'px';
-          el.style.top = y + 'px';
-          el.style.zIndex = '1';  
-        });
-        */
-
         father.appendChild(container);
 
         code = father.getAttribute("id").split('_')[1];
@@ -134,7 +105,9 @@ view = {
 
         close_button = document.createElement("span");
         close_button.setAttribute("class", "close");
-        close_button.setAttribute("onclick", "closePopup(event)");
+        close_button.addEventListener('click', function(event) {
+          closePopup(event);
+        });
         close_button.innerHTML = "&times;";
         container.appendChild(close_button);
       }

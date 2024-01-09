@@ -41,36 +41,35 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
     instrument = controller.find_instrument_from_view(e);
   }
 
-  console.log(sample);
-    if (sample) {
-      sounds[sample].volume(instrument.getVolume());
-      sounds[sample].play();
+  if (sample) {
+    sounds[sample].volume(instrument.getVolume());
+    sounds[sample].play();
 
-      if(model.getRecState() == true && model.getOutFlag() == false){
+    if(model.getRecState() == true && model.getOutFlag() == false){
 
-        if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
-          model.setStartTime(Date.now());
-          type = instrument.getType();
-          //type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
-          model.setCurrent_inst_rec(type);
-        }
-
-        const recordingDuration = Date.now() - model.getStartTime();
-        const bpm = metronome.getBPM();
-        const beats = instrument.getNumBars() * 4; 
-        const maxRecordingDuration = (60 / bpm) * beats * 1000; // Converti in millisecondi
-
-        if (recordingDuration > maxRecordingDuration) {
-            alert('Maximum time reached, now save the record!');
-            model.setOutFlag(true);
-        }else{
-          model.getOnTime().push({
-            sample: sample,
-            timestamp: Date.now()
-          });
-        }
-            
+      if(model.getStartTime() == null && model.getCurrent_inst_rec() == null){
+        model.setStartTime(Date.now());
+        type = instrument.getType();
+        //type = e.target.closest('.instrument_container').getAttribute("id").split('_')[0];
+        model.setCurrent_inst_rec(type);
       }
+
+      const recordingDuration = Date.now() - model.getStartTime();
+      const bpm = metronome.getBPM();
+      const beats = instrument.getNumBars() * 4; 
+      const maxRecordingDuration = (60 / bpm) * beats * 1000; // Converti in millisecondi
+
+      if (recordingDuration > maxRecordingDuration) {
+          alert('Maximum time reached, now save the record!');
+          model.setOutFlag(true);
+      }else{
+        model.getOnTime().push({
+          sample: sample,
+          timestamp: Date.now()
+        });
+      }
+          
+    }
     
     }
 }
