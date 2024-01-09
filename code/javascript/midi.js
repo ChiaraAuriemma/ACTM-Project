@@ -15,11 +15,11 @@ function setUpMidiInstrument(instrument){
 
     console.log(pitch_to_note);
 
-    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    /*window.AudioContext = window.AudioContext || window.webkitAudioContext;
     const ctx = new AudioContext();
     document.body.onclick = () => {
         ctx.resume();
-    }
+    }*/
     const startButton = document.querySelector('button');
     const oscillators = {};
 
@@ -34,18 +34,26 @@ function setUpMidiInstrument(instrument){
 
     function onMIDISuccess(midiAccess) {
         midiAccess.addEventListener("statechange", updateDevices);
-
-        const inputs = midiAccess.inputs;
-
+    
+        const inputs = [...midiAccess.inputs];
+        console.log(inputs);
+    
         inputs.forEach((input) =>{
-            input.addEventListener('midimessage', hendleInput(instrument = instrument));
+            console.log(input);
+            console.log(input[1]);
+            input[1].addEventListener('midimessage', function(event) {
+                hendleInput(event,instrument, pitch_to_note);
+              });
         })
     }
+
+
 }
 
 
 
-function hendleInput(input, instrument) {
+function hendleInput(input, instrument, pitch_to_note) {
+    console.log(input);
     const command = input.data[0];
     const note = input.data[1];
     const velocity = input.data[2];
@@ -54,28 +62,28 @@ function hendleInput(input, instrument) {
 
     if(instrument.getType() == 'piano'){
         instSamples = pianoSamples;
-      }else if(instrument.getType() == 'drum'){
-        instSamples = drumSamples;
-      }else if(instrument.getType() == 'guitar'){
-        instSamples = guitarSamples;
-      }else{
-        /* spazio per il basso */
-      }
-     
+    }else if(instrument.getType() == 'drum'){
+    instSamples = drumSamples;
+    }else if(instrument.getType() == 'guitar'){
+    instSamples = guitarSamples;
+    }else{
+    /* spazio per il basso */
+    }
+    
 
     switch (command) {
         case 144:
             // note on
             if (velocity > 0) {
-                noteon(sounds=instSamples, midi=true, midiSample=sample, midiInstrument = instrument);
+                noteon(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = instrument);
                 console.log();
             } else {
-                noteoff(sounds=instSamples, midi=true, midiSample=sample, midiInstrument = instrument);
+                noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = instrument);
             }
         break;
         case 128:
             // note off
-            noteOff(sounds=instSamples, midi=true, midiSample=sample, midiInstrument = instrument);
+            noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = instrument);
         break;
     }
 }
@@ -83,9 +91,9 @@ function hendleInput(input, instrument) {
 function noteOn(note, velocity) {
     let sample = pitch_to_note[note];
 
-    /* collegare velocity a volume
+    //collegare velocity a volume
 
-    const osc = ctx.createOscillator();
+    /*const osc = ctx.createOscillator();
     const oscGain = ctx.createGain();
     oscGain.gain.value = 0.33;
     const velocityGainAmount = (1 / 127) * velocity;
@@ -104,7 +112,7 @@ function noteOn(note, velocity) {
 }
 
 function noteOff(note) {
-    const osc = oscillators[note.toString()];
+    /*const osc = oscillators[note.toString()];
     const oscGain = osc.gain;
     oscGain.gain.setValueAtTime(oscGain.gain.value, ctx.currentTime);
     oscGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.03);
@@ -113,7 +121,7 @@ function noteOff(note) {
         osc.disconnect();
     }, 20);
     delete oscillators[note.toString()];
-    console.log(oscillators);
+    console.log(oscillators);*/
 }
 
 function updateDevices(event) {
