@@ -29,6 +29,9 @@ controller = {
     ref = view.visualizeInstrument(father);
     ins = model.getInstruments();
     ins[index].setRefInCont(ref);
+    if(model.getMidiFlag() == false){
+      setUpMidiInstrument();
+    }
     ins[index].setUpMidi();
 
   },

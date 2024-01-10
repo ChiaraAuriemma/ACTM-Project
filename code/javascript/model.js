@@ -367,6 +367,7 @@ class Instrument{
     start_time: null,
     outFlag: false,
     midi:null,
+    midiFlag:false,
   
     getInstruments: function(){
       return this.instruments;
@@ -476,6 +477,14 @@ class Instrument{
       this.midi = midi;
     },
 
+    getMidiFlag: function(){
+      return this.midiFlag;
+    },
+
+    setMidiFlag: function(midiFlag){
+      this.midiFlag = midiFlag;
+    },
+
     checkButtons: function(){
       let count = 0;
 
@@ -513,7 +522,7 @@ class Instrument{
     },
 
     addInstrument: function(instrument){
-      if(this.instruments.length == 0){
+      if(this.getMidiFlag() == false){
         setUpMidiInstrument();
       }
       this.instruments.push(instrument);

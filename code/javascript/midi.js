@@ -22,6 +22,9 @@ function setUpMidiInstrument(instrument){
     
         const inputs = [...midiAccess.inputs];
         console.log(inputs);
+        if(inputs.length > 0){
+            model.setMidiFlag(true);
+        }
     
         inputs.forEach((input) =>{
             console.log(input);
