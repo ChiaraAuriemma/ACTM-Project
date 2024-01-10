@@ -13,9 +13,7 @@
 
 - ####  Anna Fusari &nbsp;([@AnnaFusari](https://github.com/AnnaFusari))<br> 10769576&nbsp;&nbsp; anna.fusari@mail.polimi.it
 
-<br><br>
 <br>
-
 
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
