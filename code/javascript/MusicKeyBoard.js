@@ -14,11 +14,12 @@ var pianoSamples = createSamplesList(pianoKeys, "pianoSamples", "piano", firstSc
 
 // questa funzione disegna la key board con nscale scale. (ora 3)
 function drawKeyBoard(container_id) {
+    let startscale = firstScale;
     let key = "<svg width=\"4000\" height=\"500\">\n";
     
     for (let j = 0; j < nscale; j++){
-        key += drawKey(key, (n * whiteWidth*j), firstScale, container_id);
-        firstScale = firstScale+1;
+        key += drawKey(key, (n * whiteWidth*j), startscale, container_id);
+        startscale = startscale+1;
     }
     key+="</svg>";
 
@@ -30,7 +31,7 @@ function drawKeyBoard(container_id) {
     instrument.addEventListener("mouseup", (e) => {
         noteoff(sounds=pianoSamples, e=e);
     });
-
+    startscale = firstScale;
     return key;
 }
 
@@ -38,7 +39,7 @@ function drawKeyBoard(container_id) {
 //passo j per definire l'id di ogni tasto
 
 // questa funzione disegna solo una scala
-function drawKey(key, disp=0, firstScale, container_id){
+function drawKey(key, disp=0, startscale){
     //ciclo per le white key
     for (let i = 0; i <= n; i++) {
         let x = whiteWidth * i;
@@ -46,7 +47,7 @@ function drawKey(key, disp=0, firstScale, container_id){
             //"<rect onmousedown=\"noteon('"+ whiteKey[i] + (firstScale) +"',  pianoSamples , '"+ container_id +"')\" onmouseleave=\"this.style.fill='white'\" onmouseup=\"noteoff('"+ whiteKey[i] + (firstScale) +"',  pianoSamples , '"+ container_id +"')\" data-note='"+ whiteKey[i] + (firstScale) +"' id="+whiteKey[i] + (firstScale)+" x="+ (x+disp) +" y=\"20\" rx=\"0\" ry=\"0\" width="+whiteWidth+" height=\"350\"\n" +
             //"  class=\"whiteKey\" />\n";
 
-            "<rect onmousedown=\"this.style.fill='gray'\" onmouseleave=\"this.style.fill='white'\"  onmouseup=\"this.style.fill='white'\" data-note='"+ whiteKey[i] + (firstScale) +"' id="+whiteKey[i] + (firstScale)+" x="+ (x+disp) +" y=\"20\" rx=\"0\" ry=\"0\" width="+whiteWidth+" height=\"350\"\n" +
+            "<rect onmousedown=\"this.style.fill='gray'\" onmouseleave=\"this.style.fill='white'\"  onmouseup=\"this.style.fill='white'\" data-note='"+ whiteKey[i] + (startscale) +"' id="+whiteKey[i] + (startscale)+" x="+ (x+disp) +" y=\"20\" rx=\"0\" ry=\"0\" width="+whiteWidth+" height=\"350\"\n" +
             "  class=\"whiteKey\" />\n";
     }
 
@@ -54,7 +55,7 @@ function drawKey(key, disp=0, firstScale, container_id){
     for (let i = 1; i < n; i++) {
         if (i != 3) {
             let x = (i * whiteWidth) - blackWidth / 2;
-            key += "<rect onmousedown=\"this.style.fill='gray'\" onmouseleave=\"this.style.fill='black'\" onmouseup=\"this.style.fill='black'\" data-note='"+ blackKey[i-1] + (firstScale) +"' id="+blackKey[i-1] + (firstScale)+"  x=" + (x+disp) + " y=\"20\" rx=\"5\" ry=\"5\" width=" + blackWidth + " height=\"200\"\n" +
+            key += "<rect onmousedown=\"this.style.fill='gray'\" onmouseleave=\"this.style.fill='black'\" onmouseup=\"this.style.fill='black'\" data-note='"+ blackKey[i-1] + (startscale) +"' id="+blackKey[i-1] + (startscale)+"  x=" + (x+disp) + " y=\"20\" rx=\"5\" ry=\"5\" width=" + blackWidth + " height=\"200\"\n" +
             "  class=\"blackKey\" />\n";
             
             
