@@ -11,7 +11,7 @@
 
 - ####  Enrico Torres &nbsp;([@enry1897](https://github.com/enry1897))<br> 10727489&nbsp;&nbsp; enrico.torres@mail.polimi.it
 
-- ####  Anna Fusari &nbsp;([@AnnaFusari](https://github.com/AnnaFusari))<br> 10769576&nbsp;&nbsp; anna.fusari@mail.polimi.it
+- ####  Anna Fusari &nbsp;([@AnnaFusari](https://github.com/AnnaFusari))<br> 10561236&nbsp;&nbsp; anna.fusari@mail.polimi.it
 
 <br>
 
