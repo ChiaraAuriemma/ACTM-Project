@@ -54,7 +54,7 @@ function hendleInput(input, pitch_to_note) {
     }else if(model.getMidi().getType() == 'guitar'){
         instSamples = guitarSamples;
     }else{
-    /* spazio per il basso */
+        instSamples = bassSamples;
     }
     
 

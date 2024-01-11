@@ -158,7 +158,7 @@ controller = {
     }else if(record.getFather().getType() == 'guitar'){
       instSamples = guitarSamples;
     }else{
-      /* spazio per il basso */
+      instSamples = bassSamples;
     }
 
 
