@@ -1,8 +1,8 @@
 let whiteWidth = 80;
 let blackWidth = whiteWidth/2;
 n=7;
-nscale=2;
-let firstScale = 3; 
+nscale=3;
+let firstScale = 2; 
 
 
 //servono per definire id di ogni tasto

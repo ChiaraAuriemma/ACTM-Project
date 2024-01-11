@@ -39,11 +39,13 @@ function setUpMidiInstrument(instrument){
 //collegare velocity a volume
 
 function hendleInput(input, pitch_to_note) {
+    console.log(input);
     const command = input.data[0];
     const note = input.data[1];
     const velocity = input.data[2];
     
     const sample = pitch_to_note[note];
+    console.log(sample);
 
     if(model.getMidi().getType() == 'piano'){
         instSamples = pianoSamples;
@@ -58,17 +60,37 @@ function hendleInput(input, pitch_to_note) {
 
     switch (command) {
         case 144:
-            // note on
-            if (velocity > 0) {
-                noteon(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
-                console.log();
-            } else {
+            if(model.getMidi().getType() != 'drum'){
+                if (velocity > 0) {
+                    noteon(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
+                    console.log();
+                } else {
+                    noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
+                }
+            }
+            
+        break;
+        case 128:
+            if(model.getMidi().getType() != 'drum'){
                 noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
             }
         break;
-        case 128:
-            // note off
-            noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
+        case 145:
+            if(model.getMidi().getType() == 'drum'){
+                mapped = mapping_drum(sample);
+                if (velocity > 0) {
+                    noteon(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
+                    console.log();
+                } else {
+                    noteoff(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
+                }
+            }
+        break;
+        case 129:
+            if(model.getMidi().getType() != 'drum'){
+                mapped = mapping_drum(sample);
+                noteoff(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
+            }
         break;
     }
 }
@@ -80,6 +102,21 @@ function updateDevices(event) {
 
 function onMIDIFailure() {
     console.log("Could not access your MIDI devices.");
+}
+
+function mapping_drum(sample){
+    map_drum={
+      C2 : "kick1",
+      Db2 : "kick2",
+      D2 : "snare",
+      Eb2 : "clap",
+      E2 : "open-hihat",
+      F2: "closed-hihat",
+      Gb2 : "crash1",
+      G2 : "crash2",
+    };
+
+    return map_drum[sample];
 }
 
 
