@@ -201,6 +201,10 @@ class Instrument{
       this.chunks = [];
       this.can_record;
       this.isPlaying = false;
+      this.duration;
+      this.animationState = false;
+      this.animationAngle = 0;
+      this.animationInt;
     }
 
     getCode(){
@@ -245,6 +249,38 @@ class Instrument{
 
     setFather(father){
       this.father = father;
+    }
+
+    getDuration(){
+      return this.duration;
+    }
+
+    setDuration(duration){
+      this.duration = duration;
+    }
+
+    getAnimationState(){
+      return this.animationState;
+    }
+
+    setAnimationState(animationState){
+      this.animationState = animationState;
+    }
+
+    getAnimationAngle(){
+      return this.animationAngle;
+    }
+
+    setAnimationAngle(animationAngle){
+      this.animationAngle = animationAngle;
+    }
+
+    getAnimationInt(){
+      return this.animationInt;
+    }
+
+    setAnimationInt(animationInt){
+      this.animationInt = animationInt;
     }
 
   }
@@ -300,7 +336,6 @@ class Instrument{
       this.beats; 
       this.bpm; 
       this.intLoop;
-      this.duration;
     }
 
     getStartTime(){
@@ -357,14 +392,6 @@ class Instrument{
     setIntLoop(intLoop){
       this.intLoop = intLoop;
     }
-
-    getDuration(){
-      return this.duration;
-    }
-
-    setDuration(duration){
-      this.duration = duration;
-    }
   }
 
   
@@ -372,7 +399,7 @@ class Instrument{
     
     instruments: [],
     num_tracks: 8,
-    countdown: 5,
+    countdown: 8,
     rec_state:false,
     play_state:false,
     remove_state:false,

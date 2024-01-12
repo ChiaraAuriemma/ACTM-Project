@@ -194,6 +194,7 @@ view = {
       target.classList.remove("recording");
 
       target.children[0].style.display = "none";
+      target.children[1].style.display = "none";
     },
 
     printTime: function(event, record){
@@ -216,52 +217,59 @@ view = {
 
     play_record: function(record) {
       canvas = record.getFather().getRefDiv().children[0].children[record.getCode()].children[1]; /*boh migliorabile */
-      console.log(canvas);
+      canvas.style.display = "block";
 
       let ctx = canvas.getContext('2d');
       let centerX = canvas.width / 2;
       let centerY = canvas.height / 2;
-      let radius = 70; 
-
-      let angle = 0;
-      let animationInterval;
-      let isAnimationRunning = false;
+      let radius = 110; 
       let duration = record.getDuration();
-      
 
-      startAnimation();
+      if(!record.getAnimationState()){
+        startAnimation();
+      }else if(record.getAnimationState() && record.getFather().getType() == 'voice'){
+        pauseAnimation();
+      }
+     
       function drawCircle() {
+
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           ctx.fillStyle = 'red';
 
           ctx.beginPath();
           ctx.moveTo(centerX, centerY);
 
-          for (var i = 0; i <= angle; i += 0.01) {
+          for (var i = 0; i <= record.getAnimationAngle(); i += 0.01) {
               var x = centerX + radius * Math.cos(i);
               var y = centerY + radius * Math.sin(i);
               ctx.lineTo(x, y);
           }
 
           ctx.fill();
+          
+          record.setAnimationAngle(record.getAnimationAngle() + 0.04);
 
-          angle += 0.02;
-
-          if (angle > Math.PI * 2) {
+          if (record.getAnimationAngle() > Math.PI * 2) {
               stopAnimation();
           }
       }
 
       function startAnimation() {
-        if (!isAnimationRunning) {
-            animationInterval = setInterval(drawCircle, duration/(2*Math.PI/0.02)); 
-            isAnimationRunning = true;
-        }
-    }
+          let animationInterval = setInterval(drawCircle, duration/(2*Math.PI/0.04));
+          record.setAnimationInt(animationInterval);
+          record.setAnimationState(true);
+      }
 
       function stopAnimation() {
-          clearInterval(animationInterval);
-          isAnimationRunning = false;
+          clearInterval(record.getAnimationInt());
+          record.setAnimationAngle(0);
+          record.setAnimationState(false);
+      }
+
+      function pauseAnimation() {
+        tmp = record.getAnimationAngle();
+        stopAnimation();
+        record.setAnimationAngle(tmp);
       }
       
     }

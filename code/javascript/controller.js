@@ -130,10 +130,12 @@ controller = {
     if (audioBlob) {
       if (audioElement) {
         if (record.getIsPlaying()) {
-          audioElement.pause(); 
+          audioElement.pause();
+          view.play_record(record);
         }else{
           audioElement.volume = volume;
           audioElement.play();
+          view.play_record(record);
         }
         record.setIsPlaying(!record.getIsPlaying());
       }else{
@@ -142,8 +144,14 @@ controller = {
         record.getAudioElement().addEventListener('ended', () => {
           record.setIsPlaying(false);
         });
-        record.getAudioElement().play();
         record.setIsPlaying(true);
+        record.getAudioElement().addEventListener("durationchange", function (e) {
+          if (this.duration!=Infinity) {
+            record.setDuration(record.getAudioElement().duration * 1000);
+            view.play_record(record);
+          };
+        });
+        record.getAudioElement().play();
       }
     } else {
       console.error('Audio data not avaible');

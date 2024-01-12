@@ -39,11 +39,12 @@ function ToggleMic(record){
 
   if(record.getIsRecording()){
     el = view.create_countdown();
+    time = (60 / metronome.getBPM()) * 1000 * model.getCountDown();
     CountDown(el,model.getCountDown());
     setTimeout(function () {
       record.getRecorder().start();
       console.log("Start Recording");
-    }, 5000);
+    }, time);
   }else{
     record.getRecorder().stop();
     console.log("Stop Recording");
@@ -51,11 +52,12 @@ function ToggleMic(record){
 }
 
 function CountDown(el,seconds){
+  delay = (60 / metronome.getBPM()) * 1000;
   if (seconds > 0) {
     setTimeout(function () {
       view.update_countdown(el,seconds);
       CountDown(el,seconds - 1); 
-    }, 1000);
+    }, delay);
   }else{
     view.hideCountdown(el);
     view.resetCountdown(el, model.getCountDown());
