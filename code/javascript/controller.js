@@ -144,7 +144,6 @@ controller = {
         record.getAudioElement().addEventListener('ended', () => {
           record.setIsPlaying(false);
         });
-        record.getAudioElement().play();
         record.setIsPlaying(true);
         record.getAudioElement().addEventListener("durationchange", function (e) {
           if (this.duration!=Infinity) {
@@ -152,6 +151,7 @@ controller = {
             view.play_record(record);
           };
         });
+        record.getAudioElement().play();
       }
     } else {
       console.error('Audio data not avaible');

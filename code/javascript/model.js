@@ -399,7 +399,7 @@ class Instrument{
     
     instruments: [],
     num_tracks: 8,
-    countdown: 5,
+    countdown: 8,
     rec_state:false,
     play_state:false,
     remove_state:false,
