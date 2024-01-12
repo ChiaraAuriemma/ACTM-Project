@@ -69,10 +69,12 @@ view = {
 
       instrument_mute.setAttribute("type","button");
       instrument_mute.setAttribute("class","m_button");
+      instrument_mute.setAttribute("onclick","controller.activate_mute(event)");
       instrument_mute.innerHTML = "Mute";
 
       instrument_solo.setAttribute("type","button");
       instrument_solo.setAttribute("class","s_button");
+      instrument_solo.setAttribute("onclick","controller.activate_solo(event)");
       instrument_solo.innerHTML = "Solo";
 
       image_div.appendChild(instrument_settings);
@@ -195,5 +197,9 @@ view = {
       tempoDiv = event.target.children[0];
       tempoDiv.innerText = record.getBeats() + 'beats' + '_' + record.getBPM() + 'bpm';
       tempoDiv.style.display = "block";
+    },
+
+    activate_mute_solo: function(event){
+      event.target.classList.toggle("activate_mute_solo");
     }
   }

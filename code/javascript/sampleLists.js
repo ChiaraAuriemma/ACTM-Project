@@ -42,7 +42,13 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
   }
 
   if (sample) {
-    sounds[sample].volume(instrument.getVolume());
+
+    if(instrument.getMuteState()){
+      volume = 0;
+    }else{
+      volume = instrument.getVolume();
+    }
+    sounds[sample].volume(volume);
     sounds[sample].play();
 
     if(model.getRecState() == true && model.getOutFlag() == false){
@@ -89,7 +95,14 @@ function noteoff(sounds=null, e=null, midi=false, midiSample=null, midiInstrumen
   }
   console.log("prova piano noteoff");
   if (sample) {
-    sounds[sample].fade(instrument.getVolume(), 0, 2000);
+
+    if(instrument.getMuteState()){
+      volume = 0;
+    }else{
+      volume = instrument.getVolume();
+    }
+
+    sounds[sample].fade(volume, 0, 2000);
 
     if(model.getRecState() == true && model.getOutFlag() == false){
       model.getOffTime().push({

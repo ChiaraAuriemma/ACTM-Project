@@ -121,19 +121,24 @@ controller = {
   play_voice_recording: function(record){ 
     let audioBlob = record.getAudioData();
     let audioElement = record.getAudioElement();
+    if(record.getFather().getMuteState()){
+      volume = 0;
+    }else{
+      volume = record.getFather().getVolume();
+    }
 
     if (audioBlob) {
       if (audioElement) {
         if (record.getIsPlaying()) {
           audioElement.pause(); 
         }else{
-          audioElement.volume = record.getFather().getVolume();
+          audioElement.volume = volume;
           audioElement.play();
         }
         record.setIsPlaying(!record.getIsPlaying());
       }else{
         record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob))); 
-        record.getAudioElement().volume = record.getFather().getVolume();
+        record.getAudioElement().volume = volume;
         record.getAudioElement().addEventListener('ended', () => {
           record.setIsPlaying(false);
         });
@@ -175,7 +180,13 @@ controller = {
       const delay = noteOn.timestamp - record.getStartTime();
 
       setTimeout(() => {
-          sound.volume(record.getFather().getVolume());
+          if(record.getFather().getMuteState()){
+            volume = 0;
+          }else{
+            volume = record.getFather().getVolume();
+          }
+
+          sound.volume(volume);
           sound.play();
       }, delay);
     });
@@ -186,7 +197,13 @@ controller = {
         const delay = noteOff.timestamp - record.getStartTime();
 
         setTimeout(() => {
-            sound.fade(record.getFather().getVolume(), 0, 2000);
+            if(record.getFather().getMuteState()){
+              volume = 0;
+            }else{
+              volume = record.getFather().getVolume();
+            }
+
+            sound.fade(volume, 0, 2000);
         }, delay);
     });
     
@@ -203,6 +220,15 @@ controller = {
     ins = this.find_instrument_from_view(event);
 
     ins.setVolume(volume/100);
+
+    if(ins.getType() == 'voice'){
+      ins.getRecords().forEach((rec) => {
+        if(rec.getIsPlaying()){
+          rec.getAudioElement().volume = volume/100;
+        }
+      });
+    }
+    
   },
 
   manageLoop: function(record){
@@ -234,8 +260,52 @@ controller = {
       alert('Choose a valid number of bars');
       tmp[num].setNumBars(1);
       event.target.value = 1;
+    } 
+  },
+
+  activate_mute: function(event){
+    inst = this.find_instrument_from_view(event);
+    inst.setMuteState(!inst.getMuteState());
+    view.activate_mute_solo(event);
+    this.voice_mute_solo(inst);
+  },
+
+  activate_solo: function(event){
+    inst = this.find_instrument_from_view(event);
+    inst.setSoloState(!inst.getSoloState());
+    if(inst.getSoloState()){
+      model.getInstruments().forEach((el) => {
+        if(el.getCode() != inst.getCode()){
+          el.setMuteState(true);
+          this.voice_mute_solo(el);
+        }
+      });
+    }else{
+      model.getInstruments().forEach((el) => {
+        if(el.getCode() != inst.getCode()){
+          el.setMuteState(false);
+          this.voice_mute_solo(el);
+        }
+      });
     }
-    
+    view.activate_mute_solo(event);
+      
+  },
+
+  voice_mute_solo: function(inst){
+    if(inst.getType() == 'voice' && inst.getMuteState()){
+      inst.getRecords().forEach((rec) => {
+        if(rec.getIsPlaying()){
+          rec.getAudioElement().volume = 0;
+        }
+      });
+    }else if(inst.getType() == 'voice'){
+      inst.getRecords().forEach((rec) => {
+        if(rec.getIsPlaying()){
+          rec.getAudioElement().volume = inst.getVolume();
+        }
+      });
+    }
   }
 
 }

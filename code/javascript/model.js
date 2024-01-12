@@ -7,6 +7,8 @@ class Instrument{
       this.records = [];
       this.volume = 1;
       this.numBars = 1;
+      this.muteState = false;
+      this.soloState = false;
     }
 
     getCode(){
@@ -51,6 +53,22 @@ class Instrument{
 
     getNumBars(){
       return this.numBars;
+    }
+
+    setMuteState(muteState){
+      this.muteState = muteState;
+    }
+
+    getMuteState(){
+      return this.muteState;
+    }
+
+    setSoloState(soloState){
+      this.soloState = soloState;
+    }
+
+    getSoloState(){
+      return this.soloState;
     }
   
   }
