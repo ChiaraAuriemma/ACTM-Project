@@ -118,7 +118,8 @@ body {
   }
 
   .instrument{
-    padding: 15px;
+    margin-top: 15px;
+    padding: 20px;
     background-color: #8f9395;;
     color: #fff;
     cursor: pointer;
@@ -129,6 +130,7 @@ body {
     flex-direction: row-reverse;
     align-items: center;
     position: relative;
+    overflow: scroll;
 }
 
 .instrument:hover {
@@ -147,46 +149,115 @@ body {
 
 .instrument_settings {
   position: relative;
-  top: -85px;
-  left: 25px;
-  height: 50px;
+  /*top: -85px;
+  left: 25px;*/
+  height: 20px;
+  width: 300px;
+  margin-left: 20px;
 }
 
 .slider {
-  width: 200px; /* Imposta la larghezza desiderata */
-  height: 200px; /* Imposta l'altezza desiderata */
+  margin-top: 10px;
+  position: relative; 
+  -webkit-appearance: none;
+  width: 170px;
+  height: 10px;
+  border: 2px solid #022044;
+  border-radius: 6px;
+  background:#dce9f1;
+  
+  /*
+  width: 200px; Imposta la larghezza desiderata 
+  height: 200px;  Imposta l'altezza desiderata */
+}
+.slider:hover {
+  opacity: 1;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #022044;
+  cursor: pointer;
+  border-radius: 15px;
+}
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #022044;
+  cursor: pointer;
+  
+  border-radius: 15px;
 }
 
 .m_button {
+  margin-left: 5px;
+  margin-right: 5px;
   position: relative;
-  top: -90px;
-  left: 40px;
+  background-color: #dce9f1;
+  height: 25px;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  
 }
 
 .s_button {
   position: relative;
-  top: -90px;
-  left: 60px;
+  background-color: #dce9f1;
+  height: 25px;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .beats_container {
-  display: flex;
+
   align-items: center;
   position: absolute;
-  top: 10%;  
-  left: 16%; 
+  margin-bottom: 200px;
+  margin-right: 1080px;
+
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #dce9f1;
+  height: 30px;
+  width: 200px;
+  align-items: center;
+ 
 }
 
 .label_beats {
+  position: relative;
+  margin-top: 5px;
   margin-right: 10px;
-  color:  #110eea;
+  color:  #022044;
 }
 
 .beats_input {
-  width: 50px;
+  position: relative;
+  margin-top: 5px;
+  width: 40px;
   height: 15px;
+  border: 2px solid #022044;
+  border-radius: 6px;
+  background: rgb(191, 204, 237);
 }
 
 .activate_mute_solo{
   background-color: red;
+}
+
+.image{
+  position: relative;
+  align-items: center;
+  background-color: #dce9f1;
+  
+  border: 2px solid black;
+  border-radius: 10px;
 }

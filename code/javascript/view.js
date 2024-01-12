@@ -28,6 +28,7 @@ view = {
       let image = document.createElement("img");
       image.setAttribute("src", "images/" + string + ".jpg")
       image.setAttribute("onclick","controller.start_play(event)")
+      image.setAttribute("class","image")
       instrument_container.appendChild(image_div);
       image_div.appendChild(image);
 
@@ -207,9 +208,8 @@ view = {
 
     create_canvas: function(recordSquare){
       var canvas = document.createElement("canvas");
-      canvas.setAttribute("width", "150");
-      canvas.setAttribute("height", "150");
-      canvas.style.border = "1px solid #000";
+      canvas.setAttribute("class", "canvas_record");
+      
 
       recordSquare.appendChild(canvas);
     },
