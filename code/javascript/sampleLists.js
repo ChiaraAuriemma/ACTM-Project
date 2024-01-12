@@ -50,6 +50,7 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
     }
     sounds[sample].volume(volume);
     sounds[sample].play();
+    console.log(sample);
 
     if(model.getRecState() == true && model.getOutFlag() == false){
 
@@ -69,6 +70,7 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
           alert('Maximum time reached, now save the record!');
           model.setOutFlag(true);
       }else{
+        console.log(sample);
         model.getOnTime().push({
           sample: sample,
           timestamp: Date.now()
