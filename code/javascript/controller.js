@@ -84,7 +84,7 @@ controller = {
   },
 
   find_record_from_view: function(event, instrument){ /* dalla view trova l'oggetto*/
-    code = event.target.getAttribute("id").split('_')[1];
+    code = event.target.closest(".record_square").getAttribute("id").split('_')[1];
     records = instrument.getRecords();
 
     return records[code];
@@ -206,6 +206,8 @@ controller = {
             sound.fade(volume, 0, 2000);
         }, delay);
     });
+
+    view.play_record(record);
     
   },
 

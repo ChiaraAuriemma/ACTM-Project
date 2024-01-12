@@ -20,6 +20,8 @@ view = {
         let tempoDiv = document.createElement("div");
         tempoDiv.setAttribute("class","tempo_div");
         record.appendChild(tempoDiv);
+
+        this.create_canvas(record);
       }
       
       let image_div= document.createElement("div");
@@ -182,24 +184,85 @@ view = {
     },
 
     now_recording: function(event){ /* accorpare con printTime ?? */
-      target = event.target;
+      target = event.target.closest('.record_square');
       target.classList.add("recording");
     },
 
     resetRecording: function(event){
-      target = event.target;
+      target = event.target.closest('.record_square');
       target.classList.remove("recording");
 
-      event.target.children[0].style.display = "none";
+      target.children[0].style.display = "none";
     },
 
     printTime: function(event, record){
-      tempoDiv = event.target.children[0];
+      tempoDiv = event.target.closest('.record_square').children[0];
       tempoDiv.innerText = record.getBeats() + 'beats' + '_' + record.getBPM() + 'bpm';
       tempoDiv.style.display = "block";
     },
 
     activate_mute_solo: function(event){
       event.target.classList.toggle("activate_mute_solo");
+    },
+
+    create_canvas: function(recordSquare){
+      var canvas = document.createElement("canvas");
+      canvas.setAttribute("width", "150");
+      canvas.setAttribute("height", "150");
+      canvas.style.border = "1px solid #000";
+
+      recordSquare.appendChild(canvas);
+    },
+
+    play_record: function(record) {
+      canvas = record.getFather().getRefDiv().children[0].children[record.getCode()].children[1]; /*boh migliorabile */
+      console.log(canvas);
+
+      let ctx = canvas.getContext('2d');
+      let centerX = canvas.width / 2;
+      let centerY = canvas.height / 2;
+      let radius = 70; 
+
+      let angle = 0;
+      let animationInterval;
+      let isAnimationRunning = false;
+      let duration = record.getDuration();
+      
+
+      startAnimation();
+      function drawCircle() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = 'red';
+
+          ctx.beginPath();
+          ctx.moveTo(centerX, centerY);
+
+          for (var i = 0; i <= angle; i += 0.01) {
+              var x = centerX + radius * Math.cos(i);
+              var y = centerY + radius * Math.sin(i);
+              ctx.lineTo(x, y);
+          }
+
+          ctx.fill();
+
+          angle += 0.02;
+
+          if (angle > Math.PI * 2) {
+              stopAnimation();
+          }
+      }
+
+      function startAnimation() {
+        if (!isAnimationRunning) {
+            animationInterval = setInterval(drawCircle, duration/(2*Math.PI/0.02)); 
+            isAnimationRunning = true;
+        }
+    }
+
+      function stopAnimation() {
+          clearInterval(animationInterval);
+          isAnimationRunning = false;
+      }
+      
     }
   }

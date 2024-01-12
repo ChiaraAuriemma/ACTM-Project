@@ -1,7 +1,8 @@
 .record_square{
     width: 150px; /* Imposta la larghezza desiderata per ogni quadratino */
     height: 150px; /* Imposta l'altezza desiderata per ogni quadratino */
-    background-color: #dce9f1; /* Imposta il colore di sfondo */
+    background-color: #dce9f1;
+    position: relative; /* Imposta il colore di sfondo */
   }
   
   .record_container{
@@ -51,4 +52,6 @@
     font-size: 12px; 
     text-align: center;
     margin-top: 10px;
+    position: absolute;
+    margin-left: 33px;
   }
