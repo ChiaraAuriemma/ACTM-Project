@@ -134,7 +134,7 @@ class Instrument{
     draw(container){
         let container_id = container.getAttribute("id");
         container.innerHTML = drawGuitar(container_id);
-        setup(container.getAttribute("id").split("_")[0]);
+        setupGuitar(container.getAttribute("id").split("_")[0]);
     }
 
     setUpMidi(){
@@ -158,8 +158,8 @@ class Instrument{
 
     draw(container){
       let container_id = container.getAttribute("id");
-      container.innerHTML = drawGuitar(container_id);
-      setup(container.getAttribute("id").split("_")[0]);
+      container.innerHTML = drawBass(container_id);
+      setupBass(container.getAttribute("id").split("_")[0]);
     }
 
     setUpMidi(){

@@ -20,6 +20,7 @@
 	<script src="javascript/utils.js" charset="utf-8" defer></script>
 	<script src="javascript/metronome.js" charset="utf-8" defer></script>
 	<script src="javascript/guitar.js" charset="utf-8" defer></script>
+	<script src="javascript/bass.js" charset="utf-8" defer></script>
 	<title>Page</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
 		<header>
 			
 				<h1>It's not Garage Band</h1>
-				<nav>
+				<nav class="nav_style">
 				<div class="dropdown">
 					<button onclick="toggleDropdown(event)" id="dropAdd_button" class = "header_button">Add instrument</button>
 					<div class="dropdown-content" id="dropAdd">
@@ -42,8 +43,8 @@
 				<a href="#" id = "play_button" class = "header_button" onclick = "controller.activate_button(event)">Play</a>
 				<a href="#" id = "rec_button" class = "header_button" onclick = "controller.activate_button(event)">Rec</a>
 				<a href="#" id = "deleteRecord_button" class = "header_button" onclick = "controller.activate_button(event)">Delete Record</a>
-				<form>
-					<input id = "metronome" type="number" name="numero" min="20" max="250" step="1", value="140">
+				<form class="met_form">
+					<input id = "metronome" class="met_input" type="number" name="numero" min="20" max="250" step="1", value="140">
 					<input type="submit" class = "header_button" value="Start/Stop Metronome" onclick="controller.play_metronome(event)">
 				</form>
 				<a href="#" id="loop_button" class ="header_button" onclick="controller.activate_button(event)">Loop</a>

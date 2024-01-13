@@ -40,6 +40,7 @@ function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument
     sample = e.target.dataset.note;
     instrument = controller.find_instrument_from_view(e);
   }
+  console.log(instrument);
 
   if (sample) {
 

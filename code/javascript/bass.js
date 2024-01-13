@@ -1,32 +1,23 @@
-function drawGuitar(container_id) {
+function drawBass(container_id) {
     return "\<div class=\"settings\"\> \<div class=\"accidental-selector\"\> \<input type=\"radio\" class=\"acc-select\" id=\"flats\" name=\"accidentals\" value=\"flats\" checked\> \<label for=\"flats\"\>♭\</label\> \<input type=\"radio\" class=\"acc-select\" id=\"sharps\" name=\"accidentals\" value=\"sharps\"\> \<label for=\"sharps\"\>♯\</label\> \</div\>\<label for=\"show-all-notes\"\>Show all notes: \</label\> \<input type=\"checkbox\" id=\"show-all-notes\"\> \<label for=\"show-multiple-notes\"\>Show multiple notes: \</label\> \<input type=\"checkbox\" id=\"show-multiple-notes\"\> \</div\> \<div class=\"fretboard\"\> \</div\> \<div class=\"note-name-section\"\> \</div\> ";
-    //return "\<div class=\"settings\"\> \<label for=\"instrument-selector\"\>Selected instrument\</label\> \<select name=\"instrument-selector\" id=\"instrument-selector\"\>\</select\> \<div class=\"accidental-selector\"\> \<input type=\"radio\" class=\"acc-select\" id=\"flats\" name=\"accidentals\" value=\"flats\" checked\> \<label for=\"flats\"\>♭\</label\> \<input type=\"radio\" class=\"acc-select\" id=\"sharps\" name=\"accidentals\" value=\"sharps\"\> \<label for=\"sharps\"\>♯\</label\> \</div\>\<label for=\"show-all-notes\"\>Show all notes: \</label\> \<input type=\"checkbox\" id=\"show-all-notes\"\> \<label for=\"show-multiple-notes\"\>Show multiple notes: \</label\> \<input type=\"checkbox\" id=\"show-multiple-notes\"\> \</div\> \<div class=\"fretboard\"\> \</div\> \<div class=\"note-name-section\"\> \</div\> ";
-    //return "\<div class=\"settings\"\> \<label for=\"instrument-selector\"\>Selected instrument\</label\> \<select name=\"instrument-selector\" id=\"instrument-selector\"\>\</select\> \<div class=\"accidental-selector\"\> \<input type=\"radio\" class=\"acc-select\" id=\"flats\" name=\"accidentals\" value=\"flats\" checked\> \<label for=\"flats\"\>♭\</label\> \<input type=\"radio\" class=\"acc-select\" id=\"sharps\" name=\"accidentals\" value=\"sharps\"\> \<label for=\"sharps\"\>♯\</label\> \</div\> \<label for=\"number-of-frets\"\>Number if frets: \</label\> \<input type=\"number\" id=\"number-of-frets\" min=\"5\" max=\"30\" value=\"20\"\> \<label for=\"show-all-notes\"\>Show all notes: \</label\> \<input type=\"checkbox\" id=\"show-all-notes\"\> \<label for=\"show-multiple-notes\"\>Show multiple notes: \</label\> \<input type=\"checkbox\" id=\"show-multiple-notes\"\> \</div\> \<div class=\"fretboard\"\> \</div\> \<div class=\"note-name-section\"\> \</div\> ";
 }
 
-//set up per chitarra
-notesGuitar = ["E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3", 'C4', 'Db4', "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5", "Db5", "Fs2", "Gs2", "As2", "Cs3", "Ds3", "Fs3", "Gs3","As3", "Cs4", "Ds4", "Fs4", "Gs4", "As4", "Cs5"];
-var guitarSamples = createSamplesList(notesGuitar, "guitarSamples", "guitar");
 
-
-const notesGuitarFlat = ["C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", "C3", "Db3", "D3", "Eb3", "E3", "F3", "Gb3", "G3", "Ab3", "A3", "Bb3", "B3", 'C4', 'Db4', "D4", "Eb4", "E4", "F4", "Gb4", "G4", "Ab4", "A4", "Bb4", "B4", "C5", "Db5"];
-const notesGuitarSharp = ["C2", "Cs2", "D2", "Ds2", "E2", "F2", "Fs2", "G2", "Gs2", "A2", "As2", "B2", "C3", "Cs3", "D3", "Ds3", "E3", "F3", "Fs3", "G3", "Gs3", "A3", "As3", "B3","C4", "Cs4", "D4", "Ds4", "E4", "F4", "Fs4", "G4", "Gs4", "A4", "As4", "B4", "C5", "Cs5"];
-
-/*setup per basso
+//setup per basso
 notesBass = ["E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", "C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", 'C3', 'Db3', "D3", "Eb3", "E3", "F3", "Fs1", "Gs1", "As1", "Cs2", "Ds2", "Fs2", "Gs2", "As2",'Cs3', "Ds3"];
 var bassSamples = createSamplesList(notesBass, "bassSamples", "bass");
 
 notesBassFlat = ["E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", "C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", 'C3', 'Db3', "D3", "Eb3", "E3", "F3"];
 notesBassSharp = ["E1", "F1", "Fs1", "G1", "Gs1", "A1", "As1", "B1", "C2", "Cs2", "D2", "Ds2", "E2", "F2", "Fs2", "G2", "Gs2", "A2", "As2", "B2", 'C3', 'Cs3', "D3", "Ds3", "E3", "F3"];
-*/
 
-function setupGuitar(var_instrument) {
+
+function setupBass(var_instrument) {
     
     const root = document.documentElement;
     const fretboard = container.querySelector('.fretboard');
     const instrumentSelector = container.querySelector('#instrument-selector');
     const accidentalSelector = container.querySelector('.accidental-selector');
-    //const numberOfFretsSelector = container.querySelector('#number-of-frets');
+   
 
     const showAllNotesSelector = container.querySelector('#show-all-notes');
     const showMultipleNotesSelector = container.querySelector('#show-multiple-notes');
@@ -34,36 +25,14 @@ function setupGuitar(var_instrument) {
     const singleFretMarkPosition = [3, 5, 7, 9, 15, 17, 19, 21];
     const doubleFretMarkPosition = [12, 24];
     let instrumentTuningPresets;
-
+    
+    
     instrumentTuningPresets = {
-        'Guitar 1': [28, 23, 19, 14, 9, 4],
-    }
-    numberOfFrets = 9;
-    /*
-    notesFlat = notesGuitarFlat;
-    notesSharp =notesGuitarSharp;
-    instrumentSamples = guitarSamples;
-    numberOfFrets = 9;
-    
-    if(var_instrument == "guitar"){
-        instrumentTuningPresets = {
-            'Guitar 1': [28, 23, 19, 14, 9, 4],
-        }
-        notesFlat = notesGuitarFlat;
-        notesSharp =notesGuitarSharp;
-        instrumentSamples = guitarSamples;
-        numberOfFrets = 9;
+        'Bass (4 strings)': [15, 10, 5, 0],
     }
     
-    if(var_instrument == "bass"){
-        instrumentTuningPresets = {
-            'Bass (4 strings)': [15, 10, 5, 0],
-        }
-        notesFlat = notesBassFlat;
-        notesSharp =notesBassSharp;
-        instrumentSamples = bassSamples;
-        numberOfFrets = 10;
-    }*/
+    numberOfFrets = 10;
+
 
     let allNotes;
     let showMultipleNotes = false;
@@ -71,15 +40,10 @@ function setupGuitar(var_instrument) {
     
     let accidentals = 'flats';
     let selectedInstrument = 'Guitar';
-    selectedInstrument = 'Guitar 1'; // aggiunta 
-    /*
-    if(var_instrument == "guitar"){
-        selectedInstrument = 'Guitar 1';
-    }
-    /*
+
     if(var_instrument == "bass"){
         selectedInstrument = 'Bass (4 strings)';
-    }*/
+    }
 
     let numberOfStrings = instrumentTuningPresets[selectedInstrument].length;
 
@@ -87,7 +51,7 @@ function setupGuitar(var_instrument) {
     const app = {
         init() {
             this.setupFretboard();
-            //this.setupinstrumentSelector();
+            
             this.setupNoteNamesection();
             handlers.setupEventListeners();
         },
@@ -126,12 +90,12 @@ function setupGuitar(var_instrument) {
             allNotes = document.querySelectorAll('.note-fret');
         },
         generateNoteNames(noteIndex, accidentals) { //accidentals è una variabile globale la lascio?
-            //noteIndex = noteIndex % 12;
+          
             let noteName;
             if(accidentals === 'flats') {
-                noteName = notesGuitarFlat[noteIndex];
+                noteName = notesBassFlat[noteIndex];
             } else if(accidentals === 'sharps') {
-                noteName = notesGuitarSharp[noteIndex];
+                noteName = notesBassSharp[noteIndex];
             }
             return noteName;
         },
@@ -167,10 +131,10 @@ function setupGuitar(var_instrument) {
         },
 
         playnote(event){
-            noteon(sounds=guitarSamples, e=event); // manca da gestire container 
+            noteon(sounds=bassSamples, e=event); // manca da gestire container 
         },
         releasenote(event){
-            noteoff(sounds=guitarSamples, e=event); // manca da gestire container   
+            noteoff(sounds=bassSamples, e=event); // manca da gestire container   
         },
 
         hideNoteDot(event) {
@@ -197,10 +161,7 @@ function setupGuitar(var_instrument) {
                 return;
             }
         },
-        //setNumberOfFrets() {
-            //numberOfFrets = numberOfFretsSelector.value;
-           // app.setupFretboard();
-       // },
+       
 
         setShowAllNote() {
             showAllNotes = showAllNotesSelector.checked;
@@ -228,16 +189,16 @@ function setupGuitar(var_instrument) {
                 return;
             }
         },
-        //noteFret.setAttribute.onmousedown(noteon(noteName, guitarSamples, container)); //!!!!!!!!!!!!!noteon(this.noteNameElement, guitarSamples, container)
+        
         setupEventListeners(){
             
             fretboard.addEventListener('mousedown', this.playnote);
             fretboard.addEventListener('mouseup', this.releasenote);
             fretboard.addEventListener('mouseover', this.showNoteDot);
             fretboard.addEventListener('mouseout', this.hideNoteDot);
-            //instrumentSelector.addEventListener('change', this.setSelectedInstrument)
+           
             accidentalSelector.addEventListener('click', this.setAccidentals);
-            //numberOfFretsSelector.addEventListener('change', this.setNumberOfFrets);
+           
             showAllNotesSelector.addEventListener('change', this.setShowAllNote);
             showMultipleNotesSelector.addEventListener('change', this.setShowMultipleNotes);
             noteNameSection.addEventListener('mouseover', this.setNotesToShow);

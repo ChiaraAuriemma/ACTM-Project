@@ -12,12 +12,24 @@
 }
 
 .settings {
+    margin-top: 15px;
+    margin-left: 10px;
     display: flex;
     color: #fff;
-    padding: 20px;
-    border-bottom: 1px solid #444;
+    width: 500px;
+
+    padding-left: 10px;
+    padding-top: 10px; 
+    padding-bottom: 10px;
+
+    border: 2px solid #77879a;
+    border-radius: 8px;
+    
     background-color: #282828;
 }
+
+
+
 
 .accidental-selector {
     margin-left: 20px;

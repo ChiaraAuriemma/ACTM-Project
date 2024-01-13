@@ -7,6 +7,14 @@ view = {
       let div = document.getElementById("instruments_div");
       div.appendChild(instrument_container);
 
+      let image_div= document.createElement("div");
+      let image = document.createElement("img");
+      image.setAttribute("src", "images/" + string + ".jpg")
+      image.setAttribute("onclick","controller.start_play(event)")
+      image.setAttribute("class","image")
+      instrument_container.appendChild(image_div);
+      image_div.appendChild(image);
+      
       let record_container = document.createElement("div");
       record_container.setAttribute("class","record_container");
       instrument_container.appendChild(record_container);
@@ -24,13 +32,7 @@ view = {
         this.create_canvas(record);
       }
       
-      let image_div= document.createElement("div");
-      let image = document.createElement("img");
-      image.setAttribute("src", "images/" + string + ".jpg")
-      image.setAttribute("onclick","controller.start_play(event)")
-      image.setAttribute("class","image")
-      instrument_container.appendChild(image_div);
-      image_div.appendChild(image);
+      
 
       if(string != 'voice'){
         let beats_container = document.createElement("div");

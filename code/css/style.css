@@ -2,6 +2,8 @@ body {
     padding-top: 20px;
     position: center; 
     font-family: Arial, sans-serif;
+    /*background-color: #2e3b4b;*/
+    background-color: #6f8cac;
     
   }
 /*
@@ -18,10 +20,14 @@ body {
   header {
     position: absolute center;
     margin-top:1%;
-    background-color: #333;
+    /*background-color: #6f8cac;*/
+    background-color: #2e3b4b;
+    border: 2px solid;
+    border-radius: 8px;
     text-align: center;
     padding: 10px;
   }
+  
 
   .top_div{
   
@@ -34,15 +40,19 @@ body {
   nav {
     display: flex;
     justify-content: center;
+ 
+    
+  
   }
 
   .header_button{
-    color: white;
+    color:#022044;
     text-decoration: none;
     padding: 10px 20px;
-    margin: 0 10px;
+    margin: 0  10px ;
+    border: 2px solid  #022044;
     border-radius: 5px;
-    background-color: #555;
+    background-color: #dce9f1;
   }
 
   nav a:hover {
@@ -64,13 +74,17 @@ body {
   .dropdown {
     position: relative;
     display: inline-block;
+    
   }
   
   
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #dce9f1;
+    width: 100px;
+    border: 2px solid  #022044;
+    border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     left: 50%; /* Sposta il dropdown a metà della larghezza del suo contenitore */
@@ -82,7 +96,7 @@ body {
     display: block;
     padding: 10px;
     text-decoration: none;
-    color: #333;
+    color: rgb(51, 51, 51);
   }
   
   .dropdown-content a:hover {
@@ -97,13 +111,13 @@ body {
   .instrument_container{
     position: fixed;
     top: 20%;
-    left: 13%;
+    left: 3%;
     background-color: #282828;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    width: 70%;
-    height: 350px;
+    width: 90%;
+    height: 430px;
     overflow: auto;
     cursor: grab;
     z-index: 1;
@@ -118,21 +132,31 @@ body {
   }
 
   .instrument{
+    
     margin-top: 15px;
-    padding: 20px;
-    background-color: #8f9395;;
+    padding: 20px 20px 20px 0px; 
+    
+    background-color: #77879a;
     color: #fff;
     cursor: pointer;
     border: 2px solid black;
     border-radius: 8px;
     transition: background-color 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: row-reverse;
+    display:flex;
+    flex-direction: row;
     align-items: center;
     position: relative;
     overflow: scroll;
 }
 
+.image{
+  position: relative;
+  align-items: center;
+  background-color: #dce9f1;
+  
+  border: 2px solid black;
+  border-radius: 10px;
+}
 .instrument:hover {
     background-color: #4a545a;
     border-color: black;
@@ -153,6 +177,7 @@ body {
   left: 25px;*/
   height: 20px;
   width: 300px;
+  
   margin-left: 20px;
 }
 
@@ -218,8 +243,9 @@ body {
 
   align-items: center;
   position: absolute;
+
   margin-bottom: 200px;
-  margin-right: 1080px;
+  margin-left: 310px;
 
   border: 2px solid black;
   border-radius: 6px;
@@ -228,6 +254,7 @@ body {
   background-color: #dce9f1;
   height: 30px;
   width: 200px;
+
   align-items: center;
  
 }
@@ -260,4 +287,20 @@ body {
   
   border: 2px solid black;
   border-radius: 10px;
+}
+
+.met_input{
+  position: relative;
+  margin-left: 20px;
+  width: 50px;
+  height: 20px;
+  border: 2px solid #022044;
+  border-radius: 6px;
+  background: rgb(191, 204, 237);
+}
+
+.met_form{
+  border: 2px solid rgb(191, 204, 237);
+  border-radius: 8px;
+  align-items: center;
 }
