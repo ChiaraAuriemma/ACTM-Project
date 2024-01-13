@@ -14,6 +14,7 @@ view = {
       image.setAttribute("class","image")
       instrument_container.appendChild(image_div);
       image_div.appendChild(image);
+
       
       let record_container = document.createElement("div");
       record_container.setAttribute("class","record_container");
@@ -31,8 +32,6 @@ view = {
 
         this.create_canvas(record);
       }
-      
-      
 
       if(string != 'voice'){
         let beats_container = document.createElement("div");
