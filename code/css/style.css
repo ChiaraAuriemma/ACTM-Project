@@ -6,17 +6,7 @@ body {
     background-color: #6f8cac;
     
   }
-/*
-  header {
-    background-color: #333;
-    padding: 10px;
-    text-align: center;
-    height: 90%;
-    width: 100%;
-    position: relative center;
-    margin-top:0.5%;
-    
-  }*/
+
   header {
     position: absolute center;
     margin-top:1%;
@@ -25,8 +15,10 @@ body {
     border: 2px solid;
     border-radius: 8px;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
   }
+
+
   
 
   .top_div{
@@ -70,6 +62,16 @@ body {
     margin-left: 30px; /* Imposta lo spazio desiderato a sinistra dell'immagine */
     margin-right: 10px;
   }
+
+  .logo_img{
+    width: 600px; /* Imposta la larghezza desiderata */
+    height: 50px; /* Imposta l'altezza desiderata */
+    object-fit:scale-down;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+
   
   .dropdown {
     position: relative;
@@ -304,3 +306,11 @@ body {
   border-radius: 8px;
   align-items: center;
 }
+
+.logo_div{
+  position: relative;
+  height:150px;
+  width: 1200px;
+
+}
+
