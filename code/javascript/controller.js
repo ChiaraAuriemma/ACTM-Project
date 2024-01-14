@@ -247,12 +247,12 @@ controller = {
   },
 
   checkNumBars: function(event, num){
-    tmp = model.getInstruments();
+    inst = this.find_instrument_from_view(event);
     if(parseInt(event.target.value) > 0 && parseInt(event.target.value) <= 16){
-      tmp[num].setNumBars(parseInt(event.target.value));
+      inst.setNumBars(parseInt(event.target.value));
     }else{
       alert('Choose a valid number of bars');
-      tmp[num].setNumBars(1);
+      inst.setNumBars(1);
       event.target.value = 1;
     } 
   },

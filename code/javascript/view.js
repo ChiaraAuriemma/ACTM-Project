@@ -47,7 +47,7 @@ view = {
         input.setAttribute("step", "1");
         input.setAttribute("value", "1");
         input.addEventListener('input', function(event) {
-          controller.checkNumBars(event, num);
+          controller.checkNumBars(event);
         });        
         let label = document.createElement('label');
         label.setAttribute('class','label_beats');

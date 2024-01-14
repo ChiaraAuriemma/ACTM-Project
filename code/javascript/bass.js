@@ -3,7 +3,7 @@ function drawBass(container_id) {
 }
 
 
-//setup per basso
+//bass setup 
 notesBass = ["E1", "F1", "Gb1", "G1", "Ab1", "A1", "Bb1", "B1", "C2", "Db2", "D2", "Eb2", "E2", "F2", "Gb2", "G2", "Ab2", "A2", "Bb2", "B2", 'C3', 'Db3', "D3", "Eb3", "E3", "F3", "Fs1", "Gs1", "As1", "Cs2", "Ds2", "Fs2", "Gs2", "As2",'Cs3', "Ds3"];
 var bassSamples = createSamplesList(notesBass, "bassSamples", "bass");
 
