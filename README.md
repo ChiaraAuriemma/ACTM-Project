@@ -28,6 +28,11 @@ The software gives you the ability to do multiple things:
 9. Ability to loop the tracks.
 10. Metronome
 
+<br>
+<div  align="center">
+<img width="70%" src="https://github.com/ChiaraAuriemma/ACTM-Project/deliveries/images/.png" align="center" />
+<br>
+ 
 ### Model-View-Controller
 To structure the project we used the model-view-controller pattern. All three are js files in the project. In the model we save the application information, we note the current status of the operations, which tools i have created and the management of records. For instruments and recordings we have also created classes to simplify management.
 
