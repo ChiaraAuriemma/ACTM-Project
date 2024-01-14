@@ -9,7 +9,7 @@
 
 - ####  Chiara Auriemma &nbsp;([@ChiaraAuriemma](https://github.com/ChiaraAuriemma))<br> 10722613&nbsp;&nbsp; chiara.auriemma@mail.polimi.it
 
-- ####  Enrico Torres &nbsp;([@enry1897](https://github.com/enry1897))<br> 10727489&nbsp;&nbsp; enrico.torres@mail.polimi.it
+- ####  Enrico Torres &nbsp;([@enry1897](https://github.com/enry1897))<br> 10712642&nbsp;&nbsp; enrico.torres@mail.polimi.it
 
 - ####  Anna Fusari &nbsp;([@AnnaFusari](https://github.com/AnnaFusari))<br> 10561236&nbsp;&nbsp; anna.fusari@mail.polimi.it
 
@@ -30,7 +30,7 @@ The software gives you the ability to do multiple things:
 
 <br>
 <div  align="center">
-<img width="70%" src="https://github.com/ChiaraAuriemma/ACTM-Project/tree/main/deliveries/images/Screen1.png" align="center" />
+<img width="80%" src="https://github.com/ChiaraAuriemma/ACTM-Project/blob/main/deliveries/images/Screen1.png" align="center" />
 </div>
 <br><br>
  
