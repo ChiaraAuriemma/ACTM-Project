@@ -30,7 +30,7 @@ The software gives you the ability to do multiple things:
 
 <br>
 <div  align="center">
-<img width="70%" src="https://github.com/ChiaraAuriemma/ACTM-Project/deliveries/images/Screen1.png" align="center" />
+<img width="70%" src="https://github.com/ChiaraAuriemma/ACTM-Project/tree/main/deliveries/images/Screen1.png" align="center" />
 </div>
 <br><br>
  
