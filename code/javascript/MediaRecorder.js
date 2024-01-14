@@ -15,8 +15,24 @@ function SetupAudio(code, ins){
 
         recorder.onstop = e => {
           const blob = new Blob(records[code].getChunks(), {type: "audio/ogg; codecs=opus"});
-          records[code].setAudioData(blob);
           records[code].setChunks([]);
+
+          
+          records[code].setAudioElement(new Audio(window.URL.createObjectURL(blob))); 
+          records[code].getAudioElement().volume = 0;
+          records[code].getAudioElement().addEventListener('ended', () => {
+            records[code].setIsPlaying(false);
+          });
+          records[code].getAudioElement().play();
+          setTimeout(function() {
+            records[code].getAudioElement().pause();
+            records[code].getAudioElement().currentTime = 0;
+          }, 1000);
+          records[code].getAudioElement().addEventListener("durationchange", function (e) {
+            if (this.duration!=Infinity) {
+              records[code].setDuration(this.duration * 1000);
+            };
+          });
         }
 
       records[code].setCanRecord(true);
@@ -30,7 +46,7 @@ function SetupAudio(code, ins){
 
 function ToggleMic(record){
   if(!record.getCanRecord() || !record.getRecorder())  return;
-  if(record.getAudioData()){
+  if(record.getAudioElement()){
     alert("This record is already full");
     return;
   }

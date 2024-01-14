@@ -210,14 +210,15 @@ view = {
 
     create_canvas: function(recordSquare){
       var canvas = document.createElement("canvas");
+      canvas.setAttribute("width", "150");
+      canvas.setAttribute("height", "150");
       canvas.setAttribute("class", "canvas_record");
-      
 
       recordSquare.appendChild(canvas);
     },
 
     play_record: function(record) {
-      canvas = record.getFather().getRefDiv().children[0].children[record.getCode()].children[1]; /*boh migliorabile */
+      canvas = record.getFather().getRefDiv().children[1].children[record.getCode()].children[1]; /*boh migliorabile */
       canvas.style.display = "block";
 
       let ctx = canvas.getContext('2d');

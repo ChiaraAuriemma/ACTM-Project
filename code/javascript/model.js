@@ -290,7 +290,6 @@ class Instrument{
       super(father,code);
       this.type = "voice";
       this.recorder = null;
-      this.audio_data;
       this.audio_element;
       this.can_record = false;
       SetupAudio(code, father);
@@ -302,14 +301,6 @@ class Instrument{
 
     setRecorder(recorder){
       this.recorder = recorder;
-    }
-
-    getAudioData(){
-      return this.audio_data;
-    }
-
-    setAudioData(audio_data){
-      this.audio_data = audio_data;
     }
 
     getAudioElement(){

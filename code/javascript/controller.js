@@ -119,7 +119,6 @@ controller = {
   },
 
   play_voice_recording: function(record){ 
-    let audioBlob = record.getAudioData();
     let audioElement = record.getAudioElement();
     if(record.getFather().getMuteState()){
       volume = 0;
@@ -127,33 +126,18 @@ controller = {
       volume = record.getFather().getVolume();
     }
 
-    if (audioBlob) {
-      if (audioElement) {
-        if (record.getIsPlaying()) {
-          audioElement.pause();
-          view.play_record(record);
-        }else{
-          audioElement.volume = volume;
-          audioElement.play();
-          view.play_record(record);
-        }
-        record.setIsPlaying(!record.getIsPlaying());
+    
+    if (audioElement) {
+      if (record.getIsPlaying()) {
+        audioElement.pause();
+        view.play_record(record);
       }else{
-        record.setAudioElement(new Audio(window.URL.createObjectURL(audioBlob))); 
-        record.getAudioElement().volume = volume;
-        record.getAudioElement().addEventListener('ended', () => {
-          record.setIsPlaying(false);
-        });
-        record.setIsPlaying(true);
-        record.getAudioElement().addEventListener("durationchange", function (e) {
-          if (this.duration!=Infinity) {
-            record.setDuration(record.getAudioElement().duration * 1000);
-            view.play_record(record);
-          };
-        });
-        record.getAudioElement().play();
+        audioElement.volume = volume;
+        audioElement.play();
+        view.play_record(record);
       }
-    } else {
+      record.setIsPlaying(!record.getIsPlaying());
+    }else{
       console.error('Audio data not avaible');
     }
     
