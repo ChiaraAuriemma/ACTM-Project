@@ -75,7 +75,7 @@ function hendleInput(input, pitch_to_note) {
                 noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
             }
         break;
-        case 145:
+        default:
             if(model.getMidi().getType() == 'drum'){
                 mapped = mapping_drum(sample);
                 console.log(mapped);
@@ -87,12 +87,7 @@ function hendleInput(input, pitch_to_note) {
                 }
             }
         break;
-        case 129:
-            if(model.getMidi().getType() == 'drum'){
-                mapped = mapping_drum(sample);
-                noteoff(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
-            }
-        break;
+
     }
 }
 
