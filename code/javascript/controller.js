@@ -203,7 +203,8 @@ controller = {
     
   },
 
-  delete_recording: function(event,record){ 
+  delete_recording: function(event,record){
+    /* gestisci la voce */
     record.resetRecord();
     view.resetRecording(event);
   },

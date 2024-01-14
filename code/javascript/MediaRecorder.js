@@ -14,24 +14,16 @@ function SetupAudio(code, ins){
         }
 
         recorder.onstop = e => {
+          records[code].setTimeStop(Date.now());
+          records[code].setDuration(records[code].getTimeStop()- records[code].getTimeStart());
           const blob = new Blob(records[code].getChunks(), {type: "audio/ogg; codecs=opus"});
           records[code].setChunks([]);
 
           
           records[code].setAudioElement(new Audio(window.URL.createObjectURL(blob))); 
-          records[code].getAudioElement().volume = 0;
+
           records[code].getAudioElement().addEventListener('ended', () => {
             records[code].setIsPlaying(false);
-          });
-          records[code].getAudioElement().play();
-          setTimeout(function() {
-            records[code].getAudioElement().pause();
-            records[code].getAudioElement().currentTime = 0;
-          }, 1000);
-          records[code].getAudioElement().addEventListener("durationchange", function (e) {
-            if (this.duration!=Infinity) {
-              records[code].setDuration(this.duration * 1000);
-            };
           });
         }
 
@@ -59,6 +51,7 @@ function ToggleMic(record){
     CountDown(el,model.getCountDown());
     setTimeout(function () {
       record.getRecorder().start();
+      record.setTimeStart(Date.now());
       console.log("Start Recording");
     }, time);
   }else{

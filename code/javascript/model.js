@@ -292,6 +292,8 @@ class Instrument{
       this.recorder = null;
       this.audio_element;
       this.can_record = false;
+      this.timeStart;
+      this.timeStop;
       SetupAudio(code, father);
     }
 
@@ -311,8 +313,27 @@ class Instrument{
       this.audio_element = audio_element;
     }
 
+    getTimeStart(){
+      return this.timeStart;
+    }
+
+    setTimeStart(timeStart){
+      this.timeStart = timeStart;
+    }
+
+    getTimeStop(){
+      return this.timeStop;
+    }
+
+    setTimeStop(timeStop){
+      this.timeStop = timeStop;
+    }
+
     resetRecord(){
-      this.audio_data = null;
+      this.audio_element = null;
+      this.timeStart = 0;
+      this.timeStop = 0;
+      this.duration = 0;
     }
   }
 
