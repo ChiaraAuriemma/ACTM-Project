@@ -347,12 +347,6 @@ controller = {
       view.validity_mute_solo(button);
     }
 
-    if(operation == "solo" && !instrument.getSoloState()){
-      instrument.setMuteState(false);
-      button = instrument.getRefDiv().querySelector(".m_button");
-      view.validity_mute_solo(button);
-    }
-
   }
 
 }
