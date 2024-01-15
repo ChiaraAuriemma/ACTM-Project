@@ -231,7 +231,7 @@ controller = {
 
   manageLoop: function(record){
 
-    if(!record.getIsPlaying() && record.getFather().getType() != 'voice'){
+    if(!record.getIsPlaying() && record.getFather().getType() != 'voice' && record.getOnArray().length != 0 && record.getOffArray().length != 0){
         
       record.setIsPlaying(true);
 

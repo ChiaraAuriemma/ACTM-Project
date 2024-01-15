@@ -256,7 +256,7 @@ view = {
 
           ctx.fill();
           
-          record.setAnimationAngle(record.getAnimationAngle() + 0.04);
+          record.setAnimationAngle(record.getAnimationAngle() + 0.03);
 
           if (record.getAnimationAngle() > Math.PI * 2) {
               stopAnimation();
@@ -264,7 +264,7 @@ view = {
       }
 
       function startAnimation() {
-          let animationInterval = setInterval(drawCircle, duration/(2*Math.PI/0.04));
+          let animationInterval = setInterval(drawCircle, duration/(2*Math.PI/0.03));
           record.setAnimationInt(animationInterval);
           record.setAnimationState(true);
       }
