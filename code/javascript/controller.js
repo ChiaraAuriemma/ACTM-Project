@@ -68,10 +68,28 @@ controller = {
 
   delete_instrument: function(event){
     if(model.getRemoveState()){
+      flag = false;
       ins = this.find_instrument_from_view(event);
       ins.getRecords().forEach((rec) => {
         rec.resetRecord();
       });
+
+      if(ins.getSoloState()){
+        model.getInstruments().forEach((el) => {
+          if(el.getCode() != ins.getCode() && el.getSoloState()){
+            flag = true;
+          }
+        });
+      }
+
+      if(!flag){
+        model.getInstruments().forEach((el) => {
+          if(el.getCode() != ins.getCode()){
+            el.setSoloMute(false);
+          }
+        });
+      }
+    
 
       target = event.target.closest('.instrument');
       model.deleteInstrument(parseInt(target.getAttribute("id").split('_')[1]));
