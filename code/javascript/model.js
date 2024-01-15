@@ -9,6 +9,7 @@ class Instrument{
       this.numBars = 1;
       this.muteState = false;
       this.soloState = false;
+      this.soloMute = false;
     }
 
     getCode(){
@@ -69,6 +70,14 @@ class Instrument{
 
     getSoloState(){
       return this.soloState;
+    }
+
+    setSoloMute(soloMute){
+      this.soloMute = soloMute;
+    }
+
+    getSoloMute(){
+      return this.soloMute;
     }
   
   }

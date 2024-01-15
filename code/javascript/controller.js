@@ -120,7 +120,7 @@ controller = {
 
   play_voice_recording: function(record){ 
     let audioElement = record.getAudioElement();
-    if(record.getFather().getMuteState()){
+    if(record.getFather().getMuteState() || record.getFather().getSoloMute()){
       volume = 0;
     }else{
       volume = record.getFather().getVolume();
@@ -172,7 +172,7 @@ controller = {
       const delay = noteOn.timestamp - record.getStartTime();
 
       setTimeout(() => {
-          if(record.getFather().getMuteState()){
+          if(record.getFather().getMuteState() || record.getFather().getSoloMute()){
             volume = 0;
           }else{
             volume = record.getFather().getVolume();
@@ -189,7 +189,7 @@ controller = {
         const delay = noteOff.timestamp - record.getStartTime();
 
         setTimeout(() => {
-            if(record.getFather().getMuteState()){
+            if(record.getFather().getMuteState() || record.getFather().getSoloMute()){
               volume = 0;
             }else{
               volume = record.getFather().getVolume();
@@ -259,20 +259,9 @@ controller = {
 
   activate_mute: function(event){
     inst = this.find_instrument_from_view(event);
-    flag = false;
-
-    model.getInstruments().forEach((el) => {
-      if(el.getCode() != inst.getCode()){
-        if(el.getSoloState()){
-          flag = true;
-        }
-      }
-    });
-
-    if(!flag){
-      inst.setMuteState(!inst.getMuteState());
-      this.checkValidity(inst,"mute");
-    }
+   
+    inst.setMuteState(!inst.getMuteState());
+    this.checkValidity(inst,"mute");
     
     view.activate_mute_solo(event.target);
     this.voice_mute_solo(inst);
@@ -287,9 +276,10 @@ controller = {
     flag = false;
 
     if(inst.getSoloState()){
+      inst.setSoloMute(false);
       model.getInstruments().forEach((el) => {
         if(el.getCode() != inst.getCode() && !el.getSoloState()){
-          el.setMuteState(true);
+          el.setSoloMute(true);
           this.voice_mute_solo(el);
         }
       });
@@ -302,24 +292,18 @@ controller = {
 
       if(!flag){
         model.getInstruments().forEach((el) => {
-          if(el.getCode() != inst.getCode()){
-            el.setMuteState(false);
-            this.voice_mute_solo(el);
-          }
+          el.setSoloMute(false);
+          this.voice_mute_solo(el);
         });
       }else{
-        inst.setMuteState(true);
+        inst.setSoloMute(true);
       }
-     
     }
-    view.activate_mute_solo(event.target);
-    
-    
-      
+    view.activate_mute_solo(event.target);  
   },
 
   voice_mute_solo: function(inst){
-    if(inst.getType() == 'voice' && inst.getMuteState()){
+    if(inst.getType() == 'voice' && (inst.getMuteState() || inst.getSoloMute())){
       inst.getRecords().forEach((rec) => {
         if(rec.getIsPlaying()){
           rec.getAudioElement().volume = 0;
