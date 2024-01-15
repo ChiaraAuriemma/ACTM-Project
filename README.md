@@ -5,6 +5,12 @@
     <img src="code/images/logo.png" alt="alt text">
 </p>
 
+<p align="center">
+    At this link you can try the app:
+  <a href="https://annafusari.github.io/itsNotGarageBand/">click and try</a>
+</p>
+
+
 ## Group:
 
 - ####  Chiara Auriemma &nbsp;([@ChiaraAuriemma](https://github.com/ChiaraAuriemma))<br> 10722613&nbsp;&nbsp; chiara.auriemma@mail.polimi.it
@@ -14,10 +20,6 @@
 - ####  Anna Fusari &nbsp;([@AnnaFusari](https://github.com/AnnaFusari))<br> 10561236&nbsp;&nbsp; anna.fusari@mail.polimi.it
 
 <br>
-
-At this link you can try the app:
-[click and try](https://annafusari.github.io/itsNotGarageBand/)
-
 
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
