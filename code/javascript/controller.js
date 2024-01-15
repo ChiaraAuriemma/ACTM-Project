@@ -68,8 +68,13 @@ controller = {
 
   delete_instrument: function(event){
     if(model.getRemoveState()){
+      ins = this.find_instrument_from_view(event);
+      ins.getRecords().forEach((rec) => {
+        rec.resetRecord();
+      });
+
       target = event.target.closest('.instrument');
-      model.deleteInstrument(target.getAttribute("id").split('_')[1]);
+      model.deleteInstrument(parseInt(target.getAttribute("id").split('_')[1]));
       view.deleteInstrument(target);
     }    
   },

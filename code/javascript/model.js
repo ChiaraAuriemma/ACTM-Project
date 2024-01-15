@@ -388,6 +388,7 @@ class Instrument{
       this.offArray = [];
       this.startTime = null;
       this.can_record = true;
+      clearInterval(this.intLoop);
     }
 
     getBPM(){
