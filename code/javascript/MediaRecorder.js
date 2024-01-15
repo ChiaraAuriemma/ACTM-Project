@@ -52,11 +52,11 @@ function ToggleMic(record){
     setTimeout(function () {
       record.getRecorder().start();
       record.setTimeStart(Date.now());
-      console.log("Start Recording");
+      
     }, time);
   }else{
     record.getRecorder().stop();
-    console.log("Stop Recording");
+    
   }
 }
 

@@ -21,14 +21,11 @@ function setUpMidiInstrument(instrument){
         midiAccess.addEventListener("statechange", updateDevices);
     
         const inputs = [...midiAccess.inputs];
-        console.log(inputs);
         if(inputs.length > 0){
             model.setMidiFlag(true);
         }
     
         inputs.forEach((input) =>{
-            console.log(input);
-            console.log(input[1]);
             input[1].addEventListener('midimessage', function(event) {
                 hendleInput(event, pitch_to_note);
               });
@@ -36,16 +33,13 @@ function setUpMidiInstrument(instrument){
     }
 }
 
-//collegare velocity a volume
 
 function hendleInput(input, pitch_to_note) {
-    console.log(input);
     const command = input.data[0];
     const note = input.data[1];
     const velocity = input.data[2];
     
     const sample = pitch_to_note[note];
-    console.log(sample);
 
     if(model.getMidi().getType() == 'piano'){
         instSamples = pianoSamples;
@@ -63,7 +57,6 @@ function hendleInput(input, pitch_to_note) {
             if(model.getMidi().getType() != 'drum'){
                 if (velocity > 0) {
                     noteon(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
-                    console.log();
                 } else {
                     noteoff(sounds=instSamples, e=null, midi=true, midiSample=sample, midiInstrument = model.getMidi());
                 }
@@ -78,10 +71,8 @@ function hendleInput(input, pitch_to_note) {
         default:
             if(model.getMidi().getType() == 'drum'){
                 mapped = mapping_drum(sample);
-                console.log(mapped);
                 if (velocity > 0) {
                     noteon(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
-                    console.log();
                 } else {
                     noteoff(sounds=instSamples, e=null, midi=true, midiSample=mapped, midiInstrument = model.getMidi());
                 }
@@ -100,6 +91,8 @@ function onMIDIFailure() {
     console.log("Could not access your MIDI devices.");
 }
 
+
+//function that maps the samples name to the drum samples
 function mapping_drum(sample){
     map_drum={
       C2 : "kick1",
@@ -111,7 +104,7 @@ function mapping_drum(sample){
       Gb2 : "crash1",
       G2 : "crash2",
     };
-
+    
     return map_drum[sample];
 }
 

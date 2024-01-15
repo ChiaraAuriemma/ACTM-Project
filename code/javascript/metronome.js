@@ -4,7 +4,7 @@ metronome = {
     click2: new Audio('sounds/metronome/click2_metronome.mp3'),
 
     bpm: 140,
-    beatsPerMeasure: 4, /* potremmo dare la possibilità di cambiare questo paramentro */
+    beatsPerMeasure: 4, 
     count: 0,
     isRunning: false,
     interval: 0,
