@@ -204,7 +204,6 @@ controller = {
   },
 
   delete_recording: function(event,record){
-    /* gestisci la voce */
     record.resetRecord();
     view.resetRecording(event);
   },
@@ -260,17 +259,37 @@ controller = {
 
   activate_mute: function(event){
     inst = this.find_instrument_from_view(event);
-    inst.setMuteState(!inst.getMuteState());
-    view.activate_mute_solo(event);
+    flag = false;
+
+    model.getInstruments().forEach((el) => {
+      if(el.getCode() != inst.getCode()){
+        if(el.getSoloState()){
+          flag = true;
+        }
+      }
+    });
+
+    if(!flag){
+      inst.setMuteState(!inst.getMuteState());
+      this.checkValidity(inst,"mute");
+    }
+    
+    view.activate_mute_solo(event.target);
     this.voice_mute_solo(inst);
+    
+    
   },
 
   activate_solo: function(event){
     inst = this.find_instrument_from_view(event);
+
+
     inst.setSoloState(!inst.getSoloState());
+    this.checkValidity(inst, "solo");
+
     if(inst.getSoloState()){
       model.getInstruments().forEach((el) => {
-        if(el.getCode() != inst.getCode()){
+        if(el.getCode() != inst.getCode() && !el.getSoloState()){
           el.setMuteState(true);
           this.voice_mute_solo(el);
         }
@@ -283,7 +302,9 @@ controller = {
         }
       });
     }
-    view.activate_mute_solo(event);
+    view.activate_mute_solo(event.target);
+    
+    
       
   },
 
@@ -301,6 +322,21 @@ controller = {
         }
       });
     }
+  },
+
+  checkValidity: function(instrument, operation){
+    if(operation == "mute" && instrument.getMuteState()){
+      instrument.setSoloState(false);
+      button = instrument.getRefDiv().querySelector(".s_button");
+      view.validity_mute_solo(button);
+    }
+
+    if(operation == "solo" && instrument.getSoloState()){
+      instrument.setMuteState(false);
+      button = instrument.getRefDiv().querySelector(".m_button");
+      view.validity_mute_solo(button);
+    }
+
   }
 
 }

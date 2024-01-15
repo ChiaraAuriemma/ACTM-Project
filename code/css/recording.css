@@ -1,13 +1,13 @@
 .record_square{
-    width: 150px; /* Imposta la larghezza desiderata per ogni quadratino */
-    height: 150px; /* Imposta l'altezza desiderata per ogni quadratino */
+    width: 150px; 
+    height: 150px;
     background-color: #dce9f1;
-    position: relative; /* Imposta il colore di sfondo */
+    position: relative; 
   }
   
   .record_container{
-    display: flex; /* Utilizza il layout flessibile */
-    gap: 10px; /* Aggiunge uno spazio di 10px tra i quadratini */ 
+    display: flex; 
+    gap: 10px; 
   }
   
   .record_square:hover {

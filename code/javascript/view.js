@@ -204,8 +204,14 @@ view = {
       tempoDiv.style.display = "block";
     },
 
-    activate_mute_solo: function(event){
-      event.target.classList.toggle("activate_mute_solo");
+    activate_mute_solo: function(target){
+      target.classList.toggle("activate_mute_solo");
+    },
+
+    validity_mute_solo: function(button){
+      if (button.classList.contains("activate_mute_solo")){
+        button.classList.remove("activate_mute_solo");
+      }
     },
 
     create_canvas: function(recordSquare){
