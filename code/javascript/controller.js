@@ -74,7 +74,7 @@ controller = {
     }    
   },
 
-  find_instrument_from_view: function(event){ /* dalla view trova l'oggetto*/
+  find_instrument_from_view: function(event){ /*from view find the object*/
     ins_view = event.target.closest('.instrument');
     code = parseInt(ins_view.getAttribute("id").split('_')[1]);
 
@@ -83,7 +83,7 @@ controller = {
     return array[code];
   },
 
-  find_record_from_view: function(event, instrument){ /* dalla view trova l'oggetto*/
+  find_record_from_view: function(event, instrument){ /*from view find the object*/
     code = event.target.closest(".record_square").getAttribute("id").split('_')[1];
     records = instrument.getRecords();
 
