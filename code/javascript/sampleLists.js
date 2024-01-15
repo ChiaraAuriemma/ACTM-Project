@@ -19,13 +19,13 @@ function createSamplesList(keyList, directoryName, name, firstScale=0){
   
     const sound = new Howl({
         src: samplesList[sample],
-        //preload: true  
     });
     sounds[sample] = sound;
   }
 
   return sounds;
 };
+
 
 function noteon(sounds=null, e=null, midi=false, midiSample=null, midiInstrument=null){
   let sample=null;
