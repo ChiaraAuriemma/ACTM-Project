@@ -282,10 +282,9 @@ controller = {
 
   activate_solo: function(event){
     inst = this.find_instrument_from_view(event);
-
-
     inst.setSoloState(!inst.getSoloState());
     this.checkValidity(inst, "solo");
+    flag = false;
 
     if(inst.getSoloState()){
       model.getInstruments().forEach((el) => {
@@ -296,11 +295,22 @@ controller = {
       });
     }else{
       model.getInstruments().forEach((el) => {
-        if(el.getCode() != inst.getCode()){
-          el.setMuteState(false);
-          this.voice_mute_solo(el);
+        if(el.getCode() != inst.getCode() && el.getSoloState()){
+          flag=true;
         }
       });
+
+      if(!flag){
+        model.getInstruments().forEach((el) => {
+          if(el.getCode() != inst.getCode()){
+            el.setMuteState(false);
+            this.voice_mute_solo(el);
+          }
+        });
+      }else{
+        inst.setMuteState(true);
+      }
+     
     }
     view.activate_mute_solo(event.target);
     
@@ -332,6 +342,12 @@ controller = {
     }
 
     if(operation == "solo" && instrument.getSoloState()){
+      instrument.setMuteState(false);
+      button = instrument.getRefDiv().querySelector(".m_button");
+      view.validity_mute_solo(button);
+    }
+
+    if(operation == "solo" && !instrument.getSoloState()){
       instrument.setMuteState(false);
       button = instrument.getRefDiv().querySelector(".m_button");
       view.validity_mute_solo(button);
