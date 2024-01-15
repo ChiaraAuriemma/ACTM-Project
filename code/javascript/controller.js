@@ -341,8 +341,26 @@ controller = {
   },
 
   checkValidity: function(instrument, operation){
+    flag = false;
+
     if(operation == "mute" && instrument.getMuteState()){
       instrument.setSoloState(false);
+      model.getInstruments().forEach((el) => {
+        if(el.getCode() != instrument.getCode() && el.getSoloState()){
+          flag = true;
+        }
+      });
+      
+      if(!flag){
+        model.getInstruments().forEach((el) => {
+          el.setSoloMute(false);
+          this.voice_mute_solo(el);
+        });
+      }else{
+        instrument.setSoloMute(true);
+        this.voice_mute_solo(instrument);
+      }
+
       button = instrument.getRefDiv().querySelector(".s_button");
       view.validity_mute_solo(button);
     }
