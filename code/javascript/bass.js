@@ -12,13 +12,10 @@ notesBassSharp = ["E1", "F1", "Fs1", "G1", "Gs1", "A1", "As1", "B1", "C2", "Cs2"
 
 
 function setupBass(var_instrument) {
-    
     const root = document.documentElement;
     const fretboard = container.querySelector('.fretboard');
     const instrumentSelector = container.querySelector('#instrument-selector');
     const accidentalSelector = container.querySelector('.accidental-selector');
-   
-
     const showAllNotesSelector = container.querySelector('#show-all-notes');
     const showMultipleNotesSelector = container.querySelector('#show-multiple-notes');
     const noteNameSection = container.querySelector('.note-name-section');
@@ -89,7 +86,7 @@ function setupBass(var_instrument) {
             }
             allNotes = document.querySelectorAll('.note-fret');
         },
-        generateNoteNames(noteIndex, accidentals) { //accidentals è una variabile globale la lascio?
+        generateNoteNames(noteIndex, accidentals) { 
           
             let noteName;
             if(accidentals === 'flats') {
@@ -131,10 +128,10 @@ function setupBass(var_instrument) {
         },
 
         playnote(event){
-            noteon(sounds=bassSamples, e=event); // manca da gestire container 
+            noteon(sounds=bassSamples, e=event); 
         },
         releasenote(event){
-            noteoff(sounds=bassSamples, e=event); // manca da gestire container   
+            noteoff(sounds=bassSamples, e=event);   
         },
 
         hideNoteDot(event) {
@@ -191,21 +188,16 @@ function setupBass(var_instrument) {
         },
         
         setupEventListeners(){
-            
             fretboard.addEventListener('mousedown', this.playnote);
             fretboard.addEventListener('mouseup', this.releasenote);
             fretboard.addEventListener('mouseover', this.showNoteDot);
             fretboard.addEventListener('mouseout', this.hideNoteDot);
-           
             accidentalSelector.addEventListener('click', this.setAccidentals);
-           
             showAllNotesSelector.addEventListener('change', this.setShowAllNote);
             showMultipleNotesSelector.addEventListener('change', this.setShowMultipleNotes);
             noteNameSection.addEventListener('mouseover', this.setNotesToShow);
             noteNameSection.addEventListener('mouseout', this.setNotesToHide);
-            
         }
-        
     }
     
     const tools = {
