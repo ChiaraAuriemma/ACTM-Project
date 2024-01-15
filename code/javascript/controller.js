@@ -215,7 +215,6 @@ controller = {
 
   change_volume: function(event){
     volume = event.target.value;
-    console.log(volume);
     ins = this.find_instrument_from_view(event);
 
     ins.setVolume(volume/100);

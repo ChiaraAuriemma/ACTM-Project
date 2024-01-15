@@ -191,8 +191,9 @@ class Instrument{
     }
 
     draw(container){
-        /*si potrebbe anche eliminare */
+        
     }
+
     setUpMidi(){
      
     }
@@ -201,6 +202,8 @@ class Instrument{
       return this.type;
     }
   }
+
+   /*-------------Recorder--------------*/
 
   class Record_square{
     constructor(father, code){
@@ -417,6 +420,7 @@ class Instrument{
   }
 
   
+  /*-------------Model Object--------------*/
   model = {
     
     instruments: [],
@@ -435,6 +439,8 @@ class Instrument{
     outFlag: false,
     midi:null,
     midiFlag:false,
+
+    /*-------------Getter and setter methods--------------*/
   
     getInstruments: function(){
       return this.instruments;
@@ -551,6 +557,8 @@ class Instrument{
     setMidiFlag: function(midiFlag){
       this.midiFlag = midiFlag;
     },
+
+    /*-------------Model methods--------------*/
 
     checkButtons: function(){
       let count = 0;
