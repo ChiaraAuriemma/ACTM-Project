@@ -15,6 +15,10 @@
 
 <br>
 
+At this link you can try the app:
+[click and try](https://annafusari.github.io/itsNotGarageBand/)
+
+
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
 The software gives you the ability to do multiple things:
