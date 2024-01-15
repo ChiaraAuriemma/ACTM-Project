@@ -25,11 +25,12 @@ function drawKeyBoard(container_id) {
 
     let instrument=document.getElementById(container_id);
     instrument.addEventListener("mousedown", (e) => {
-        
         noteon(sounds=pianoSamples, e=e);
+
     });
     instrument.addEventListener("mouseup", (e) => {
         noteoff(sounds=pianoSamples, e=e);
+
     });
     startscale = firstScale;
     return key;
@@ -57,10 +58,7 @@ function drawKey(key, disp=0, startscale){
             let x = (i * whiteWidth) - blackWidth / 2;
             key += "<rect onmousedown=\"this.style.fill='gray'\" onmouseleave=\"this.style.fill='black'\" onmouseup=\"this.style.fill='black'\" data-note='"+ blackKey[i-1] + (startscale) +"' id="+blackKey[i-1] + (startscale)+"  x=" + (x+disp) + " y=\"20\" rx=\"5\" ry=\"5\" width=" + blackWidth + " height=\"200\"\n" +
             "  class=\"blackKey\" />\n";
-            
-            
-            //"<rect onmousedown=\"noteon('"+ blackKey[i-1] + (firstScale) +"',  pianoSamples , '"+ container_id +"')\" onmouseleave=\"this.style.fill='black'\" onmouseup=\"noteoff('"+ blackKey[i-1] + (firstScale) +"',  pianoSamples , '"+ container_id +"')\" data-note='"+ blackKey[i-1] + (firstScale) +"' id="+blackKey[i-1] + (firstScale)+"  x=" + (x+disp) + " y=\"20\" rx=\"5\" ry=\"5\" width=" + blackWidth + " height=\"200\"\n" +
-                //"  class=\"blackKey\" />\n";
+
         }
     }
     return key;
