@@ -21,7 +21,7 @@
 
 <br>
 
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/9ChYAzdux1c)
+[![Watch the video](https://github.com/ChiaraAuriemma/ACTM-Project/blob/main/deliveries/images/Screen3.png)](https://youtu.be/9ChYAzdux1c)
 
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
