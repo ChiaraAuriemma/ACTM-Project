@@ -51,7 +51,7 @@ The software gives you the ability to do multiple things:
 <br><br>
  
 ### Model-View-Controller
-To structure the project we used the model-view-controller pattern. All three are js files in the project. In the model we save the application information, we note the current status of the operations, which tools i have created and the management of records. For instruments and recordings we have also created classes to simplify management.
+To structure the project we used the model-view-controller pattern. All three are js files in the project. In the model we save the application information, we note the current status of the operations, which instruments i have created and the management of records. For instruments and recordings we have also created classes to simplify management.
 
 The controller is responsible for understanding what needs to be done and which functions to call at a given moment. HTML elements have associated functions within the controller.
 
