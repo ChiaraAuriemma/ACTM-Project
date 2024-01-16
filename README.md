@@ -21,7 +21,11 @@
 
 <br>
 
-[![Watch the video](https://github.com/ChiaraAuriemma/ACTM-Project/blob/main/deliveries/images/Screen3.png)](https://youtu.be/9ChYAzdux1c)
+<p align="center">
+  <a href="https://youtu.be/9ChYAzdux1c">
+    <img src="https://github.com/ChiaraAuriemma/ACTM-Project/blob/main/deliveries/images/Screen3.png" alt="Watch the video" width="800" style="border-radius: 8px;">
+  </a>
+</p>
 
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
