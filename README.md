@@ -27,6 +27,8 @@
   </a>
 </p>
 
+<br>
+
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
 The software gives you the ability to do multiple things:
@@ -48,7 +50,7 @@ The software gives you the ability to do multiple things:
 <div  align="center">
 <img width="80%" src="https://github.com/ChiaraAuriemma/ACTM-Project/blob/main/deliveries/images/Screen2.png" align="center" />
 </div>
-<br><br>
+<br>
 
 ### How to use the app
 - **Record an instrument:** press the rec button, then open the instrument that you want to play clicking on the image and start to play whatever you want. Have fun! Remember that the recording start when you click on the first note
