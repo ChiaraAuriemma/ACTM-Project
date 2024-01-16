@@ -21,6 +21,10 @@
 
 <br>
 
+<video width="640" height="360" controls>
+  <source src="https://github.com/ChiaraAuriemma/ACTM-Project/raw/main/deliveries/video/videoProg.mp4" type="video/mp4">
+</video>
+
 ### About the project
 The aim of the project is to create a DAW that is intuitive and simple to use for those approaching music production for the first time.
 The software gives you the ability to do multiple things:
