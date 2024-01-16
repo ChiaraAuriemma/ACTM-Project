@@ -65,5 +65,3 @@ We also have many css files that take care of the styling of the graphic element
 ### Project-related challenges
 The biggest difficulty of the project was its heterogeneity. A DAW allows you to carry out various operations, and we chose the ones that seemed most significant to us. The project contained many elements, but we tried to have an as modular approach as possible. Instead of writing dedicated code for each instrument, we created classes and shared as much code as possible for each one. Regarding recording, we adopted a different approach for instruments compared to voice because it seemed more sensible to save information related to notes rather than a much bulkier audio file in terms of memory.The difficulty with MIDI was establishing the correspondence between sounds and keys, but once resolved, we were able to limit the code by reusing functions like noteon and noteoff, which were already used elsewhere to play the sounds.
 
-  
-----> Aggiungere video e immagini
